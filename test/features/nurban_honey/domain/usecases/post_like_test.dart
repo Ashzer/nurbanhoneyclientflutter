@@ -17,9 +17,7 @@ void main() {
     "Article Repository로 좋아요 요청",
     () async {
       when(mockArticleRepository.postLike(
-              address: anyNamed("address"),
-              token: anyNamed("token"),
-              articleId: anyNamed("articleId")))
+              address: "address", token: "token", articleId: 1))
           .thenAnswer((_) async => Right(tEmptyResponse));
 
       final result = await postLike(

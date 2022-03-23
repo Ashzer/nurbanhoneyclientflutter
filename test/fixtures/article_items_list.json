@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "thumbnail": "thumbnail 1",
+        "title": "title 1",
+        "commentCount": 1,
+        "User": {
+            "userId": 1,
+            "badge": "badge 1",
+            "nickname": "nickname 1",
+            "insignia": ["insignia 1","insignia 2"]
+        }
+    },
+    {
+        "id": 2,
+        "thumbnail": "thumbnail 2",
+        "title": "title 2",
+        "commentCount": 2,
+        "User": {
+            "userId": 2,
+            "badge": "badge 2",
+            "nickname": "nickname 2",
+            "insignia": ["insignia 2","insignia 3"]
+        }
+    },
+    {
+        "id": 3,
+        "thumbnail": "thumbnail 3",
+        "title": "title 3",
+        "commentCount": 3,
+        "User": {
+            "userId": 3,
+            "badge": "badge 3",
+            "nickname": "nickname 3",
+            "insignia": ["insignia 3","insignia 4"]
+        }
+    }
+]

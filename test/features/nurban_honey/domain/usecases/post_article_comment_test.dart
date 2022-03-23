@@ -6,7 +6,7 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/arti
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/post_article_comment.dart';
 
-import 'delete_dislike_test.mocks.dart';
+import 'post_article_comment_test.mocks.dart';
 
 @GenerateMocks([ArticleRepository])
 void main() {

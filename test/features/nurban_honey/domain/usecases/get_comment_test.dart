@@ -6,7 +6,7 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/arti
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_comment/article_comment.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/get_comment.dart';
 
-import 'get_articles_test.mocks.dart';
+import 'get_comment_test.mocks.dart';
 
 @GenerateMocks([ArticleRepository])
 void main() {

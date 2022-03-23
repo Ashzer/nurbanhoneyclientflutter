@@ -4,17 +4,17 @@ import 'package:dartz/dartz.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 
-import '../../data/repositories/article_repository.dart';
+import '../../../data/repositories/article_repository.dart';
 
-class PostArticleComment implements UseCase<EmptyResponse, Params> {
+class DeleteArticleComment implements UseCase<EmptyResponse, Params> {
   final ArticleRepository repository;
-  PostArticleComment(this.repository);
+  DeleteArticleComment(this.repository);
   @override
   Future<Either<Failure, EmptyResponse>> call(params) async {
-    return await repository.postComment(
+    return await repository.deleteComment(
         address: params.address,
         token: params.token,
-        comment: params.comment,
+        commentId: params.commentId,
         articleId: params.articleId);
   }
 }
@@ -22,14 +22,13 @@ class PostArticleComment implements UseCase<EmptyResponse, Params> {
 class Params extends Equatable {
   final String address;
   final String token;
-  final String comment;
+  final int commentId;
   final int articleId;
   const Params(
       {required this.address,
       required this.token,
-      required this.comment,
+      required this.commentId,
       required this.articleId});
-
   @override
-  List<Object?> get props => [address, token, comment, articleId];
+  List<Object?> get props => [address, token, commentId, articleId];
 }

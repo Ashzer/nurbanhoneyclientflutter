@@ -4,7 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/article_repository.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_comment/article_comment.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/get_article_comments.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/article_repository/get_article_comments.dart';
 
 import 'delete_article_comment_test.mocks.dart';
 

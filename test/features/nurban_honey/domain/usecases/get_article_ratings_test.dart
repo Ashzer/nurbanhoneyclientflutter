@@ -3,30 +3,30 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/article_repository.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/post_dislike.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_ratings/article_ratings.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/get_article_ratings.dart';
 
 import 'get_articles_test.mocks.dart';
 
 @GenerateMocks([ArticleRepository])
 void main() {
   final mockArticleRepository = MockArticleRepository();
-  final postDislike = PostDislike(mockArticleRepository);
+  final getArticleRatings = GetArticleRatings(mockArticleRepository);
 
-  final tEmptyResponse = EmptyResponse("OK");
+  final tArticleRatings = ArticleRatings("likes", "dislikes", "myRating");
 
   test(
-    "Article Repository로 싫어요 요청",
+    "Article Repository에서 좋아요 싫어요 내 선택을 가져온다",
     () async {
-      when(mockArticleRepository.postDislike(
+      when(mockArticleRepository.getArticleRatings(
               address: "address", token: "token", articleId: 1))
-          .thenAnswer((_) async => Right(tEmptyResponse));
+          .thenAnswer((_) async => Right(tArticleRatings));
 
-      final result = await postDislike(
+      final result = await getArticleRatings(
           Params(address: "address", token: "token", articleId: 1));
 
-      expect(result, Right(tEmptyResponse));
-      verify(mockArticleRepository.postDislike(
+      expect(result, Right(tArticleRatings));
+      verify(mockArticleRepository.getArticleRatings(
           address: "address", token: "token", articleId: 1));
       verifyNoMoreInteractions(mockArticleRepository);
     },

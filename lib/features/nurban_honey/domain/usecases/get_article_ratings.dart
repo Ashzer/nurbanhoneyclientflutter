@@ -1,16 +1,18 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:nurbanhoney_flutter/core/error/failures.dart';
+import 'package:dartz/dartz.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/article_repository.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_ratings/article_ratings.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/get_articles.dart';
 
-class CancelLike implements UseCase<EmptyResponse, Params> {
+class GetArticleRatings implements UseCase<ArticleRatings, Params> {
   final ArticleRepository repository;
-  CancelLike(this.repository);
+  GetArticleRatings(this.repository);
+
   @override
-  Future<Either<Failure, EmptyResponse>> call(Params params) async {
-    return await repository.cancelLike(
+  Future<Either<Failure, ArticleRatings>> call(params) async {
+    return await repository.getArticleRatings(
         address: params.address,
         token: params.token,
         articleId: params.articleId);
@@ -21,7 +23,8 @@ class Params extends Equatable {
   final String address;
   final String token;
   final int articleId;
-  Params({required this.address, required this.token, required this.articleId});
+  const Params(
+      {required this.address, required this.token, required this.articleId});
 
   @override
   List<Object?> get props => [address, token, articleId];

@@ -35,9 +35,7 @@ void main() {
     "Article Repository에서 Article을 하나 가져온다",
     () async {
       when(mockArticleRepository.getArticle(
-              address: anyNamed("address"),
-              articleId: anyNamed("articleId"),
-              token: anyNamed("token")))
+              address: "address", articleId: 1, token: "token"))
           .thenAnswer((_) async => Right(tArticle));
 
       final result = await getArticle(

@@ -17,16 +17,16 @@ abstract class ArticleRepository {
   Future<Either<Failure, EmptyResponse>> postLike(
       {String address, String token, int articleId});
 
-  Future<Either<Failure, EmptyResponse>> cancelLike(
+  Future<Either<Failure, EmptyResponse>> deleteLike(
       {String address, String token, int articleId});
 
   Future<Either<Failure, EmptyResponse>> postDislike(
       {String address, String token, int articleId});
 
-  Future<Either<Failure, EmptyResponse>> cancelDislike(
+  Future<Either<Failure, EmptyResponse>> deleteDislike(
       {String address, String token, int articleId});
 
-  Future<Either<Failure, ArticleRatings>> getRatings(
+  Future<Either<Failure, ArticleRatings>> getArticleRatings(
       {String address, String token, int articleId});
 
   Future<Either<Failure, ArticleComment>> getComment(
@@ -41,6 +41,6 @@ abstract class ArticleRepository {
   Future<Either<Failure, EmptyResponse>> deleteComment(
       {String address, String token, int commentId, int articleId});
 
-  Future<Either<Failure, EmptyResponse>> updateComment(
+  Future<Either<Failure, EmptyResponse>> putComment(
       {String address, String token, int commentId, String comment});
 }

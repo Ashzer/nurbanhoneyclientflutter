@@ -4,30 +4,30 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/article_repository.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/post_dislike.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/delete_article_comment.dart';
 
-import 'get_articles_test.mocks.dart';
+import 'delete_article_comment_test.mocks.dart';
 
 @GenerateMocks([ArticleRepository])
 void main() {
   final mockArticleRepository = MockArticleRepository();
-  final postDislike = PostDislike(mockArticleRepository);
+  final deleteArticleComment = DeleteArticleComment(mockArticleRepository);
 
   final tEmptyResponse = EmptyResponse("OK");
 
   test(
-    "Article Repository로 싫어요 요청",
+    "Article Repository로 댓글 삭제 요청",
     () async {
-      when(mockArticleRepository.postDislike(
-              address: "address", token: "token", articleId: 1))
+      when(mockArticleRepository.deleteComment(
+              address: "address", token: "token", commentId: 1, articleId: 1))
           .thenAnswer((_) async => Right(tEmptyResponse));
 
-      final result = await postDislike(
-          Params(address: "address", token: "token", articleId: 1));
+      final result = await deleteArticleComment(Params(
+          address: "address", token: "token", commentId: 1, articleId: 1));
 
       expect(result, Right(tEmptyResponse));
-      verify(mockArticleRepository.postDislike(
-          address: "address", token: "token", articleId: 1));
+      verify(mockArticleRepository.deleteComment(
+          address: "address", token: "token", commentId: 1, articleId: 1));
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:nurbanhoney_flutter/core/error/failures.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/article_repository.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/article_repository.dart';
 
 import '../../entities/board/article_item/article_item.dart';
 

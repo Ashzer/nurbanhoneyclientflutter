@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/board_repository.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/board_repository.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board_info/board_info.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/board_repository/get_boards.dart';
 import 'get_boards_test.mocks.dart';

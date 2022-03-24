@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:nurbanhoney_flutter/core/error/failures.dart' as _i5;
-import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/board_repository.dart'
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/board_repository.dart'
     as _i3;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board_info/board_info.dart'
     as _i6;

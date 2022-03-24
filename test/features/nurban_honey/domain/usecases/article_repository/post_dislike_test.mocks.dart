@@ -7,8 +7,6 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:nurbanhoney_flutter/core/error/failures.dart' as _i5;
-import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/article_repository.dart'
-    as _i3;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_comment/article_comment.dart'
     as _i10;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_detail/article_detail.dart'
@@ -19,6 +17,8 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board/
     as _i6;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart'
     as _i8;
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/article_repository.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

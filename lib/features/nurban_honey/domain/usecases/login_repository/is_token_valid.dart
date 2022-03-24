@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:nurbanhoney_flutter/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/data/repositories/login_repository.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/login_repository.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/TokenStatus/token_status.dart';
 
 class IsTokenValid implements UseCase<TokenStatus, Params> {

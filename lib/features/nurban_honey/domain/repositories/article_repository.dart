@@ -5,7 +5,7 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board/
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 
 import '../../../../core/error/failures.dart';
-import '../../domain/entities/ariticle/article_detail/article_detail.dart';
+import '../entities/ariticle/article_detail/article_detail.dart';
 
 abstract class ArticleRepository {
   Future<Either<Failure, List<ArticleItem>>> getArticles(

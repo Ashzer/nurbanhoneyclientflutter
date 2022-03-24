@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 
-import '../../../data/repositories/article_repository.dart';
+import '../../repositories/article_repository.dart';
 
 class DeleteArticleComment implements UseCase<EmptyResponse, Params> {
   final ArticleRepository repository;

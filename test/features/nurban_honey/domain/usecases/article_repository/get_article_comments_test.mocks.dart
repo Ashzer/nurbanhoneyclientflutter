@@ -7,11 +7,11 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:nurbanhoney_flutter/core/error/failures.dart' as _i5;
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_comment/article_comment.dart'
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_comment/article_comment.dart'
     as _i10;
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_detail/article_detail.dart'
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_detail/article_detail.dart'
     as _i7;
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_ratings/article_ratings.dart'
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_ratings/article_ratings.dart'
     as _i9;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board/article_item/article_item.dart'
     as _i6;

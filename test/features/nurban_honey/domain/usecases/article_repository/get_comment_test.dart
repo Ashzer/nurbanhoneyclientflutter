@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/article_repository.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_comment/article_comment.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_comment/article_comment.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/article_repository/get_comment.dart';
 
 import 'get_comment_test.mocks.dart';

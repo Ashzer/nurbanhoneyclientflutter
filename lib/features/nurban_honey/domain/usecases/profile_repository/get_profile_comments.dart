@@ -6,7 +6,7 @@ import 'package:nurbanhoney_flutter/core/error/failures.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/profile_repository.dart';
 
-import '../../entities/profile/profile_comment/profile_comment.dart';
+import '../../entities/profile_comment/profile_comment.dart';
 
 class GetProfileComments implements UseCase<List<ProfileComment>, Params> {
   final ProfileRepository repository;

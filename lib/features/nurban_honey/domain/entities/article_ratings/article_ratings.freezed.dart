@@ -18,8 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ArticleRatingsTearOff {
   const _$ArticleRatingsTearOff();
 
-  _ArticleRatings call(String likes, String dislikes, String myRating) {
+  _ArticleRatings call(int id, String likes, String dislikes, String myRating) {
     return _ArticleRatings(
+      id,
       likes,
       dislikes,
       myRating,
@@ -32,6 +33,7 @@ const $ArticleRatings = _$ArticleRatingsTearOff();
 
 /// @nodoc
 mixin _$ArticleRatings {
+  int get id => throw _privateConstructorUsedError;
   String get likes => throw _privateConstructorUsedError;
   String get dislikes => throw _privateConstructorUsedError;
   String get myRating => throw _privateConstructorUsedError;
@@ -46,7 +48,7 @@ abstract class $ArticleRatingsCopyWith<$Res> {
   factory $ArticleRatingsCopyWith(
           ArticleRatings value, $Res Function(ArticleRatings) then) =
       _$ArticleRatingsCopyWithImpl<$Res>;
-  $Res call({String likes, String dislikes, String myRating});
+  $Res call({int id, String likes, String dislikes, String myRating});
 }
 
 /// @nodoc
@@ -60,11 +62,16 @@ class _$ArticleRatingsCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? likes = freezed,
     Object? dislikes = freezed,
     Object? myRating = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       likes: likes == freezed
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
@@ -88,7 +95,7 @@ abstract class _$ArticleRatingsCopyWith<$Res>
           _ArticleRatings value, $Res Function(_ArticleRatings) then) =
       __$ArticleRatingsCopyWithImpl<$Res>;
   @override
-  $Res call({String likes, String dislikes, String myRating});
+  $Res call({int id, String likes, String dislikes, String myRating});
 }
 
 /// @nodoc
@@ -104,11 +111,16 @@ class __$ArticleRatingsCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? likes = freezed,
     Object? dislikes = freezed,
     Object? myRating = freezed,
   }) {
     return _then(_ArticleRatings(
+      id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       likes == freezed
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
@@ -128,8 +140,10 @@ class __$ArticleRatingsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ArticleRatings implements _ArticleRatings {
-  _$_ArticleRatings(this.likes, this.dislikes, this.myRating);
+  _$_ArticleRatings(this.id, this.likes, this.dislikes, this.myRating);
 
+  @override
+  final int id;
   @override
   final String likes;
   @override
@@ -139,7 +153,7 @@ class _$_ArticleRatings implements _ArticleRatings {
 
   @override
   String toString() {
-    return 'ArticleRatings(likes: $likes, dislikes: $dislikes, myRating: $myRating)';
+    return 'ArticleRatings(id: $id, likes: $likes, dislikes: $dislikes, myRating: $myRating)';
   }
 
   @override
@@ -147,6 +161,7 @@ class _$_ArticleRatings implements _ArticleRatings {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ArticleRatings &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.likes, likes) &&
             const DeepCollectionEquality().equals(other.dislikes, dislikes) &&
             const DeepCollectionEquality().equals(other.myRating, myRating));
@@ -155,6 +170,7 @@ class _$_ArticleRatings implements _ArticleRatings {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(likes),
       const DeepCollectionEquality().hash(dislikes),
       const DeepCollectionEquality().hash(myRating));
@@ -166,9 +182,12 @@ class _$_ArticleRatings implements _ArticleRatings {
 }
 
 abstract class _ArticleRatings implements ArticleRatings {
-  factory _ArticleRatings(String likes, String dislikes, String myRating) =
+  factory _ArticleRatings(
+          int id, String likes, String dislikes, String myRating) =
       _$_ArticleRatings;
 
+  @override
+  int get id;
   @override
   String get likes;
   @override

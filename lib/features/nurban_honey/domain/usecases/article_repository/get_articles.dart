@@ -4,7 +4,7 @@ import 'package:nurbanhoney_flutter/core/error/failures.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/article_repository.dart';
 
-import '../../entities/board/article_item/article_item.dart';
+import '../../entities/article_item/article_item.dart';
 
 class GetArticles implements UseCase<List<ArticleItem>, Params> {
   final ArticleRepository repository;

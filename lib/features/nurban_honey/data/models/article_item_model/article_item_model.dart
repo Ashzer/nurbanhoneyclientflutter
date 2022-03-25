@@ -1,12 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board/article_item/article_item.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_item/article_item.dart';
+
+import '../user_info.dart';
 
 part 'article_item_model.freezed.dart';
 part 'article_item_model.g.dart';
 
 @freezed
 class ArticleItemModel with _$ArticleItemModel {
-  factory ArticleItemModel(int id, String thumbnail, String title,
+  factory ArticleItemModel(int id, String? thumbnail, String title,
       int commentCount, UserInfo User) = _ArticleItemModel;
 
   factory ArticleItemModel.fromJson(Map<String, dynamic> json) =>
@@ -24,20 +26,11 @@ class ArticleItemModel with _$ArticleItemModel {
 extension GetEntity on ArticleItemModel {
   ArticleItem toArticleItem() => ArticleItem(
       id,
-      thumbnail,
+      thumbnail ?? "",
       title,
       commentCount.toString(),
       User.userId,
       User.badge,
       User.nickname,
-      User.insignia);
-}
-
-@freezed
-class UserInfo with _$UserInfo {
-  factory UserInfo(
-          int userId, String badge, String nickname, List<String> insignia) =
-      _UserInfo;
-  factory UserInfo.fromJson(Map<String, dynamic> json) =>
-      _$UserInfoFromJson(json);
+      User.insignia ?? []);
 }

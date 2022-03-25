@@ -1,0 +1,11 @@
+{
+    "id": 1,
+    "content": "content",
+    "articleId": 1,
+    "User": {
+        "userId": 1,
+        "badge": "badge",
+        "nickname": "nickname",
+        "insignia": ["insignia"]
+    }
+}

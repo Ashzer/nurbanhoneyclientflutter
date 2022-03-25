@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "thumbnail": "thumbnail",
+    "title": "title",
+    "commentCount": 1,
+    "createdAt": "createdAt",
+    "board": {
+        "id": "1",
+        "name": "name",
+        "address": "address"
+    }
+}

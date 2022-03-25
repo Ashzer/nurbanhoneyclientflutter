@@ -1,0 +1,18 @@
+{
+    "id": 1,
+    "uuid": "uuid",
+    "thumbnail": "thumbnail",
+    "title": "title",
+    "lossCut": 1,
+    "content": "content",
+    "count": 1,
+    "commentCount": 1,
+    "likeCount": 1,
+    "dislikeCount": 1,
+    "updatedAt": "updatedAt",
+    "userId": 1,
+    "badge": "badge",
+    "nickname": "nickname",
+    "insignia": ["insignia"],
+    "myRating": "myRating"
+}

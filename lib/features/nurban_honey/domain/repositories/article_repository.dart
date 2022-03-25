@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_comment/article_comment.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_ratings/article_ratings.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board/article_item/article_item.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_item/article_item.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 
 import '../../../../core/error/failures.dart';

@@ -4,28 +4,29 @@
     // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Flutter: Run all Tests",
             "type": "dart",
             "request": "launch",
             "program": "./test/"
         },
-        {
-            "name": "nurbanhoney_flutter",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "nurbanhoney_flutter (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "nurbanhoney_flutter (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
+        // {
+        //     "name": "nurbanhoney_flutter",
+        //     "request": "launch",
+        //     "type": "dart"
+        // },
+        // {
+        //     "name": "nurbanhoney_flutter (profile mode)",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "flutterMode": "profile"
+        // },
+        // {
+        //     "name": "nurbanhoney_flutter (release mode)",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "flutterMode": "release"
+        // }
     ]
 }

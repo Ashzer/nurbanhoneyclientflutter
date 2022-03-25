@@ -13,7 +13,7 @@ void main() {
   final mockArticleRepository = MockArticleRepository();
   final getArticleRatings = GetArticleRatings(mockArticleRepository);
 
-  final tArticleRatings = ArticleRatings("likes", "dislikes", "myRating");
+  final tArticleRatings = ArticleRatings(1, "likes", "dislikes", "myRating");
 
   test(
     "Article Repository에서 좋아요 싫어요 내 선택을 가져온다",

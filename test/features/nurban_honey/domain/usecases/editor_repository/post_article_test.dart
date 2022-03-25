@@ -45,4 +45,25 @@ void main() {
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );
+
+  test(
+    "PostArticle Params is Equatable",
+    () async {
+      expect(
+          Params(
+              address: "address",
+              token: "token",
+              title: "title",
+              uuid: "uuid",
+              thumbnail: null,
+              content: "content"),
+          Params(
+              address: "address",
+              token: "token",
+              title: "title",
+              uuid: "uuid",
+              thumbnail: null,
+              content: "content"));
+    },
+  );
 }

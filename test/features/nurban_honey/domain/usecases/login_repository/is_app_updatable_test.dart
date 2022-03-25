@@ -13,19 +13,26 @@ void main() {
   final mockLoginRepository = MockLoginRepository();
   final isAppUpdatable = IsAppUpdatable(mockLoginRepository);
 
-  final tAppVersion = const AppVersion("version", true);
+  const tAppVersion = AppVersion("version", true);
 
   test(
     "Login Repository에 어플 버전&업데이트 확인",
     () async {
       when(mockLoginRepository.isAppUpdatable(appName: "nurbanhoney"))
-          .thenAnswer((_) async => Right(tAppVersion));
+          .thenAnswer((_) async => const Right(tAppVersion));
 
-      final result = await isAppUpdatable(Params(appName: "nurbanhoney"));
+      final result = await isAppUpdatable(const Params(appName: "nurbanhoney"));
 
-      expect(result, Right(tAppVersion));
+      expect(result, const Right(tAppVersion));
       verify(mockLoginRepository.isAppUpdatable(appName: "nurbanhoney"));
       verifyNoMoreInteractions(mockLoginRepository);
+    },
+  );
+
+  test(
+    "IsAppUpdatable Params is Equatable",
+    () async {
+      expect(Params(appName: "nurbanhoney"), Params(appName: "nurbanhoney"));
     },
   );
 }

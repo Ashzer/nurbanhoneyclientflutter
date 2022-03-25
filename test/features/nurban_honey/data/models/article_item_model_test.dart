@@ -61,7 +61,7 @@ void main() {
     test(
       "Entity에서 Model 생성",
       () async {
-        final result = tArticleItemModel.fromArticleItem(tArticleItem);
+        final result = ArticleItemModel.fromArticleItem(tArticleItem);
 
         expect(result, tArticleItemModel);
       },

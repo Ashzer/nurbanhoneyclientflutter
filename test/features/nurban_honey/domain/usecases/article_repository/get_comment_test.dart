@@ -22,11 +22,20 @@ void main() {
       when(mockArticleRespository.getComment(address: "test", commentId: 1))
           .thenAnswer((_) async => Right(tArticleComment));
 
-      final result = await getComment(Params(address: "test", commentId: 1));
+      final result =
+          await getComment(const Params(address: "test", commentId: 1));
 
       expect(result, Right(tArticleComment));
       verify(mockArticleRespository.getComment(address: "test", commentId: 1));
       verifyNoMoreInteractions(mockArticleRespository);
+    },
+  );
+
+  test(
+    "GetComment Params is Equatable",
+    () async {
+      expect(Params(address: "test", commentId: 1),
+          Params(address: "test", commentId: 1));
     },
   );
 }

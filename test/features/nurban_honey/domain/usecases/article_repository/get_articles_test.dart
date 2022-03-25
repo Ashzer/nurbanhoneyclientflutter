@@ -35,4 +35,12 @@ void main() {
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
+
+  test(
+    "GetArticles Param Equatable",
+    () async {
+      expect(Params(address: "address", flag: 0, offset: 0, limit: 10),
+          Params(address: "address", flag: 0, offset: 0, limit: 10));
+    },
+  );
 }

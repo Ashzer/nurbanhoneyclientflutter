@@ -31,4 +31,16 @@ void main() {
       verifyNoMoreInteractions(mockLoginRepository);
     },
   );
+
+  test(
+    "GetNurbanToken Params is Equatable",
+    () async {
+      expect(
+          Params(
+              loginType: "loginType", thirdPartyLoginKey: "thirdPartyLoginKey"),
+          Params(
+              loginType: "loginType",
+              thirdPartyLoginKey: "thirdPartyLoginKey"));
+    },
+  );
 }

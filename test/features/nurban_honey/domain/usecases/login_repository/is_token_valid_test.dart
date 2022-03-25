@@ -29,4 +29,12 @@ void main() {
       verifyNoMoreInteractions(mockLoginRepository);
     },
   );
+
+  test(
+    "IsTokenValid Params is Equatable",
+    () async {
+      expect(Params(nurbanToken: "nurbanToken"),
+          Params(nurbanToken: "nurbanToken"));
+    },
+  );
 }

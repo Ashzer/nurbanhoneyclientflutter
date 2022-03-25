@@ -20,11 +20,20 @@ void main() {
       when(mockProfileRepository.requestSignOut(token: "token", userId: 0))
           .thenAnswer((_) async => Right(tEmptyResponse));
 
-      final result = await requestSignOut(Params(token: "token", userId: 0));
+      final result =
+          await requestSignOut(const Params(token: "token", userId: 0));
 
       expect(result, Right(tEmptyResponse));
       verify(mockProfileRepository.requestSignOut(token: "token", userId: 0));
       verifyNoMoreInteractions(mockProfileRepository);
+    },
+  );
+
+  test(
+    "RequestSignOut Params is Equatable",
+    () async {
+      expect(
+          Params(token: "token", userId: 0), Params(token: "token", userId: 0));
     },
   );
 }

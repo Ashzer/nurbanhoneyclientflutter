@@ -22,11 +22,11 @@ void main() {
     "Rank Repository에서 rank 리스트 가져오기",
     () async {
       when(mockRankRepository.getRanks())
-          .thenAnswer((_) async => Right(tRanks));
+          .thenAnswer((_) async => const Right(tRanks));
 
       final result = await getRanks(NoParams());
 
-      expect(result, Right(tRanks));
+      expect(result, const Right(tRanks));
       verify(mockRankRepository.getRanks());
       verifyNoMoreInteractions(mockRankRepository);
     },

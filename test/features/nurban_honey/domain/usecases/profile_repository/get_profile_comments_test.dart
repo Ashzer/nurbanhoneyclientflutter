@@ -13,9 +13,9 @@ void main() {
   final getProfileComments = GetProfileComments(mockProfileRepository);
 
   final tProfileComments = [
-    ProfileComment(
+    const ProfileComment(
         1, "comment", 1, "createAt", 1, "boardName", "boardAddress", "title"),
-    ProfileComment(
+    const ProfileComment(
         2, "comment", 2, "createAt", 2, "boardName", "boardAddress", "title"),
   ];
 
@@ -27,12 +27,20 @@ void main() {
           .thenAnswer((_) async => Right(tProfileComments));
 
       final result = await getProfileComments(
-          Params(token: "token", offset: 0, limit: 10));
+          const Params(token: "token", offset: 0, limit: 10));
 
       expect(result, Right(tProfileComments));
       verify(mockProfileRepository.getProfileComments(
           token: "token", offset: 0, limit: 10));
       verifyNoMoreInteractions(mockProfileRepository);
+    },
+  );
+
+  test(
+    "GetProfileComments Params is Equatable",
+    () async {
+      expect(Params(token: "token", offset: 0, limit: 10),
+          Params(token: "token", offset: 0, limit: 10));
     },
   );
 }

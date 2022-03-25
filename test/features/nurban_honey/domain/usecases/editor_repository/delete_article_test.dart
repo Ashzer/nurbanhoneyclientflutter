@@ -32,4 +32,15 @@ void main() {
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );
+
+  test(
+    "DeleteArticle Params is Equatable",
+    () async {
+      expect(
+          Params(
+              address: "address", token: "token", articleId: 1, uuid: "uuid"),
+          Params(
+              address: "address", token: "token", articleId: 1, uuid: "uuid"));
+    },
+  );
 }

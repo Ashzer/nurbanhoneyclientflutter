@@ -21,11 +21,18 @@ void main() {
       when(mockProfileRepository.getProfile(token: "token"))
           .thenAnswer((_) async => Right(tProfile));
 
-      final result = await getProfile(Params(token: "token"));
+      final result = await getProfile(const Params(token: "token"));
 
       expect(result, Right(tProfile));
       verify(mockProfileRepository.getProfile(token: "token"));
       verifyNoMoreInteractions(mockProfileRepository);
+    },
+  );
+
+  test(
+    "GetProfile Params is Equatable",
+    () async {
+      expect(Params(token: "token"), Params(token: "token"));
     },
   );
 }

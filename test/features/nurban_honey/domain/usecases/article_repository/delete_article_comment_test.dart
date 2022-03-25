@@ -31,4 +31,15 @@ void main() {
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
+
+  test(
+    "DeleteArticleComment Params is Equatable",
+    () async {
+      expect(
+          Params(
+              address: "address", token: "token", commentId: 1, articleId: 1),
+          Params(
+              address: "address", token: "token", commentId: 1, articleId: 1));
+    },
+  );
 }

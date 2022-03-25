@@ -11,6 +11,14 @@ class ArticleItemModel with _$ArticleItemModel {
 
   factory ArticleItemModel.fromJson(Map<String, dynamic> json) =>
       _$ArticleItemModelFromJson(json);
+
+  factory ArticleItemModel.fromArticleItem(ArticleItem item) =>
+      ArticleItemModel(
+          item.articleId,
+          item.thumbnail,
+          item.title,
+          int.parse(item.replies),
+          UserInfo(item.userId, item.badges, item.nickname, item.insignias));
 }
 
 extension GetEntity on ArticleItemModel {
@@ -23,13 +31,6 @@ extension GetEntity on ArticleItemModel {
       User.badge,
       User.nickname,
       User.insignia);
-
-  ArticleItemModel fromArticleItem(ArticleItem item) => ArticleItemModel(
-      item.articleId,
-      item.thumbnail,
-      item.title,
-      int.parse(item.replies),
-      UserInfo(item.userId, item.badges, item.nickname, item.insignias));
 }
 
 @freezed

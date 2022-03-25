@@ -23,12 +23,20 @@ void main() {
           .thenAnswer((_) async => Right(tArticleRatings));
 
       final result = await getArticleRatings(
-          Params(address: "address", token: "token", articleId: 1));
+          const Params(address: "address", token: "token", articleId: 1));
 
       expect(result, Right(tArticleRatings));
       verify(mockArticleRepository.getArticleRatings(
           address: "address", token: "token", articleId: 1));
       verifyNoMoreInteractions(mockArticleRepository);
+    },
+  );
+
+  test(
+    "GetArticleRatings Params is Equatable",
+    () async {
+      expect(Params(address: "address", token: "token", articleId: 1),
+          Params(address: "address", token: "token", articleId: 1));
     },
   );
 }

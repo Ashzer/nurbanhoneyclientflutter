@@ -9,7 +9,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:nurbanhoney_flutter/core/error/failures.dart' as _i5;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/rank/rank.dart'
     as _i6;
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/rank/rank_simple.dart'
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/rank_simple/rank_simple.dart'
     as _i7;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/rank_repository.dart'
     as _i3;

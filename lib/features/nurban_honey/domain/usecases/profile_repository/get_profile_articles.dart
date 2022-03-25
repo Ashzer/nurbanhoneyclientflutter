@@ -6,7 +6,7 @@ import 'package:nurbanhoney_flutter/core/error/failures.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/profile_repository.dart';
 
-import '../../entities/profile/profile_article/profile_article.dart';
+import '../../entities/profile_article/profile_article.dart';
 
 class GetProfileArticles implements UseCase<List<ProfileArticle>, Params> {
   final ProfileRepository repository;

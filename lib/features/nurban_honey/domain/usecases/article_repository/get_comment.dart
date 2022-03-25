@@ -3,7 +3,7 @@ import 'package:nurbanhoney_flutter/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/article_repository.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_comment/article_comment.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_comment/article_comment.dart';
 
 class GetComment implements UseCase<ArticleComment, Params> {
   final ArticleRepository repository;

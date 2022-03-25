@@ -9,11 +9,11 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:nurbanhoney_flutter/core/error/failures.dart' as _i5;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart'
     as _i9;
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/profile/profile/profile.dart'
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/profile/profile.dart'
     as _i6;
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/profile/profile_article/profile_article.dart'
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/profile_article/profile_article.dart'
     as _i7;
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/profile/profile_comment/profile_comment.dart'
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/profile_comment/profile_comment.dart'
     as _i8;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/profile_repository.dart'
     as _i3;

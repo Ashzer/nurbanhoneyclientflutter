@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/rank/rank_simple.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/rank_simple/rank_simple.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/rank_repository.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/rank_repository/get_simple_ranks.dart';
 import 'get_simple_ranks_test.mocks.dart';

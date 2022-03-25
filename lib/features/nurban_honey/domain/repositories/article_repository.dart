@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_comment/article_comment.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/ariticle/article_ratings/article_ratings.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_comment/article_comment.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_ratings/article_ratings.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board/article_item/article_item.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 
 import '../../../../core/error/failures.dart';
-import '../entities/ariticle/article_detail/article_detail.dart';
+import '../entities/article_detail/article_detail.dart';
 
 abstract class ArticleRepository {
   Future<Either<Failure, List<ArticleItem>>> getArticles(

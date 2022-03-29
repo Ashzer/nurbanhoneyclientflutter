@@ -34,3 +34,7 @@ extension GetEntity on ArticleItemModel {
       user.nickname,
       user.insignia ?? []);
 }
+
+extension GetEntities on List<ArticleItemModel> {
+  List<ArticleItem> toArticleItems() => map((e) => e.toArticleItem()).toList();
+}

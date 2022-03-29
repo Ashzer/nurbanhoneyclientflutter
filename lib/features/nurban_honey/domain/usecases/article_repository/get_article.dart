@@ -11,9 +11,7 @@ class GetArticle implements UseCase<ArticleDetail, Params> {
   @override
   Future<Either<Failure, ArticleDetail>> call(Params params) async {
     return await repository.getArticle(
-        address: params.address,
-        token: params.token,
-        articleId: params.articleId);
+        params.address, params.token, params.articleId);
   }
 }
 

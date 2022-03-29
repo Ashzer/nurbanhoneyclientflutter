@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 
 //change for each project
 import 'package:nurbanhoney_flutter/core/error/failures.dart';

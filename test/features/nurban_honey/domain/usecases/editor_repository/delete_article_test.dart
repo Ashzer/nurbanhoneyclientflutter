@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -14,19 +12,19 @@ void main() {
   final mockEditorRepository = MockEditorRepository();
   final deleteArticle = DeleteArticle(mockEditorRepository);
 
-  final tEmptyResponse = EmptyResponse("OK");
+  const tEmptyResponse = EmptyResponse("OK");
 
   test(
     "Editor Repository로 article 삭제 요청",
     () async {
       when(mockEditorRepository.deleteArticle(
               address: "address", token: "token", articleId: 1, uuid: "uuid"))
-          .thenAnswer((_) async => Right(tEmptyResponse));
+          .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await deleteArticle(const Params(
           address: "address", token: "token", articleId: 1, uuid: "uuid"));
 
-      expect(result, Right(tEmptyResponse));
+      expect(result, const Right(tEmptyResponse));
       verify(mockEditorRepository.deleteArticle(
           address: "address", token: "token", articleId: 1, uuid: "uuid"));
       verifyNoMoreInteractions(mockEditorRepository);
@@ -37,9 +35,9 @@ void main() {
     "DeleteArticle Params is Equatable",
     () async {
       expect(
-          Params(
+          const Params(
               address: "address", token: "token", articleId: 1, uuid: "uuid"),
-          Params(
+          const Params(
               address: "address", token: "token", articleId: 1, uuid: "uuid"));
     },
   );

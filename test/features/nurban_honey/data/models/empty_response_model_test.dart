@@ -1,8 +1,5 @@
 import 'dart:convert';
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/models/empty_response_model/empty_response_model.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 
@@ -10,7 +7,7 @@ import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
   final tEmptyResponseModel = EmptyResponseModel("result");
-  final tEmptyResponse = EmptyResponse("result");
+  const tEmptyResponse = EmptyResponse("result");
   const fileName = "empty_response.json";
 
   group('Json 변환', () {

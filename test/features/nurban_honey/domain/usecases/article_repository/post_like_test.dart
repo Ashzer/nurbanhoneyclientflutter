@@ -16,16 +16,14 @@ void main() {
   test(
     "Article Repository로 좋아요 요청",
     () async {
-      when(mockArticleRepository.postLike(
-              address: "address", token: "token", articleId: 1))
-          .thenAnswer((_) async => Right(tEmptyResponse));
+      when(mockArticleRepository.postLike("address", "token", 1))
+          .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await postLike(
           const Params(address: "address", token: "token", articleId: 1));
 
       expect(result, const Right(tEmptyResponse));
-      verify(mockArticleRepository.postLike(
-          address: "address", token: "token", articleId: 1));
+      verify(mockArticleRepository.postLike("address", "token", 1));
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
@@ -33,8 +31,8 @@ void main() {
   test(
     "PostLike Params is Equatable",
     () async {
-      expect(Params(address: "address", token: "token", articleId: 1),
-          Params(address: "address", token: "token", articleId: 1));
+      expect(const Params(address: "address", token: "token", articleId: 1),
+          const Params(address: "address", token: "token", articleId: 1));
     },
   );
 }

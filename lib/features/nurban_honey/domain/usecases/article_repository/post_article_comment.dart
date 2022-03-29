@@ -12,10 +12,7 @@ class PostArticleComment implements UseCase<EmptyResponse, Params> {
   @override
   Future<Either<Failure, EmptyResponse>> call(params) async {
     return await repository.postComment(
-        address: params.address,
-        token: params.token,
-        comment: params.comment,
-        articleId: params.articleId);
+        params.address, params.token, params.comment, params.articleId);
   }
 }
 

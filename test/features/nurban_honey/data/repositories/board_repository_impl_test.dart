@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -34,7 +33,7 @@ void main() {
       BoardInfoModel(2, "name2", "address2")
     ];
     final toBoards = tBoardModels.toBoardInfos();
-    test('항상 인터넷 연결 확인', () {
+    test('네트워크 연결 확인', () {
       when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
       when(mockBoardRemoteDataSource.getBoards())
           .thenAnswer((_) async => tBoardModels);
@@ -43,12 +42,12 @@ void main() {
       verify(mockNetworkStatus.isConnected);
     });
 
-    group('네트워크 연결 됨', () {
+    group('=> 연결 됨', () {
       setUp(() {
         when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
       });
 
-      test('remote datasource에서 board 리스트 불러오기', () async {
+      test('remote data source에서 board 리스트 가져오기', () async {
         when(mockBoardRemoteDataSource.getBoards())
             .thenAnswer((_) async => tBoardModels);
 
@@ -60,7 +59,7 @@ void main() {
       });
 
       test(
-        "서버에서 데이터를 잘못 받았을 때 ServerFailure 리턴",
+        "서버에서 데이터를 잘 못 받았을 때 ServerFailure 리턴",
         () async {
           when(mockBoardRemoteDataSource.getBoards())
               .thenThrow(ServerException());
@@ -72,24 +71,20 @@ void main() {
         },
       );
     });
-  });
+    group("=> 연결 안됨", () {
+      setUp(() {
+        when(mockNetworkStatus.isConnected).thenAnswer((_) async => false);
+      });
 
-  group("네트워크 연결 안됨", () {
-    setUp(() {
-      when(mockNetworkStatus.isConnected).thenAnswer((_) async => false);
+      test(
+        "네트워크에 연결되지 않으면 NetworkFailure 리턴",
+        () async {
+          final result = await repository.getBoards();
+
+          verifyNever(mockBoardRemoteDataSource.getBoards());
+          expect(result, equals(Left(NetworkFailure())));
+        },
+      );
     });
-
-    test(
-      "네트워크에 연결되지 않으면 NetworkFailure 리턴",
-      () async {
-        when(mockBoardRemoteDataSource.getBoards())
-            .thenThrow((_) => NetworkException());
-
-        final result = await repository.getBoards();
-
-        verifyNever(mockBoardRemoteDataSource.getBoards());
-        expect(result, equals(Left(NetworkFailure())));
-      },
-    );
   });
 }

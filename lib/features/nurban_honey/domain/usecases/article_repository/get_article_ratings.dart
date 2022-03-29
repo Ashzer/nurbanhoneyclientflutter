@@ -13,9 +13,7 @@ class GetArticleRatings implements UseCase<ArticleRatings, Params> {
   @override
   Future<Either<Failure, ArticleRatings>> call(params) async {
     return await repository.getArticleRatings(
-        address: params.address,
-        token: params.token,
-        articleId: params.articleId);
+        params.address, params.token, params.articleId);
   }
 }
 

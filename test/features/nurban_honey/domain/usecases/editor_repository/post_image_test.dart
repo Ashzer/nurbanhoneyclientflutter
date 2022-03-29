@@ -44,12 +44,12 @@ void main() {
     "PostImage Params is Equatable",
     () async {
       expect(
-          Params(
+          const Params(
               address: "address",
               token: "token",
               uuid: "uuid",
               imagePath: "imagePath"),
-          Params(
+          const Params(
               address: "address",
               token: "token",
               uuid: "uuid",

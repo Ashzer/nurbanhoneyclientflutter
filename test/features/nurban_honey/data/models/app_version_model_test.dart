@@ -1,10 +1,6 @@
 import 'dart:convert';
-import 'dart:math';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/models/app_version_model/app_version_model.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/app_version/app_version.dart';
 
@@ -12,7 +8,7 @@ import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
   final tAppVersionModel = AppVersionModel("appversion", true);
-  final tAppVersion = AppVersion("appversion", true);
+  const tAppVersion = AppVersion("appversion", true);
 
   group("Json 변환", () {
     test(

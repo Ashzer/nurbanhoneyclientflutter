@@ -12,7 +12,7 @@ void main() {
   final mockProfileRepository = MockProfileRepository();
   final editProfile = EditProfile(mockProfileRepository);
 
-  final tEmptyResponse = EmptyResponse("OK");
+  const tEmptyResponse = EmptyResponse("OK");
 
   test(
     "Profile Repository로 profile 수정 요청",
@@ -22,7 +22,7 @@ void main() {
               nickname: "nickname",
               description: "description",
               insignias: ["insignia1"]))
-          .thenAnswer((_) async => Right(tEmptyResponse));
+          .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await editProfile(const Params(
           token: "token",
@@ -30,7 +30,7 @@ void main() {
           description: "description",
           insignias: ["insignia1"]));
 
-      expect(result, Right(tEmptyResponse));
+      expect(result, const Right(tEmptyResponse));
       verify(mockProfileRepository.editProfile(
           token: "token",
           nickname: "nickname",
@@ -44,12 +44,12 @@ void main() {
     "EditProfile Params is Equatable",
     () async {
       expect(
-          Params(
+          const Params(
               token: "token",
               nickname: "nickname",
               description: "description",
               insignias: ["insignia1"]),
-          Params(
+          const Params(
               token: "token",
               nickname: "nickname",
               description: "description",

@@ -39,4 +39,21 @@ void main() {
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );
+
+  test(
+    "PostImage Params is Equatable",
+    () async {
+      expect(
+          Params(
+              address: "address",
+              token: "token",
+              uuid: "uuid",
+              imagePath: "imagePath"),
+          Params(
+              address: "address",
+              token: "token",
+              uuid: "uuid",
+              imagePath: "imagePath"));
+    },
+  );
 }

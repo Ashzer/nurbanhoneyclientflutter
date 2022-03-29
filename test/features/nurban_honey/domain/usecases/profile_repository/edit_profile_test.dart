@@ -39,4 +39,21 @@ void main() {
       verifyNoMoreInteractions(mockProfileRepository);
     },
   );
+
+  test(
+    "EditProfile Params is Equatable",
+    () async {
+      expect(
+          Params(
+              token: "token",
+              nickname: "nickname",
+              description: "description",
+              insignias: ["insignia1"]),
+          Params(
+              token: "token",
+              nickname: "nickname",
+              description: "description",
+              insignias: ["insignia1"]));
+    },
+  );
 }

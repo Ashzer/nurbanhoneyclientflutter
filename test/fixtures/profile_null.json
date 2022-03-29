@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "loginType": "loginType",
+    "badge": "badge",
+    "nickname": "nickname",
+    "description": "description",
+    "point": 1,
+    "insigniaShow": null,
+    "insigniaOwn": null,
+    "myArticleCount": 1,
+    "myCommentCount": 1
+}

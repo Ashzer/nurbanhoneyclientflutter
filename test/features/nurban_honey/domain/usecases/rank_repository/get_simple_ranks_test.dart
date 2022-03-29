@@ -30,4 +30,11 @@ void main() {
       verifyNoMoreInteractions(mockRankRepository);
     },
   );
+
+  test(
+    "GetSimpleRanks Params is Equatable",
+    () async {
+      expect(Params(offset: 0, limit: 10), Params(offset: 0, limit: 10));
+    },
+  );
 }

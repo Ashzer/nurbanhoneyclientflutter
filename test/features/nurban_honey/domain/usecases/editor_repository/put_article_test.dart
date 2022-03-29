@@ -47,4 +47,25 @@ void main() {
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );
+
+  test(
+    "PutArticle Params is Equatable",
+    () async {
+      expect(
+          Params(
+              address: "address",
+              token: "token",
+              articleId: 1,
+              thumbnail: null,
+              title: "title",
+              content: "content"),
+          Params(
+              address: "address",
+              token: "token",
+              articleId: 1,
+              thumbnail: null,
+              title: "title",
+              content: "content"));
+    },
+  );
 }

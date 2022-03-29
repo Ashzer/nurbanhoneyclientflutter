@@ -9,7 +9,8 @@ class ProfileArticle with _$ProfileArticle {
       int boardId,
       String boardName,
       String boardAddress,
+      String thumbnail,
       String title,
       String comments,
-      String createAt) = _ProfileArticle;
+      String createdAt) = _ProfileArticle;
 }

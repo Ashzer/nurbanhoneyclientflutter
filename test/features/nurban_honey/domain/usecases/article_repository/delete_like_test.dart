@@ -23,11 +23,19 @@ void main() {
           .thenAnswer((_) async => Right(tEmptyResponse));
 
       final result = await cancelLike(
-          Params(address: "address", token: "token", articleId: 1));
+          const Params(address: "address", token: "token", articleId: 1));
       expect(result, Right(tEmptyResponse));
       verify(mockArticleRepository.deleteLike(
           address: "address", token: "token", articleId: 1));
       verifyNoMoreInteractions(mockArticleRepository);
+    },
+  );
+
+  test(
+    "CancelLike Params is Equatable",
+    () async {
+      expect(Params(address: "address", token: "token", articleId: 1),
+          Params(address: "address", token: "token", articleId: 1));
     },
   );
 }

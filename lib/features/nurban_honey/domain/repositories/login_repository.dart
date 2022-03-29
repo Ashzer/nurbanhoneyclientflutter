@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/TokenStatus/token_status.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/token_status/token_status.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/app_version/app_version.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/nurban_token/nurban_token.dart';
 

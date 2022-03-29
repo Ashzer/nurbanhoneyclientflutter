@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "thumbnail": null,
+    "title": "title",
+    "commentCount": 1,
+    "user": {
+        "userId": 1,
+        "badge": "badge",
+        "nickname": "nickname",
+        "insignia": null
+    }
+}

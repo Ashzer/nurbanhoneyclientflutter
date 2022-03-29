@@ -13,10 +13,10 @@ void main() {
   final getProfileArticles = GetProfileArticles(mockProfileRepository);
 
   final tProfileArticles = [
-    ProfileArticle(
-        1, 1, "boardName", "boardAddress", "title", "comments", "createAt"),
-    ProfileArticle(
-        2, 2, "boardName", "boardAddress", "title", "comments", "createAt"),
+    const ProfileArticle(1, 1, "boardName", "boardAddress", "thumbnail",
+        "title", "comments", "createdAt"),
+    const ProfileArticle(2, 2, "boardName", "boardAddress", "thumbnail",
+        "title", "comments", "createdAt"),
   ];
 
   test(
@@ -27,12 +27,20 @@ void main() {
           .thenAnswer((_) async => Right(tProfileArticles));
 
       final result = await getProfileArticles(
-          Params(token: "token", offset: 0, limit: 10));
+          const Params(token: "token", offset: 0, limit: 10));
 
       expect(result, Right(tProfileArticles));
       verify(mockProfileRepository.getProfileArticles(
           token: "token", offset: 0, limit: 10));
       verifyNoMoreInteractions(mockProfileRepository);
+    },
+  );
+
+  test(
+    "GetProfileArticles Params is Equatable",
+    () async {
+      expect(Params(token: "token", offset: 0, limit: 10),
+          Params(token: "token", offset: 0, limit: 10));
     },
   );
 }

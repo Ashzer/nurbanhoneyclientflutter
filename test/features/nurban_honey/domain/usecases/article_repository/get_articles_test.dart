@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/article_repository.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board/article_item/article_item.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_item/article_item.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/article_repository/get_articles.dart';
 
 import 'get_articles_test.mocks.dart';
@@ -33,6 +33,14 @@ void main() {
       verify(mockArticleRepository.getArticles(
           address: "address", flag: 0, offset: 0, limit: 10));
       verifyNoMoreInteractions(mockArticleRepository);
+    },
+  );
+
+  test(
+    "GetArticles Param Equatable",
+    () async {
+      expect(Params(address: "address", flag: 0, offset: 0, limit: 10),
+          Params(address: "address", flag: 0, offset: 0, limit: 10));
     },
   );
 }

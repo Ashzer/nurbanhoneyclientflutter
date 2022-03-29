@@ -11,10 +11,10 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/articl
     as _i10;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_detail/article_detail.dart'
     as _i7;
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_item/article_item.dart'
+    as _i6;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/article_ratings/article_ratings.dart'
     as _i9;
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board/article_item/article_item.dart'
-    as _i6;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart'
     as _i8;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/article_repository.dart'

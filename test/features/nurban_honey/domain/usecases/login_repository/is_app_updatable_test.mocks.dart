@@ -11,7 +11,7 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/app_ve
     as _i6;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/nurban_token/nurban_token.dart'
     as _i7;
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/TokenStatus/token_status.dart'
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/token_status/token_status.dart'
     as _i8;
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/login_repository.dart'
     as _i3;

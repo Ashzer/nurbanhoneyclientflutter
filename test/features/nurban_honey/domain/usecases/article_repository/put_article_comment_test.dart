@@ -40,4 +40,21 @@ void main() {
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
+
+  test(
+    "PutArticleComment Params is Equatable",
+    () async {
+      expect(
+          Params(
+              address: "address",
+              token: "token",
+              commentId: 1,
+              comment: "comment"),
+          Params(
+              address: "address",
+              token: "token",
+              commentId: 1,
+              comment: "comment"));
+    },
+  );
 }

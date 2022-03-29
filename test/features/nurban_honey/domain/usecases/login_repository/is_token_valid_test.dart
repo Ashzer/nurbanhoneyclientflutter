@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/login_repository.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/TokenStatus/token_status.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/token_status/token_status.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/login_repository/is_token_valid.dart';
 
 import 'is_token_valid_test.mocks.dart';
@@ -27,6 +27,14 @@ void main() {
       expect(result, const Right(tTokenStatus));
       verify(mockLoginRepository.isTokenValid(nurbanToken: "nurbanToken"));
       verifyNoMoreInteractions(mockLoginRepository);
+    },
+  );
+
+  test(
+    "IsTokenValid Params is Equatable",
+    () async {
+      expect(Params(nurbanToken: "nurbanToken"),
+          Params(nurbanToken: "nurbanToken"));
     },
   );
 }

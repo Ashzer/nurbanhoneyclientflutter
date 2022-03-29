@@ -47,4 +47,27 @@ void main() {
           content: "content"));
     },
   );
+
+  test(
+    "PostNurbanArticle Params is Equatable",
+    () async {
+      expect(
+          Params(
+              address: "address",
+              token: "token",
+              title: "title",
+              uuid: "uuid",
+              lossCut: "lossCut",
+              thumbnail: null,
+              content: "content"),
+          Params(
+              address: "address",
+              token: "token",
+              title: "title",
+              uuid: "uuid",
+              lossCut: "lossCut",
+              thumbnail: null,
+              content: "content"));
+    },
+  );
 }

@@ -9,7 +9,7 @@ part 'article_item_model.g.dart';
 @freezed
 class ArticleItemModel with _$ArticleItemModel {
   factory ArticleItemModel(int id, String? thumbnail, String title,
-      int commentCount, UserInfo User) = _ArticleItemModel;
+      int commentCount, UserInfo user) = _ArticleItemModel;
 
   factory ArticleItemModel.fromJson(Map<String, dynamic> json) =>
       _$ArticleItemModelFromJson(json);
@@ -29,8 +29,8 @@ extension GetEntity on ArticleItemModel {
       thumbnail ?? "",
       title,
       commentCount.toString(),
-      User.userId,
-      User.badge,
-      User.nickname,
-      User.insignia ?? []);
+      user.userId,
+      user.badge,
+      user.nickname,
+      user.insignia ?? []);
 }

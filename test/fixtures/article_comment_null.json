@@ -2,7 +2,7 @@
     "id": 1,
     "content": "content",
     "articleId": 1,
-    "User": {
+    "user": {
         "userId": 1,
         "badge": "badge",
         "nickname": "nickname",

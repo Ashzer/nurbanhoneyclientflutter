@@ -23,12 +23,12 @@ class _$ArticleCommentModelTearOff {
   const _$ArticleCommentModelTearOff();
 
   _ArticleCommentModel call(
-      int id, String content, int articleId, UserInfo User) {
+      int id, String content, int articleId, UserInfo user) {
     return _ArticleCommentModel(
       id,
       content,
       articleId,
-      User,
+      user,
     );
   }
 
@@ -45,7 +45,7 @@ mixin _$ArticleCommentModel {
   int get id => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   int get articleId => throw _privateConstructorUsedError;
-  UserInfo get User => throw _privateConstructorUsedError;
+  UserInfo get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,9 +58,9 @@ abstract class $ArticleCommentModelCopyWith<$Res> {
   factory $ArticleCommentModelCopyWith(
           ArticleCommentModel value, $Res Function(ArticleCommentModel) then) =
       _$ArticleCommentModelCopyWithImpl<$Res>;
-  $Res call({int id, String content, int articleId, UserInfo User});
+  $Res call({int id, String content, int articleId, UserInfo user});
 
-  $UserInfoCopyWith<$Res> get User;
+  $UserInfoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -77,7 +77,7 @@ class _$ArticleCommentModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? content = freezed,
     Object? articleId = freezed,
-    Object? User = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -92,17 +92,17 @@ class _$ArticleCommentModelCopyWithImpl<$Res>
           ? _value.articleId
           : articleId // ignore: cast_nullable_to_non_nullable
               as int,
-      User: User == freezed
-          ? _value.User
-          : User // ignore: cast_nullable_to_non_nullable
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as UserInfo,
     ));
   }
 
   @override
-  $UserInfoCopyWith<$Res> get User {
-    return $UserInfoCopyWith<$Res>(_value.User, (value) {
-      return _then(_value.copyWith(User: value));
+  $UserInfoCopyWith<$Res> get user {
+    return $UserInfoCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 }
@@ -114,10 +114,10 @@ abstract class _$ArticleCommentModelCopyWith<$Res>
           $Res Function(_ArticleCommentModel) then) =
       __$ArticleCommentModelCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String content, int articleId, UserInfo User});
+  $Res call({int id, String content, int articleId, UserInfo user});
 
   @override
-  $UserInfoCopyWith<$Res> get User;
+  $UserInfoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -136,7 +136,7 @@ class __$ArticleCommentModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? content = freezed,
     Object? articleId = freezed,
-    Object? User = freezed,
+    Object? user = freezed,
   }) {
     return _then(_ArticleCommentModel(
       id == freezed
@@ -151,9 +151,9 @@ class __$ArticleCommentModelCopyWithImpl<$Res>
           ? _value.articleId
           : articleId // ignore: cast_nullable_to_non_nullable
               as int,
-      User == freezed
-          ? _value.User
-          : User // ignore: cast_nullable_to_non_nullable
+      user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as UserInfo,
     ));
   }
@@ -162,7 +162,7 @@ class __$ArticleCommentModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ArticleCommentModel implements _ArticleCommentModel {
-  _$_ArticleCommentModel(this.id, this.content, this.articleId, this.User);
+  _$_ArticleCommentModel(this.id, this.content, this.articleId, this.user);
 
   factory _$_ArticleCommentModel.fromJson(Map<String, dynamic> json) =>
       _$$_ArticleCommentModelFromJson(json);
@@ -174,11 +174,11 @@ class _$_ArticleCommentModel implements _ArticleCommentModel {
   @override
   final int articleId;
   @override
-  final UserInfo User;
+  final UserInfo user;
 
   @override
   String toString() {
-    return 'ArticleCommentModel(id: $id, content: $content, articleId: $articleId, User: $User)';
+    return 'ArticleCommentModel(id: $id, content: $content, articleId: $articleId, user: $user)';
   }
 
   @override
@@ -189,7 +189,7 @@ class _$_ArticleCommentModel implements _ArticleCommentModel {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.content, content) &&
             const DeepCollectionEquality().equals(other.articleId, articleId) &&
-            const DeepCollectionEquality().equals(other.User, User));
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
@@ -198,7 +198,7 @@ class _$_ArticleCommentModel implements _ArticleCommentModel {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(content),
       const DeepCollectionEquality().hash(articleId),
-      const DeepCollectionEquality().hash(User));
+      const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override
@@ -214,7 +214,7 @@ class _$_ArticleCommentModel implements _ArticleCommentModel {
 
 abstract class _ArticleCommentModel implements ArticleCommentModel {
   factory _ArticleCommentModel(
-          int id, String content, int articleId, UserInfo User) =
+          int id, String content, int articleId, UserInfo user) =
       _$_ArticleCommentModel;
 
   factory _ArticleCommentModel.fromJson(Map<String, dynamic> json) =
@@ -227,7 +227,7 @@ abstract class _ArticleCommentModel implements ArticleCommentModel {
   @override
   int get articleId;
   @override
-  UserInfo get User;
+  UserInfo get user;
   @override
   @JsonKey(ignore: true)
   _$ArticleCommentModelCopyWith<_ArticleCommentModel> get copyWith =>

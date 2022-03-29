@@ -23,13 +23,13 @@ class _$ArticleItemModelTearOff {
   const _$ArticleItemModelTearOff();
 
   _ArticleItemModel call(int id, String? thumbnail, String title,
-      int commentCount, UserInfo User) {
+      int commentCount, UserInfo user) {
     return _ArticleItemModel(
       id,
       thumbnail,
       title,
       commentCount,
-      User,
+      user,
     );
   }
 
@@ -47,7 +47,7 @@ mixin _$ArticleItemModel {
   String? get thumbnail => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get commentCount => throw _privateConstructorUsedError;
-  UserInfo get User => throw _privateConstructorUsedError;
+  UserInfo get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,9 +65,9 @@ abstract class $ArticleItemModelCopyWith<$Res> {
       String? thumbnail,
       String title,
       int commentCount,
-      UserInfo User});
+      UserInfo user});
 
-  $UserInfoCopyWith<$Res> get User;
+  $UserInfoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$ArticleItemModelCopyWithImpl<$Res>
     Object? thumbnail = freezed,
     Object? title = freezed,
     Object? commentCount = freezed,
-    Object? User = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -104,17 +104,17 @@ class _$ArticleItemModelCopyWithImpl<$Res>
           ? _value.commentCount
           : commentCount // ignore: cast_nullable_to_non_nullable
               as int,
-      User: User == freezed
-          ? _value.User
-          : User // ignore: cast_nullable_to_non_nullable
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as UserInfo,
     ));
   }
 
   @override
-  $UserInfoCopyWith<$Res> get User {
-    return $UserInfoCopyWith<$Res>(_value.User, (value) {
-      return _then(_value.copyWith(User: value));
+  $UserInfoCopyWith<$Res> get user {
+    return $UserInfoCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 }
@@ -131,10 +131,10 @@ abstract class _$ArticleItemModelCopyWith<$Res>
       String? thumbnail,
       String title,
       int commentCount,
-      UserInfo User});
+      UserInfo user});
 
   @override
-  $UserInfoCopyWith<$Res> get User;
+  $UserInfoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -154,7 +154,7 @@ class __$ArticleItemModelCopyWithImpl<$Res>
     Object? thumbnail = freezed,
     Object? title = freezed,
     Object? commentCount = freezed,
-    Object? User = freezed,
+    Object? user = freezed,
   }) {
     return _then(_ArticleItemModel(
       id == freezed
@@ -173,9 +173,9 @@ class __$ArticleItemModelCopyWithImpl<$Res>
           ? _value.commentCount
           : commentCount // ignore: cast_nullable_to_non_nullable
               as int,
-      User == freezed
-          ? _value.User
-          : User // ignore: cast_nullable_to_non_nullable
+      user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as UserInfo,
     ));
   }
@@ -185,7 +185,7 @@ class __$ArticleItemModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ArticleItemModel implements _ArticleItemModel {
   _$_ArticleItemModel(
-      this.id, this.thumbnail, this.title, this.commentCount, this.User);
+      this.id, this.thumbnail, this.title, this.commentCount, this.user);
 
   factory _$_ArticleItemModel.fromJson(Map<String, dynamic> json) =>
       _$$_ArticleItemModelFromJson(json);
@@ -199,11 +199,11 @@ class _$_ArticleItemModel implements _ArticleItemModel {
   @override
   final int commentCount;
   @override
-  final UserInfo User;
+  final UserInfo user;
 
   @override
   String toString() {
-    return 'ArticleItemModel(id: $id, thumbnail: $thumbnail, title: $title, commentCount: $commentCount, User: $User)';
+    return 'ArticleItemModel(id: $id, thumbnail: $thumbnail, title: $title, commentCount: $commentCount, user: $user)';
   }
 
   @override
@@ -216,7 +216,7 @@ class _$_ArticleItemModel implements _ArticleItemModel {
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
                 .equals(other.commentCount, commentCount) &&
-            const DeepCollectionEquality().equals(other.User, User));
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
@@ -226,7 +226,7 @@ class _$_ArticleItemModel implements _ArticleItemModel {
       const DeepCollectionEquality().hash(thumbnail),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(commentCount),
-      const DeepCollectionEquality().hash(User));
+      const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override
@@ -241,7 +241,7 @@ class _$_ArticleItemModel implements _ArticleItemModel {
 
 abstract class _ArticleItemModel implements ArticleItemModel {
   factory _ArticleItemModel(int id, String? thumbnail, String title,
-      int commentCount, UserInfo User) = _$_ArticleItemModel;
+      int commentCount, UserInfo user) = _$_ArticleItemModel;
 
   factory _ArticleItemModel.fromJson(Map<String, dynamic> json) =
       _$_ArticleItemModel.fromJson;
@@ -255,7 +255,7 @@ abstract class _ArticleItemModel implements ArticleItemModel {
   @override
   int get commentCount;
   @override
-  UserInfo get User;
+  UserInfo get user;
   @override
   @JsonKey(ignore: true)
   _$ArticleItemModelCopyWith<_ArticleItemModel> get copyWith =>

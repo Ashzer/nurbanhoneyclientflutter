@@ -9,7 +9,7 @@ part 'article_comment_model.g.dart';
 @freezed
 class ArticleCommentModel with _$ArticleCommentModel {
   factory ArticleCommentModel(
-          int id, String content, int articleId, UserInfo User) =
+          int id, String content, int articleId, UserInfo user) =
       _ArticleCommentModel;
 
   factory ArticleCommentModel.fromJson(Map<String, dynamic> json) =>
@@ -26,5 +26,5 @@ class ArticleCommentModel with _$ArticleCommentModel {
 
 extension GetEntity on ArticleCommentModel {
   ArticleComment toArticleComment() => ArticleComment(id, content, articleId,
-      User.userId, User.badge, User.nickname, User.insignia ?? []);
+      user.userId, user.badge, user.nickname, user.insignia ?? []);
 }

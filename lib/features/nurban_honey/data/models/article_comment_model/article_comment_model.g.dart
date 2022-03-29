@@ -12,7 +12,7 @@ _$_ArticleCommentModel _$$_ArticleCommentModelFromJson(
       json['id'] as int,
       json['content'] as String,
       json['articleId'] as int,
-      UserInfo.fromJson(json['User'] as Map<String, dynamic>),
+      UserInfo.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ArticleCommentModelToJson(
@@ -21,5 +21,5 @@ Map<String, dynamic> _$$_ArticleCommentModelToJson(
       'id': instance.id,
       'content': instance.content,
       'articleId': instance.articleId,
-      'User': instance.User.toJson(),
+      'user': instance.user.toJson(),
     };

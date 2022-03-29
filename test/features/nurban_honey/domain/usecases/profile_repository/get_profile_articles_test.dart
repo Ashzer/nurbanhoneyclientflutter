@@ -13,10 +13,10 @@ void main() {
   final getProfileArticles = GetProfileArticles(mockProfileRepository);
 
   final tProfileArticles = [
-    const ProfileArticle(
-        1, 1, "boardName", "boardAddress", "title", "comments", "createAt"),
-    const ProfileArticle(
-        2, 2, "boardName", "boardAddress", "title", "comments", "createAt"),
+    const ProfileArticle(1, 1, "boardName", "boardAddress", "thumbnail",
+        "title", "comments", "createdAt"),
+    const ProfileArticle(2, 2, "boardName", "boardAddress", "thumbnail",
+        "title", "comments", "createdAt"),
   ];
 
   test(

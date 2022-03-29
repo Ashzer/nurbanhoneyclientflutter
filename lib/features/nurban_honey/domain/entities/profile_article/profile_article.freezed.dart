@@ -18,16 +18,24 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileArticleTearOff {
   const _$ProfileArticleTearOff();
 
-  _ProfileArticle call(int articleId, int boardId, String boardName,
-      String boardAddress, String title, String comments, String createAt) {
+  _ProfileArticle call(
+      int articleId,
+      int boardId,
+      String boardName,
+      String boardAddress,
+      String thumbnail,
+      String title,
+      String comments,
+      String createdAt) {
     return _ProfileArticle(
       articleId,
       boardId,
       boardName,
       boardAddress,
+      thumbnail,
       title,
       comments,
-      createAt,
+      createdAt,
     );
   }
 }
@@ -41,9 +49,10 @@ mixin _$ProfileArticle {
   int get boardId => throw _privateConstructorUsedError;
   String get boardName => throw _privateConstructorUsedError;
   String get boardAddress => throw _privateConstructorUsedError;
+  String get thumbnail => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get comments => throw _privateConstructorUsedError;
-  String get createAt => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileArticleCopyWith<ProfileArticle> get copyWith =>
@@ -60,9 +69,10 @@ abstract class $ProfileArticleCopyWith<$Res> {
       int boardId,
       String boardName,
       String boardAddress,
+      String thumbnail,
       String title,
       String comments,
-      String createAt});
+      String createdAt});
 }
 
 /// @nodoc
@@ -80,9 +90,10 @@ class _$ProfileArticleCopyWithImpl<$Res>
     Object? boardId = freezed,
     Object? boardName = freezed,
     Object? boardAddress = freezed,
+    Object? thumbnail = freezed,
     Object? title = freezed,
     Object? comments = freezed,
-    Object? createAt = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       articleId: articleId == freezed
@@ -101,6 +112,10 @@ class _$ProfileArticleCopyWithImpl<$Res>
           ? _value.boardAddress
           : boardAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      thumbnail: thumbnail == freezed
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -109,9 +124,9 @@ class _$ProfileArticleCopyWithImpl<$Res>
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
               as String,
-      createAt: createAt == freezed
-          ? _value.createAt
-          : createAt // ignore: cast_nullable_to_non_nullable
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -129,9 +144,10 @@ abstract class _$ProfileArticleCopyWith<$Res>
       int boardId,
       String boardName,
       String boardAddress,
+      String thumbnail,
       String title,
       String comments,
-      String createAt});
+      String createdAt});
 }
 
 /// @nodoc
@@ -151,9 +167,10 @@ class __$ProfileArticleCopyWithImpl<$Res>
     Object? boardId = freezed,
     Object? boardName = freezed,
     Object? boardAddress = freezed,
+    Object? thumbnail = freezed,
     Object? title = freezed,
     Object? comments = freezed,
-    Object? createAt = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_ProfileArticle(
       articleId == freezed
@@ -172,6 +189,10 @@ class __$ProfileArticleCopyWithImpl<$Res>
           ? _value.boardAddress
           : boardAddress // ignore: cast_nullable_to_non_nullable
               as String,
+      thumbnail == freezed
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
       title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -180,9 +201,9 @@ class __$ProfileArticleCopyWithImpl<$Res>
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
               as String,
-      createAt == freezed
-          ? _value.createAt
-          : createAt // ignore: cast_nullable_to_non_nullable
+      createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -191,8 +212,15 @@ class __$ProfileArticleCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ProfileArticle implements _ProfileArticle {
-  const _$_ProfileArticle(this.articleId, this.boardId, this.boardName,
-      this.boardAddress, this.title, this.comments, this.createAt);
+  const _$_ProfileArticle(
+      this.articleId,
+      this.boardId,
+      this.boardName,
+      this.boardAddress,
+      this.thumbnail,
+      this.title,
+      this.comments,
+      this.createdAt);
 
   @override
   final int articleId;
@@ -203,15 +231,17 @@ class _$_ProfileArticle implements _ProfileArticle {
   @override
   final String boardAddress;
   @override
+  final String thumbnail;
+  @override
   final String title;
   @override
   final String comments;
   @override
-  final String createAt;
+  final String createdAt;
 
   @override
   String toString() {
-    return 'ProfileArticle(articleId: $articleId, boardId: $boardId, boardName: $boardName, boardAddress: $boardAddress, title: $title, comments: $comments, createAt: $createAt)';
+    return 'ProfileArticle(articleId: $articleId, boardId: $boardId, boardName: $boardName, boardAddress: $boardAddress, thumbnail: $thumbnail, title: $title, comments: $comments, createdAt: $createdAt)';
   }
 
   @override
@@ -224,9 +254,10 @@ class _$_ProfileArticle implements _ProfileArticle {
             const DeepCollectionEquality().equals(other.boardName, boardName) &&
             const DeepCollectionEquality()
                 .equals(other.boardAddress, boardAddress) &&
+            const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.comments, comments) &&
-            const DeepCollectionEquality().equals(other.createAt, createAt));
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
@@ -236,9 +267,10 @@ class _$_ProfileArticle implements _ProfileArticle {
       const DeepCollectionEquality().hash(boardId),
       const DeepCollectionEquality().hash(boardName),
       const DeepCollectionEquality().hash(boardAddress),
+      const DeepCollectionEquality().hash(thumbnail),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(comments),
-      const DeepCollectionEquality().hash(createAt));
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override
@@ -252,9 +284,10 @@ abstract class _ProfileArticle implements ProfileArticle {
       int boardId,
       String boardName,
       String boardAddress,
+      String thumbnail,
       String title,
       String comments,
-      String createAt) = _$_ProfileArticle;
+      String createdAt) = _$_ProfileArticle;
 
   @override
   int get articleId;
@@ -265,11 +298,13 @@ abstract class _ProfileArticle implements ProfileArticle {
   @override
   String get boardAddress;
   @override
+  String get thumbnail;
+  @override
   String get title;
   @override
   String get comments;
   @override
-  String get createAt;
+  String get createdAt;
   @override
   @JsonKey(ignore: true)
   _$ProfileArticleCopyWith<_ProfileArticle> get copyWith =>

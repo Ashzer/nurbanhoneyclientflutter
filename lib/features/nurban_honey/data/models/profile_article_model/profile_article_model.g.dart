@@ -1,25 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'article_item_model.dart';
+part of 'profile_article_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ArticleItemModel _$$_ArticleItemModelFromJson(Map<String, dynamic> json) =>
-    _$_ArticleItemModel(
+_$_ProfileArticleModel _$$_ProfileArticleModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_ProfileArticleModel(
       json['id'] as int,
       json['thumbnail'] as String?,
       json['title'] as String,
       json['commentCount'] as int,
-      UserInfo.fromJson(json['user'] as Map<String, dynamic>),
+      json['createdAt'] as String,
+      BoardInfoModel.fromJson(json['board'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ArticleItemModelToJson(_$_ArticleItemModel instance) =>
+Map<String, dynamic> _$$_ProfileArticleModelToJson(
+        _$_ProfileArticleModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'thumbnail': instance.thumbnail,
       'title': instance.title,
       'commentCount': instance.commentCount,
-      'user': instance.user.toJson(),
+      'createdAt': instance.createdAt,
+      'board': instance.board.toJson(),
     };

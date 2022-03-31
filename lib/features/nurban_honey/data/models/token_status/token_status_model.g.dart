@@ -7,7 +7,11 @@ part of 'token_status_model.dart';
 // **************************************************************************
 
 _$_TokenStatusModel _$$_TokenStatusModelFromJson(Map<String, dynamic> json) =>
-    _$_TokenStatusModel();
+    _$_TokenStatusModel(
+      json['result'] as bool,
+    );
 
 Map<String, dynamic> _$$_TokenStatusModelToJson(_$_TokenStatusModel instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'result': instance.result,
+    };

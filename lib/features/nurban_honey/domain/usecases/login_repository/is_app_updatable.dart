@@ -10,7 +10,7 @@ class IsAppUpdatable implements UseCase<AppVersion, Params> {
   IsAppUpdatable(this.repository);
   @override
   Future<Either<Failure, AppVersion>> call(params) async {
-    return await repository.isAppUpdatable(appName: params.appName);
+    return await repository.isAppUpdatable(params.appName);
   }
 }
 

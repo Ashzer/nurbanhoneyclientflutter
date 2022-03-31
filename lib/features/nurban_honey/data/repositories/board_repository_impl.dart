@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nurbanhoney_flutter/core/error/exception.dart';
 import 'package:nurbanhoney_flutter/core/network/network_status.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/datasources/board_remote_data_source.dart';

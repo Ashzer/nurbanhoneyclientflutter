@@ -28,3 +28,8 @@ extension GetEntity on ArticleCommentModel {
   ArticleComment toArticleComment() => ArticleComment(id, content, articleId,
       user.userId, user.badge, user.nickname, user.insignia ?? []);
 }
+
+extension GetEntities on List<ArticleCommentModel> {
+  List<ArticleComment> toArticleComments() =>
+      map((e) => e.toArticleComment()).toList();
+}

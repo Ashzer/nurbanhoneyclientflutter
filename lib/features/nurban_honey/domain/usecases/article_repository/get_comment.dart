@@ -11,8 +11,7 @@ class GetComment implements UseCase<ArticleComment, Params> {
 
   @override
   Future<Either<Failure, ArticleComment>> call(params) async {
-    return await repository.getComment(
-        address: params.address, commentId: params.commentId);
+    return await repository.getComment(params.address, params.commentId);
   }
 }
 

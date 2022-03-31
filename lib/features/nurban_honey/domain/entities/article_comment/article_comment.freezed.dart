@@ -191,8 +191,8 @@ class __$ArticleCommentCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ArticleComment implements _ArticleComment {
-  _$_ArticleComment(this.commentId, this.comment, this.articleId, this.userId,
-      this.badge, this.nickname, this.insignias);
+  const _$_ArticleComment(this.commentId, this.comment, this.articleId,
+      this.userId, this.badge, this.nickname, this.insignias);
 
   @override
   final int commentId;
@@ -246,7 +246,7 @@ class _$_ArticleComment implements _ArticleComment {
 }
 
 abstract class _ArticleComment implements ArticleComment {
-  factory _ArticleComment(
+  const factory _ArticleComment(
       int commentId,
       String comment,
       int articleId,

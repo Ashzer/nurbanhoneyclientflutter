@@ -12,10 +12,7 @@ class PutArticleComment implements UseCase<EmptyResponse, Params> {
   @override
   Future<Either<Failure, EmptyResponse>> call(params) async {
     return await repository.putComment(
-        address: params.address,
-        token: params.token,
-        commentId: params.commentId,
-        comment: params.comment);
+        params.address, params.token, params.commentId, params.comment);
   }
 }
 

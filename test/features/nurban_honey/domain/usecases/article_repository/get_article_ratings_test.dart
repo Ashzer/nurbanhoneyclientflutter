@@ -18,16 +18,14 @@ void main() {
   test(
     "Article Repository에서 좋아요 싫어요 내 선택을 가져온다",
     () async {
-      when(mockArticleRepository.getArticleRatings(
-              address: "address", token: "token", articleId: 1))
+      when(mockArticleRepository.getArticleRatings("address", "token", 1))
           .thenAnswer((_) async => Right(tArticleRatings));
 
       final result = await getArticleRatings(
           const Params(address: "address", token: "token", articleId: 1));
 
       expect(result, Right(tArticleRatings));
-      verify(mockArticleRepository.getArticleRatings(
-          address: "address", token: "token", articleId: 1));
+      verify(mockArticleRepository.getArticleRatings("address", "token", 1));
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
@@ -35,8 +33,8 @@ void main() {
   test(
     "GetArticleRatings Params is Equatable",
     () async {
-      expect(Params(address: "address", token: "token", articleId: 1),
-          Params(address: "address", token: "token", articleId: 1));
+      expect(const Params(address: "address", token: "token", articleId: 1),
+          const Params(address: "address", token: "token", articleId: 1));
     },
   );
 }

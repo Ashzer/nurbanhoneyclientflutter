@@ -36,111 +36,75 @@ class MockEditorRepository extends _i1.Mock implements _i3.EditorRepository {
 
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> postNurbanArticle(
-          {String? address,
+          String? address,
           String? token,
           String? title,
           String? uuid,
           String? lossCut,
           String? thumbnail,
-          String? content}) =>
+          String? content) =>
       (super.noSuchMethod(
-          Invocation.method(#postNurbanArticle, [], {
-            #address: address,
-            #token: token,
-            #title: title,
-            #uuid: uuid,
-            #lossCut: lossCut,
-            #thumbnail: thumbnail,
-            #content: content
-          }),
+          Invocation.method(#postNurbanArticle,
+              [address, token, title, uuid, lossCut, thumbnail, content]),
           returnValue: Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i6.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> postArticle(
-          {String? address,
+          String? address,
           String? token,
           String? title,
           String? uuid,
           String? thumbnail,
-          String? content}) =>
+          String? content) =>
       (super.noSuchMethod(
-          Invocation.method(#postArticle, [], {
-            #address: address,
-            #token: token,
-            #title: title,
-            #uuid: uuid,
-            #thumbnail: thumbnail,
-            #content: content
-          }),
+          Invocation.method(
+              #postArticle, [address, token, title, uuid, thumbnail, content]),
           returnValue: Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i6.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> putNurbanArticle(
-          {String? address,
+          String? address,
           String? token,
           int? articleId,
           String? thumbnail,
           String? title,
           String? lossCut,
-          String? content}) =>
+          String? content) =>
       (super.noSuchMethod(
-          Invocation.method(#putNurbanArticle, [], {
-            #address: address,
-            #token: token,
-            #articleId: articleId,
-            #thumbnail: thumbnail,
-            #title: title,
-            #lossCut: lossCut,
-            #content: content
-          }),
+          Invocation.method(#putNurbanArticle,
+              [address, token, articleId, thumbnail, title, lossCut, content]),
           returnValue: Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i6.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> putArticle(
-          {String? address,
+          String? address,
           String? token,
           int? articleId,
           String? thumbnail,
           String? title,
-          String? content}) =>
+          String? content) =>
       (super.noSuchMethod(
-          Invocation.method(#putArticle, [], {
-            #address: address,
-            #token: token,
-            #articleId: articleId,
-            #thumbnail: thumbnail,
-            #title: title,
-            #content: content
-          }),
+          Invocation.method(#putArticle,
+              [address, token, articleId, thumbnail, title, content]),
           returnValue: Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i6.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> deleteArticle(
-          {String? address, String? token, int? articleId, String? uuid}) =>
+          String? address, String? token, int? articleId, String? uuid) =>
       (super.noSuchMethod(
-          Invocation.method(#deleteArticle, [], {
-            #address: address,
-            #token: token,
-            #articleId: articleId,
-            #uuid: uuid
-          }),
+          Invocation.method(#deleteArticle, [address, token, articleId, uuid]),
           returnValue: Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i6.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i7.ImagePostResponse>> postImage(
-          {String? address, String? token, String? uuid, String? imagePath}) =>
+          String? address, String? token, String? uuid, String? imagePath) =>
       (super.noSuchMethod(
-              Invocation.method(#postImage, [], {
-                #address: address,
-                #token: token,
-                #uuid: uuid,
-                #imagePath: imagePath
-              }),
+              Invocation.method(#postImage, [address, token, uuid, imagePath]),
               returnValue:
                   Future<_i2.Either<_i5.Failure, _i7.ImagePostResponse>>.value(
                       _FakeEither_0<_i5.Failure, _i7.ImagePostResponse>()))

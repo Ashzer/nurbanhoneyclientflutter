@@ -32,7 +32,7 @@ void main() {
   test(
     "GetProfile Params is Equatable",
     () async {
-      expect(Params(token: "token"), Params(token: "token"));
+      expect(const Params(token: "token"), const Params(token: "token"));
     },
   );
 }

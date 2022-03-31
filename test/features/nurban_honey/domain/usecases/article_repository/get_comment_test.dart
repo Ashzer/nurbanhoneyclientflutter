@@ -19,14 +19,14 @@ void main() {
   test(
     "Article Repository에서 comment 하나 가져온다",
     () async {
-      when(mockArticleRespository.getComment(address: "test", commentId: 1))
+      when(mockArticleRespository.getComment("test", 1))
           .thenAnswer((_) async => Right(tArticleComment));
 
       final result =
           await getComment(const Params(address: "test", commentId: 1));
 
       expect(result, Right(tArticleComment));
-      verify(mockArticleRespository.getComment(address: "test", commentId: 1));
+      verify(mockArticleRespository.getComment("test", 1));
       verifyNoMoreInteractions(mockArticleRespository);
     },
   );
@@ -34,8 +34,8 @@ void main() {
   test(
     "GetComment Params is Equatable",
     () async {
-      expect(Params(address: "test", commentId: 1),
-          Params(address: "test", commentId: 1));
+      expect(const Params(address: "test", commentId: 1),
+          const Params(address: "test", commentId: 1));
     },
   );
 }

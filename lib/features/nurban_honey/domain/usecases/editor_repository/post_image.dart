@@ -15,10 +15,7 @@ class PostImage implements UseCase<ImagePostResponse, Params> {
   @override
   Future<Either<Failure, ImagePostResponse>> call(Params params) async {
     return await repository.postImage(
-        address: params.address,
-        token: params.token,
-        uuid: params.uuid,
-        imagePath: params.imagePath);
+        params.address, params.token, params.uuid, params.imagePath);
   }
 }
 

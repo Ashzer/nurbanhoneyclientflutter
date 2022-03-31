@@ -39,8 +39,8 @@ void main() {
   test(
     "GetProfileComments Params is Equatable",
     () async {
-      expect(Params(token: "token", offset: 0, limit: 10),
-          Params(token: "token", offset: 0, limit: 10));
+      expect(const Params(token: "token", offset: 0, limit: 10),
+          const Params(token: "token", offset: 0, limit: 10));
     },
   );
 }

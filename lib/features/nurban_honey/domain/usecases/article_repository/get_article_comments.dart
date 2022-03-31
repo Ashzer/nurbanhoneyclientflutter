@@ -12,10 +12,7 @@ class GetArticleComments implements UseCase<List<ArticleComment>, Params> {
   @override
   Future<Either<Failure, List<ArticleComment>>> call(params) async {
     return await repository.getComments(
-        address: params.address,
-        articleId: params.articleId,
-        offset: params.offset,
-        limit: params.limit);
+        params.address, params.articleId, params.offset, params.limit);
   }
 }
 

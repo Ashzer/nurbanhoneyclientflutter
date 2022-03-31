@@ -11,9 +11,7 @@ class DeleteDislike implements UseCase<EmptyResponse, Params> {
   @override
   Future<Either<Failure, EmptyResponse>> call(Params params) async {
     return await repository.deleteDislike(
-        address: params.address,
-        token: params.token,
-        articleId: params.articleId);
+        params.address, params.token, params.articleId);
   }
 }
 

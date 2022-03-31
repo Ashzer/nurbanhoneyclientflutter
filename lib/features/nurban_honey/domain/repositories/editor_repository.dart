@@ -5,42 +5,42 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/image_
 
 abstract class EditorRepository {
   Future<Either<Failure, EmptyResponse>> postNurbanArticle(
-      {String address,
+      String address,
       String token,
       String title,
       String uuid,
       String lossCut,
       String? thumbnail,
-      String content});
+      String content);
 
   Future<Either<Failure, EmptyResponse>> postArticle(
-      {String address,
+      String address,
       String token,
       String title,
       String uuid,
       String? thumbnail,
-      String content});
+      String content);
 
   Future<Either<Failure, EmptyResponse>> putNurbanArticle(
-      {String address,
+      String address,
       String token,
       int articleId,
       String? thumbnail,
       String title,
       String lossCut,
-      String content});
+      String content);
 
   Future<Either<Failure, EmptyResponse>> putArticle(
-      {String address,
+      String address,
       String token,
       int articleId,
       String? thumbnail,
       String title,
-      String content});
+      String content);
 
   Future<Either<Failure, EmptyResponse>> deleteArticle(
-      {String address, String token, int articleId, String uuid});
+      String address, String token, int articleId, String uuid);
 
   Future<Either<Failure, ImagePostResponse>> postImage(
-      {String address, String token, String uuid, String imagePath});
+      String address, String token, String uuid, String imagePath);
 }

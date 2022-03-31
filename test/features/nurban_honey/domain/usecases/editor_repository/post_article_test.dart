@@ -12,19 +12,14 @@ void main() {
   final mockEditorRepository = MockEditorRepository();
   final postArticle = PostArticle(mockEditorRepository);
 
-  final tEmptyResponse = EmptyResponse("OK");
+  const tEmptyResponse = EmptyResponse("OK");
 
   test(
     "Editor Repository로 article 등록 요청",
     () async {
       when(mockEditorRepository.postArticle(
-              address: "address",
-              token: "token",
-              title: "title",
-              uuid: "uuid",
-              thumbnail: null,
-              content: "content"))
-          .thenAnswer((_) async => Right(tEmptyResponse));
+              "address", "token", "title", "uuid", null, "content"))
+          .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await postArticle(const Params(
           address: "address",
@@ -34,14 +29,9 @@ void main() {
           thumbnail: null,
           content: "content"));
 
-      expect(result, Right(tEmptyResponse));
+      expect(result, const Right(tEmptyResponse));
       verify(mockEditorRepository.postArticle(
-          address: "address",
-          token: "token",
-          title: "title",
-          uuid: "uuid",
-          thumbnail: null,
-          content: "content"));
+          "address", "token", "title", "uuid", null, "content"));
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );
@@ -50,14 +40,14 @@ void main() {
     "PostArticle Params is Equatable",
     () async {
       expect(
-          Params(
+          const Params(
               address: "address",
               token: "token",
               title: "title",
               uuid: "uuid",
               thumbnail: null,
               content: "content"),
-          Params(
+          const Params(
               address: "address",
               token: "token",
               title: "title",

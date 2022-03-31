@@ -12,9 +12,7 @@ class PostLike implements UseCase<EmptyResponse, Params> {
   @override
   Future<Either<Failure, EmptyResponse>> call(params) async {
     return await repository.postLike(
-        address: params.address,
-        token: params.token,
-        articleId: params.articleId);
+        params.address, params.token, params.articleId);
   }
 }
 

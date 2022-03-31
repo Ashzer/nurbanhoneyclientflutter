@@ -22,16 +22,14 @@ void main() {
   test(
     "Article Repository에서 Article리스트를 가져온다",
     () async {
-      when(mockArticleRepository.getArticles(
-              address: "address", flag: 0, offset: 0, limit: 10))
+      when(mockArticleRepository.getArticles("address", 0, 0, 10))
           .thenAnswer((_) async => Right(tArticleItemList));
 
       final result = await getArticles(
           const Params(address: "address", flag: 0, offset: 0, limit: 10));
 
       expect(result, Right(tArticleItemList));
-      verify(mockArticleRepository.getArticles(
-          address: "address", flag: 0, offset: 0, limit: 10));
+      verify(mockArticleRepository.getArticles("address", 0, 0, 10));
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
@@ -39,8 +37,8 @@ void main() {
   test(
     "GetArticles Param Equatable",
     () async {
-      expect(Params(address: "address", flag: 0, offset: 0, limit: 10),
-          Params(address: "address", flag: 0, offset: 0, limit: 10));
+      expect(const Params(address: "address", flag: 0, offset: 0, limit: 10),
+          const Params(address: "address", flag: 0, offset: 0, limit: 10));
     },
   );
 }

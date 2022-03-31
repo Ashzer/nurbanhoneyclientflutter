@@ -21,16 +21,14 @@ void main() {
   test(
     "Article Repository에서 Comment 리스트 가져옴",
     () async {
-      when(mockArticleRepository.getComments(
-              address: "address", articleId: 1, offset: 0, limit: 10))
+      when(mockArticleRepository.getComments("address", 1, 0, 10))
           .thenAnswer((_) async => Right(tArticleComments));
 
       final result = await getArticleComments(
           const Params(address: "address", articleId: 1, offset: 0, limit: 10));
 
       expect(result, Right(tArticleComments));
-      verify(mockArticleRepository.getComments(
-          address: "address", articleId: 1, offset: 0, limit: 10));
+      verify(mockArticleRepository.getComments("address", 1, 0, 10));
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
@@ -38,8 +36,9 @@ void main() {
   test(
     "GetArticleComments Params is Equatable",
     () async {
-      expect(Params(address: "address", articleId: 1, offset: 0, limit: 10),
-          Params(address: "address", articleId: 1, offset: 0, limit: 10));
+      expect(
+          const Params(address: "address", articleId: 1, offset: 0, limit: 10),
+          const Params(address: "address", articleId: 1, offset: 0, limit: 10));
     },
   );
 }

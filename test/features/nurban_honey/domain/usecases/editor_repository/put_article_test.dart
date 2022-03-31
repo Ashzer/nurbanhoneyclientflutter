@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -14,19 +12,14 @@ void main() {
   final mockEditorRepository = MockEditorRepository();
   final putArticle = PutArticle(mockEditorRepository);
 
-  final tEmptyResponse = EmptyResponse("OK");
+  const tEmptyResponse = EmptyResponse("OK");
 
   test(
     "Editor Repository로 article 수정 요청",
     () async {
       when(mockEditorRepository.putArticle(
-              address: "address",
-              token: "token",
-              articleId: 1,
-              thumbnail: null,
-              title: "title",
-              content: "content"))
-          .thenAnswer((_) async => Right(tEmptyResponse));
+              "address", "token", 1, null, "title", "content"))
+          .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await putArticle(const Params(
           address: "address",
@@ -36,14 +29,9 @@ void main() {
           title: "title",
           content: "content"));
 
-      expect(result, Right(tEmptyResponse));
+      expect(result, const Right(tEmptyResponse));
       verify(mockEditorRepository.putArticle(
-          address: "address",
-          token: "token",
-          articleId: 1,
-          thumbnail: null,
-          title: "title",
-          content: "content"));
+          "address", "token", 1, null, "title", "content"));
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );
@@ -52,14 +40,14 @@ void main() {
     "PutArticle Params is Equatable",
     () async {
       expect(
-          Params(
+          const Params(
               address: "address",
               token: "token",
               articleId: 1,
               thumbnail: null,
               title: "title",
               content: "content"),
-          Params(
+          const Params(
               address: "address",
               token: "token",
               articleId: 1,

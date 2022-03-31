@@ -14,13 +14,13 @@ class PostNurbanArticle implements UseCase<EmptyResponse, Params> {
   @override
   Future<Either<Failure, EmptyResponse>> call(Params params) async {
     return await repository.postNurbanArticle(
-        address: params.address,
-        token: params.token,
-        title: params.title,
-        uuid: params.uuid,
-        lossCut: params.lossCut,
-        thumbnail: params.thumbnail,
-        content: params.content);
+        params.address,
+        params.token,
+        params.title,
+        params.uuid,
+        params.lossCut,
+        params.thumbnail,
+        params.content);
   }
 }
 

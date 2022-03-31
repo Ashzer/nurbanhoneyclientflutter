@@ -12,10 +12,7 @@ class DeleteArticleComment implements UseCase<EmptyResponse, Params> {
   @override
   Future<Either<Failure, EmptyResponse>> call(params) async {
     return await repository.deleteComment(
-        address: params.address,
-        token: params.token,
-        commentId: params.commentId,
-        articleId: params.articleId);
+        params.address, params.token, params.commentId, params.articleId);
   }
 }
 

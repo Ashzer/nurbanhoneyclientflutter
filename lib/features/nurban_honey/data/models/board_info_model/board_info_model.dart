@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/board_info/board_info.dart';
 

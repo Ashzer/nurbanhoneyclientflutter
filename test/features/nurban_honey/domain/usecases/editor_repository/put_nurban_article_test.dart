@@ -12,20 +12,14 @@ void main() {
   final mockEditorRepository = MockEditorRepository();
   final putNurbanArticle = PutNurbanArticle(mockEditorRepository);
 
-  final tEmptyResponse = EmptyResponse("OK");
+  const tEmptyResponse = EmptyResponse("OK");
 
   test(
     "Editor Repository로 nurban article 수정 요청",
     () async {
       when(mockEditorRepository.putNurbanArticle(
-              address: "address",
-              token: "token",
-              articleId: 1,
-              thumbnail: null,
-              title: "title",
-              lossCut: "lossCut",
-              content: "content"))
-          .thenAnswer((_) async => Right(tEmptyResponse));
+              "address", "token", 1, null, "title", "lossCut", "content"))
+          .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await putNurbanArticle(const Params(
           address: "address",
@@ -36,15 +30,9 @@ void main() {
           lossCut: "lossCut",
           content: "content"));
 
-      expect(result, Right(tEmptyResponse));
+      expect(result, const Right(tEmptyResponse));
       verify(mockEditorRepository.putNurbanArticle(
-          address: "address",
-          token: "token",
-          articleId: 1,
-          thumbnail: null,
-          title: "title",
-          lossCut: "lossCut",
-          content: "content"));
+          "address", "token", 1, null, "title", "lossCut", "content"));
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );
@@ -53,7 +41,7 @@ void main() {
     "PutNurbanArticle Params is Equatable",
     () async {
       expect(
-          Params(
+          const Params(
               address: "address",
               token: "token",
               articleId: 1,
@@ -61,7 +49,7 @@ void main() {
               title: "title",
               lossCut: "lossCut",
               content: "content"),
-          Params(
+          const Params(
               address: "address",
               token: "token",
               articleId: 1,

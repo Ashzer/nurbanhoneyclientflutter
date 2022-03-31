@@ -4,6 +4,6 @@ part 'article_ratings.freezed.dart';
 
 @freezed
 class ArticleRatings with _$ArticleRatings {
-  factory ArticleRatings(
+  const factory ArticleRatings(
       int id, String likes, String dislikes, String myRating) = _ArticleRatings;
 }

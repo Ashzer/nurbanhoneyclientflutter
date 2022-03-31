@@ -42,133 +42,101 @@ class MockArticleRepository extends _i1.Mock implements _i3.ArticleRepository {
 
   @override
   _i4.Future<_i2.Either<_i5.Failure, List<_i6.ArticleItem>>> getArticles(
-          {String? address, int? flag, int? offset, int? limit}) =>
+          String? address, int? flag, int? offset, int? limit) =>
       (super.noSuchMethod(
-              Invocation.method(#getArticles, [], {
-                #address: address,
-                #flag: flag,
-                #offset: offset,
-                #limit: limit
-              }),
+              Invocation.method(#getArticles, [address, flag, offset, limit]),
               returnValue:
                   Future<_i2.Either<_i5.Failure, List<_i6.ArticleItem>>>.value(
                       _FakeEither_0<_i5.Failure, List<_i6.ArticleItem>>()))
           as _i4.Future<_i2.Either<_i5.Failure, List<_i6.ArticleItem>>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i7.ArticleDetail>> getArticle(
-          {String? address, String? token, int? articleId}) =>
+          String? address, String? token, int? articleId) =>
       (super.noSuchMethod(
-          Invocation.method(#getArticle, [],
-              {#address: address, #token: token, #articleId: articleId}),
+          Invocation.method(#getArticle, [address, token, articleId]),
           returnValue: Future<_i2.Either<_i5.Failure, _i7.ArticleDetail>>.value(
               _FakeEither_0<_i5.Failure, _i7.ArticleDetail>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i7.ArticleDetail>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>> postLike(
-          {String? address, String? token, int? articleId}) =>
+          String? address, String? token, int? articleId) =>
       (super.noSuchMethod(
-          Invocation.method(#postLike, [],
-              {#address: address, #token: token, #articleId: articleId}),
+          Invocation.method(#postLike, [address, token, articleId]),
           returnValue: Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i8.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>> deleteLike(
-          {String? address, String? token, int? articleId}) =>
+          String? address, String? token, int? articleId) =>
       (super.noSuchMethod(
-          Invocation.method(#deleteLike, [],
-              {#address: address, #token: token, #articleId: articleId}),
+          Invocation.method(#deleteLike, [address, token, articleId]),
           returnValue: Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i8.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>> postDislike(
-          {String? address, String? token, int? articleId}) =>
+          String? address, String? token, int? articleId) =>
       (super.noSuchMethod(
-          Invocation.method(#postDislike, [],
-              {#address: address, #token: token, #articleId: articleId}),
+          Invocation.method(#postDislike, [address, token, articleId]),
           returnValue: Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i8.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>> deleteDislike(
-          {String? address, String? token, int? articleId}) =>
+          String? address, String? token, int? articleId) =>
       (super.noSuchMethod(
-          Invocation.method(#deleteDislike, [],
-              {#address: address, #token: token, #articleId: articleId}),
+          Invocation.method(#deleteDislike, [address, token, articleId]),
           returnValue: Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i8.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i9.ArticleRatings>> getArticleRatings(
-          {String? address, String? token, int? articleId}) =>
+          String? address, String? token, int? articleId) =>
       (super.noSuchMethod(
-              Invocation.method(#getArticleRatings, [],
-                  {#address: address, #token: token, #articleId: articleId}),
-              returnValue:
-                  Future<_i2.Either<_i5.Failure, _i9.ArticleRatings>>.value(
-                      _FakeEither_0<_i5.Failure, _i9.ArticleRatings>()))
-          as _i4.Future<_i2.Either<_i5.Failure, _i9.ArticleRatings>>);
+          Invocation.method(#getArticleRatings, [address, token, articleId]),
+          returnValue:
+              Future<_i2.Either<_i5.Failure, _i9.ArticleRatings>>.value(
+                  _FakeEither_0<_i5.Failure, _i9.ArticleRatings>())) as _i4
+          .Future<_i2.Either<_i5.Failure, _i9.ArticleRatings>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i10.ArticleComment>> getComment(
-          {String? address, int? commentId}) =>
-      (super.noSuchMethod(
-              Invocation.method(
-                  #getComment, [], {#address: address, #commentId: commentId}),
+          String? address, int? commentId) =>
+      (super.noSuchMethod(Invocation.method(#getComment, [address, commentId]),
               returnValue:
                   Future<_i2.Either<_i5.Failure, _i10.ArticleComment>>.value(
                       _FakeEither_0<_i5.Failure, _i10.ArticleComment>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i10.ArticleComment>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, List<_i10.ArticleComment>>> getComments(
-          {String? address, int? articleId, int? offset, int? limit}) =>
+          String? address, int? articleId, int? offset, int? limit) =>
       (super.noSuchMethod(
-          Invocation.method(#getComments, [], {
-            #address: address,
-            #articleId: articleId,
-            #offset: offset,
-            #limit: limit
-          }),
-          returnValue:
-              Future<_i2.Either<_i5.Failure, List<_i10.ArticleComment>>>.value(
-                  _FakeEither_0<_i5.Failure, List<_i10.ArticleComment>>())) as _i4
+          Invocation.method(#getComments, [address, articleId, offset, limit]),
+          returnValue: Future<
+                  _i2.Either<_i5.Failure, List<_i10.ArticleComment>>>.value(
+              _FakeEither_0<_i5.Failure, List<_i10.ArticleComment>>())) as _i4
           .Future<_i2.Either<_i5.Failure, List<_i10.ArticleComment>>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>> postComment(
-          {String? address, String? token, String? comment, int? articleId}) =>
+          String? address, String? token, String? comment, int? articleId) =>
       (super.noSuchMethod(
-          Invocation.method(#postComment, [], {
-            #address: address,
-            #token: token,
-            #comment: comment,
-            #articleId: articleId
-          }),
+          Invocation.method(#postComment, [address, token, comment, articleId]),
           returnValue: Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i8.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>> deleteComment(
-          {String? address, String? token, int? commentId, int? articleId}) =>
+          String? address, String? token, int? commentId, int? articleId) =>
       (super.noSuchMethod(
-          Invocation.method(#deleteComment, [], {
-            #address: address,
-            #token: token,
-            #commentId: commentId,
-            #articleId: articleId
-          }),
+          Invocation.method(
+              #deleteComment, [address, token, commentId, articleId]),
           returnValue: Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i8.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>> putComment(
-          {String? address, String? token, int? commentId, String? comment}) =>
+          String? address, String? token, int? commentId, String? comment) =>
       (super.noSuchMethod(
-          Invocation.method(#putComment, [], {
-            #address: address,
-            #token: token,
-            #commentId: commentId,
-            #comment: comment
-          }),
+          Invocation.method(#putComment, [address, token, commentId, comment]),
           returnValue: Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i8.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>);

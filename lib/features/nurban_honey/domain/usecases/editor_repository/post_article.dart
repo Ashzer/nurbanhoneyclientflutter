@@ -13,13 +13,8 @@ class PostArticle implements UseCase<EmptyResponse, Params> {
 
   @override
   Future<Either<Failure, EmptyResponse>> call(Params params) async {
-    return await repository.postArticle(
-        address: params.address,
-        token: params.token,
-        title: params.title,
-        uuid: params.uuid,
-        thumbnail: params.thumbnail,
-        content: params.content);
+    return await repository.postArticle(params.address, params.token,
+        params.title, params.uuid, params.thumbnail, params.content);
   }
 }
 

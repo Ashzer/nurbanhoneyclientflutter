@@ -14,10 +14,7 @@ class GetArticles implements UseCase<List<ArticleItem>, Params> {
   @override
   Future<Either<Failure, List<ArticleItem>>> call(Params params) async =>
       await repository.getArticles(
-          address: params.address,
-          flag: params.flag,
-          offset: params.offset,
-          limit: params.limit);
+          params.address, params.flag, params.offset, params.limit);
 }
 
 class Params extends Equatable {

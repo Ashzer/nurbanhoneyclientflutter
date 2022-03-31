@@ -4,7 +4,7 @@ part 'article_comment.freezed.dart';
 
 @freezed
 class ArticleComment with _$ArticleComment {
-  factory ArticleComment(
+  const factory ArticleComment(
       int commentId,
       String comment,
       int articleId,

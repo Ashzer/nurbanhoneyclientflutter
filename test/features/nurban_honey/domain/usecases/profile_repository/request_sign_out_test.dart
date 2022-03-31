@@ -12,18 +12,18 @@ void main() {
   final mockProfileRepository = MockProfileRepository();
   final requestSignOut = RequestSignOut(mockProfileRepository);
 
-  final tEmptyResponse = EmptyResponse("OK");
+  const tEmptyResponse = EmptyResponse("OK");
 
   test(
     "Profile Repository에 로그아웃 요청",
     () async {
       when(mockProfileRepository.requestSignOut(token: "token", userId: 0))
-          .thenAnswer((_) async => Right(tEmptyResponse));
+          .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result =
           await requestSignOut(const Params(token: "token", userId: 0));
 
-      expect(result, Right(tEmptyResponse));
+      expect(result, const Right(tEmptyResponse));
       verify(mockProfileRepository.requestSignOut(token: "token", userId: 0));
       verifyNoMoreInteractions(mockProfileRepository);
     },
@@ -32,8 +32,8 @@ void main() {
   test(
     "RequestSignOut Params is Equatable",
     () async {
-      expect(
-          Params(token: "token", userId: 0), Params(token: "token", userId: 0));
+      expect(const Params(token: "token", userId: 0),
+          const Params(token: "token", userId: 0));
     },
   );
 }

@@ -33,8 +33,8 @@ void main() {
   test(
     "IsTokenValid Params is Equatable",
     () async {
-      expect(Params(nurbanToken: "nurbanToken"),
-          Params(nurbanToken: "nurbanToken"));
+      expect(const Params(nurbanToken: "nurbanToken"),
+          const Params(nurbanToken: "nurbanToken"));
     },
   );
 }

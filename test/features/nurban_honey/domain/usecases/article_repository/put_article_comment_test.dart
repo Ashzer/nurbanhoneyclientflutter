@@ -13,17 +13,13 @@ void main() {
   final mockArticleRepository = MockArticleRepository();
   final putArticleComment = PutArticleComment(mockArticleRepository);
 
-  final tEmptyResponse = const EmptyResponse("OK");
+  const tEmptyResponse = EmptyResponse("OK");
 
   test(
     "Article Repository로 댓글 수정 요청",
     () async {
-      when(mockArticleRepository.putComment(
-              address: "address",
-              token: "token",
-              commentId: 1,
-              comment: "comment"))
-          .thenAnswer((_) async => Right(tEmptyResponse));
+      when(mockArticleRepository.putComment("address", "token", 1, "comment"))
+          .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await putArticleComment(const Params(
           address: "address",
@@ -31,12 +27,9 @@ void main() {
           commentId: 1,
           comment: "comment"));
 
-      expect(result, Right(tEmptyResponse));
-      verify(mockArticleRepository.putComment(
-          address: "address",
-          token: "token",
-          commentId: 1,
-          comment: "comment"));
+      expect(result, const Right(tEmptyResponse));
+      verify(
+          mockArticleRepository.putComment("address", "token", 1, "comment"));
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
@@ -45,12 +38,12 @@ void main() {
     "PutArticleComment Params is Equatable",
     () async {
       expect(
-          Params(
+          const Params(
               address: "address",
               token: "token",
               commentId: 1,
               comment: "comment"),
-          Params(
+          const Params(
               address: "address",
               token: "token",
               commentId: 1,

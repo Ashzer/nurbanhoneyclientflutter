@@ -17,16 +17,14 @@ void main() {
   test(
     "Editor Repository로 article 삭제 요청",
     () async {
-      when(mockEditorRepository.deleteArticle(
-              address: "address", token: "token", articleId: 1, uuid: "uuid"))
+      when(mockEditorRepository.deleteArticle("address", "token", 1, "uuid"))
           .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await deleteArticle(const Params(
           address: "address", token: "token", articleId: 1, uuid: "uuid"));
 
       expect(result, const Right(tEmptyResponse));
-      verify(mockEditorRepository.deleteArticle(
-          address: "address", token: "token", articleId: 1, uuid: "uuid"));
+      verify(mockEditorRepository.deleteArticle("address", "token", 1, "uuid"));
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );

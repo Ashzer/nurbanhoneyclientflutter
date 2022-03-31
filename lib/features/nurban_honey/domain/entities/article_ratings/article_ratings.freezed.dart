@@ -140,7 +140,7 @@ class __$ArticleRatingsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ArticleRatings implements _ArticleRatings {
-  _$_ArticleRatings(this.id, this.likes, this.dislikes, this.myRating);
+  const _$_ArticleRatings(this.id, this.likes, this.dislikes, this.myRating);
 
   @override
   final int id;
@@ -182,7 +182,7 @@ class _$_ArticleRatings implements _ArticleRatings {
 }
 
 abstract class _ArticleRatings implements ArticleRatings {
-  factory _ArticleRatings(
+  const factory _ArticleRatings(
           int id, String likes, String dislikes, String myRating) =
       _$_ArticleRatings;
 

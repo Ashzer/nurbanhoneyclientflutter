@@ -18,13 +18,7 @@ void main() {
     "Editor Repository로 nurban article 수정 요청",
     () async {
       when(mockEditorRepository.putNurbanArticle(
-              address: "address",
-              token: "token",
-              articleId: 1,
-              thumbnail: null,
-              title: "title",
-              lossCut: "lossCut",
-              content: "content"))
+              "address", "token", 1, null, "title", "lossCut", "content"))
           .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await putNurbanArticle(const Params(
@@ -38,13 +32,7 @@ void main() {
 
       expect(result, const Right(tEmptyResponse));
       verify(mockEditorRepository.putNurbanArticle(
-          address: "address",
-          token: "token",
-          articleId: 1,
-          thumbnail: null,
-          title: "title",
-          lossCut: "lossCut",
-          content: "content"));
+          "address", "token", 1, null, "title", "lossCut", "content"));
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );

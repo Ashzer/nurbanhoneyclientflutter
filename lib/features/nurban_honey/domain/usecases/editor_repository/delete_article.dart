@@ -15,10 +15,7 @@ class DeleteArticle implements UseCase<EmptyResponse, Params> {
   @override
   Future<Either<Failure, EmptyResponse>> call(Params params) async {
     return await repository.deleteArticle(
-        address: params.address,
-        token: params.token,
-        articleId: params.articleId,
-        uuid: params.uuid);
+        params.address, params.token, params.articleId, params.uuid);
   }
 }
 

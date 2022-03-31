@@ -13,13 +13,8 @@ class PutArticle implements UseCase<EmptyResponse, Params> {
 
   @override
   Future<Either<Failure, EmptyResponse>> call(Params params) async {
-    return await repository.putArticle(
-        address: params.address,
-        token: params.token,
-        articleId: params.articleId,
-        thumbnail: params.thumbnail,
-        title: params.title,
-        content: params.content);
+    return await repository.putArticle(params.address, params.token,
+        params.articleId, params.thumbnail, params.title, params.content);
   }
 }
 

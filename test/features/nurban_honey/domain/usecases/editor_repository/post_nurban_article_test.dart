@@ -18,13 +18,7 @@ void main() {
     "Editor Repository로 Nurban article 등록 요청",
     () async {
       when(mockEditorRepository.postNurbanArticle(
-              address: "address",
-              token: "token",
-              title: "title",
-              uuid: "uuid",
-              lossCut: "lossCut",
-              thumbnail: null,
-              content: "content"))
+              "address", "token", "title", "uuid", "lossCut", null, "content"))
           .thenAnswer((_) async => const Right(tEmtpyResponse));
 
       final result = await postNurbanArticle(const Params(
@@ -38,13 +32,7 @@ void main() {
 
       expect(result, const Right(tEmtpyResponse));
       verify(mockEditorRepository.postNurbanArticle(
-          address: "address",
-          token: "token",
-          title: "title",
-          uuid: "uuid",
-          lossCut: "lossCut",
-          thumbnail: null,
-          content: "content"));
+          "address", "token", "title", "uuid", "lossCut", null, "content"));
     },
   );
 

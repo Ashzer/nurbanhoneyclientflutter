@@ -18,10 +18,7 @@ void main() {
     "Editor Repository로 image 업로드 요청",
     () async {
       when(mockEditorRepository.postImage(
-              address: "address",
-              token: "token",
-              uuid: "uuid",
-              imagePath: "imagePath"))
+              "address", "token", "uuid", "imagePath"))
           .thenAnswer((_) async => Right(tImagePostResponse));
 
       final result = await postImage(const Params(
@@ -32,10 +29,7 @@ void main() {
 
       expect(result, Right(tImagePostResponse));
       verify(mockEditorRepository.postImage(
-          address: "address",
-          token: "token",
-          uuid: "uuid",
-          imagePath: "imagePath"));
+          "address", "token", "uuid", "imagePath"));
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );

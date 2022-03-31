@@ -18,12 +18,7 @@ void main() {
     "Editor Repository로 article 등록 요청",
     () async {
       when(mockEditorRepository.postArticle(
-              address: "address",
-              token: "token",
-              title: "title",
-              uuid: "uuid",
-              thumbnail: null,
-              content: "content"))
+              "address", "token", "title", "uuid", null, "content"))
           .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await postArticle(const Params(
@@ -36,12 +31,7 @@ void main() {
 
       expect(result, const Right(tEmptyResponse));
       verify(mockEditorRepository.postArticle(
-          address: "address",
-          token: "token",
-          title: "title",
-          uuid: "uuid",
-          thumbnail: null,
-          content: "content"));
+          "address", "token", "title", "uuid", null, "content"));
       verifyNoMoreInteractions(mockEditorRepository);
     },
   );

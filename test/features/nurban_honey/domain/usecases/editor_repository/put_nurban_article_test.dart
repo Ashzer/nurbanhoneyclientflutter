@@ -18,7 +18,7 @@ void main() {
     "Editor Repository로 nurban article 수정 요청",
     () async {
       when(mockEditorRepository.putNurbanArticle(
-              "address", "token", 1, null, "title", "lossCut", "content"))
+              any, any, any, any, any, any, any))
           .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await putNurbanArticle(const Params(
@@ -41,7 +41,7 @@ void main() {
     "PutNurbanArticle Params is Equatable",
     () async {
       expect(
-          const Params(
+          Params(
               address: "address",
               token: "token",
               articleId: 1,
@@ -49,7 +49,7 @@ void main() {
               title: "title",
               lossCut: "lossCut",
               content: "content"),
-          const Params(
+          Params(
               address: "address",
               token: "token",
               articleId: 1,

@@ -33,8 +33,8 @@ void main() {
   test(
     "PostDislike Params is Equatable",
     () async {
-      expect(const Params(address: "address", token: "token", articleId: 1),
-          const Params(address: "address", token: "token", articleId: 1));
+      expect(Params(address: "address", token: "token", articleId: 1),
+          Params(address: "address", token: "token", articleId: 1));
     },
   );
 }

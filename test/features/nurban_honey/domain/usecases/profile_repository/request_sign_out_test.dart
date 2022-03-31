@@ -32,8 +32,8 @@ void main() {
   test(
     "RequestSignOut Params is Equatable",
     () async {
-      expect(const Params(token: "token", userId: 0),
-          const Params(token: "token", userId: 0));
+      expect(
+          Params(token: "token", userId: 0), Params(token: "token", userId: 0));
     },
   );
 }

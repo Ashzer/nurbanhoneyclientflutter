@@ -38,12 +38,12 @@ void main() {
     "PostArticleComment Params is Equatable",
     () async {
       expect(
-          const Params(
+          Params(
               address: "address",
               token: "token",
               comment: "comment",
               articleId: 1),
-          const Params(
+          Params(
               address: "address",
               token: "token",
               comment: "comment",

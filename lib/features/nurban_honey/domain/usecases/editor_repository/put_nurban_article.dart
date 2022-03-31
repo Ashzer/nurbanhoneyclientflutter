@@ -18,8 +18,8 @@ class PutNurbanArticle implements UseCase<EmptyResponse, Params> {
         params.token,
         params.articleId,
         params.thumbnail,
-        params.lossCut,
         params.title,
+        params.lossCut,
         params.content);
   }
 }

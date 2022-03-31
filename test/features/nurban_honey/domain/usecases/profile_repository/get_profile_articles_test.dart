@@ -39,8 +39,8 @@ void main() {
   test(
     "GetProfileArticles Params is Equatable",
     () async {
-      expect(const Params(token: "token", offset: 0, limit: 10),
-          const Params(token: "token", offset: 0, limit: 10));
+      expect(Params(token: "token", offset: 0, limit: 10),
+          Params(token: "token", offset: 0, limit: 10));
     },
   );
 }

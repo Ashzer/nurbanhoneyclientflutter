@@ -33,9 +33,9 @@ void main() {
     "DeleteArticle Params is Equatable",
     () async {
       expect(
-          const Params(
+          Params(
               address: "address", token: "token", articleId: 1, uuid: "uuid"),
-          const Params(
+          Params(
               address: "address", token: "token", articleId: 1, uuid: "uuid"));
     },
   );

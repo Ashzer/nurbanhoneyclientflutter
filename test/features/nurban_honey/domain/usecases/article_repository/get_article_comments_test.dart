@@ -36,9 +36,8 @@ void main() {
   test(
     "GetArticleComments Params is Equatable",
     () async {
-      expect(
-          const Params(address: "address", articleId: 1, offset: 0, limit: 10),
-          const Params(address: "address", articleId: 1, offset: 0, limit: 10));
+      expect(Params(address: "address", articleId: 1, offset: 0, limit: 10),
+          Params(address: "address", articleId: 1, offset: 0, limit: 10));
     },
   );
 }

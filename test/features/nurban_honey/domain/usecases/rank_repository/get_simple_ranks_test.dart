@@ -34,8 +34,7 @@ void main() {
   test(
     "GetSimpleRanks Params is Equatable",
     () async {
-      expect(const Params(offset: 0, limit: 10),
-          const Params(offset: 0, limit: 10));
+      expect(Params(offset: 0, limit: 10), Params(offset: 0, limit: 10));
     },
   );
 }

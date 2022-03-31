@@ -32,8 +32,7 @@ void main() {
   test(
     "IsAppUpdatable Params is Equatable",
     () async {
-      expect(const Params(appName: "nurbanhoney"),
-          const Params(appName: "nurbanhoney"));
+      expect(Params(appName: "nurbanhoney"), Params(appName: "nurbanhoney"));
     },
   );
 }

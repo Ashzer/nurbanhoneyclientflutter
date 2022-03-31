@@ -1,4 +1,7 @@
+import 'package:nurbanhoney_flutter/core/error/exception.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/datasources/editor_remote_data_source.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/data/models/empty_response_model/empty_response_model.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/data/models/image_post_response_model/image_post_response_model.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/image_post_response/image_post_response.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 import 'package:nurbanhoney_flutter/core/error/failures.dart';
@@ -21,7 +24,18 @@ class EditorRepositoryImpl implements EditorRepository {
       String lossCut,
       String? thumbnail,
       String content) async {
-    return const Right(EmptyResponse(""));
+    if (await networkStatus.isConnected) {
+      try {
+        final result = (await remoteDataSource.postNurbanArticle(
+                address, token, title, uuid, lossCut, thumbnail, content))
+            .toEmptyResponse();
+        return Right(result);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
   }
 
   @override
@@ -32,7 +46,18 @@ class EditorRepositoryImpl implements EditorRepository {
       String uuid,
       String? thumbnail,
       String content) async {
-    return const Right(EmptyResponse(""));
+    if (await networkStatus.isConnected) {
+      try {
+        final result = (await remoteDataSource.postArticle(
+                address, token, title, uuid, thumbnail, content))
+            .toEmptyResponse();
+        return Right(result);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
   }
 
   @override
@@ -44,7 +69,18 @@ class EditorRepositoryImpl implements EditorRepository {
       String title,
       String lossCut,
       String content) async {
-    return const Right(EmptyResponse(""));
+    if (await networkStatus.isConnected) {
+      try {
+        final result = (await remoteDataSource.putNurbanArticle(
+                address, token, articleId, thumbnail, title, lossCut, content))
+            .toEmptyResponse();
+        return Right(result);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
   }
 
   @override
@@ -55,18 +91,51 @@ class EditorRepositoryImpl implements EditorRepository {
       String? thumbnail,
       String title,
       String content) async {
-    return const Right(EmptyResponse(""));
+    if (await networkStatus.isConnected) {
+      try {
+        final result = (await remoteDataSource.putArticle(
+                address, token, articleId, thumbnail, title, content))
+            .toEmptyResponse();
+        return Right(result);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
   }
 
   @override
   Future<Either<Failure, EmptyResponse>> deleteArticle(
       String address, String token, int articleId, String uuid) async {
-    return const Right(EmptyResponse(""));
+    if (await networkStatus.isConnected) {
+      try {
+        final result = (await remoteDataSource.deleteArticle(
+                address, token, articleId, uuid))
+            .toEmptyResponse();
+        return Right(result);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
   }
 
   @override
   Future<Either<Failure, ImagePostResponse>> postImage(
       String address, String token, String uuid, String imagePath) async {
-    return Right(ImagePostResponse(Uri.parse("imageUri")));
+    if (await networkStatus.isConnected) {
+      try {
+        final imageResponse =
+            (await remoteDataSource.postImage(address, token, uuid, imagePath))
+                .toImagePostResponse();
+        return Right(imageResponse);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
   }
 }

@@ -13,8 +13,14 @@ class EditorRepositoryImpl implements EditorRepository {
   EditorRepositoryImpl(this.networkStatus, this.remoteDataSource);
 
   @override
-  Future<Either<Failure, EmptyResponse>> deleteArticle(
-      String address, String token, int articleId, String uuid) async {
+  Future<Either<Failure, EmptyResponse>> postNurbanArticle(
+      String address,
+      String token,
+      String title,
+      String uuid,
+      String lossCut,
+      String? thumbnail,
+      String content) async {
     return const Right(EmptyResponse(""));
   }
 
@@ -30,19 +36,13 @@ class EditorRepositoryImpl implements EditorRepository {
   }
 
   @override
-  Future<Either<Failure, ImagePostResponse>> postImage(
-      String address, String token, String uuid, String imagePath) async {
-    return Right(ImagePostResponse(Uri.parse("imageUri")));
-  }
-
-  @override
-  Future<Either<Failure, EmptyResponse>> postNurbanArticle(
+  Future<Either<Failure, EmptyResponse>> putNurbanArticle(
       String address,
       String token,
-      String title,
-      String uuid,
-      String lossCut,
+      int articleId,
       String? thumbnail,
+      String title,
+      String lossCut,
       String content) async {
     return const Right(EmptyResponse(""));
   }
@@ -59,14 +59,14 @@ class EditorRepositoryImpl implements EditorRepository {
   }
 
   @override
-  Future<Either<Failure, EmptyResponse>> putNurbanArticle(
-      String address,
-      String token,
-      int articleId,
-      String? thumbnail,
-      String title,
-      String lossCut,
-      String content) async {
+  Future<Either<Failure, EmptyResponse>> deleteArticle(
+      String address, String token, int articleId, String uuid) async {
     return const Right(EmptyResponse(""));
+  }
+
+  @override
+  Future<Either<Failure, ImagePostResponse>> postImage(
+      String address, String token, String uuid, String imagePath) async {
+    return Right(ImagePostResponse(Uri.parse("imageUri")));
   }
 }

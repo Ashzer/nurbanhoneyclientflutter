@@ -10,7 +10,7 @@ class IsTokenValid implements UseCase<TokenStatus, Params> {
   IsTokenValid(this.repository);
   @override
   Future<Either<Failure, TokenStatus>> call(params) async {
-    return await repository.isTokenValid(nurbanToken: params.nurbanToken);
+    return await repository.isTokenValid(params.nurbanToken);
   }
 }
 

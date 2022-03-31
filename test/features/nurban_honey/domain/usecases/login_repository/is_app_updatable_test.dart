@@ -18,13 +18,13 @@ void main() {
   test(
     "Login Repository에 어플 버전&업데이트 확인",
     () async {
-      when(mockLoginRepository.isAppUpdatable(appName: "nurbanhoney"))
+      when(mockLoginRepository.isAppUpdatable("nurbanhoney"))
           .thenAnswer((_) async => const Right(tAppVersion));
 
       final result = await isAppUpdatable(const Params(appName: "nurbanhoney"));
 
       expect(result, const Right(tAppVersion));
-      verify(mockLoginRepository.isAppUpdatable(appName: "nurbanhoney"));
+      verify(mockLoginRepository.isAppUpdatable("nurbanhoney"));
       verifyNoMoreInteractions(mockLoginRepository);
     },
   );

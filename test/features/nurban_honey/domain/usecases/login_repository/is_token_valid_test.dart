@@ -18,14 +18,14 @@ void main() {
   test(
     "Login Repository로 token 유효성 검사 요청",
     () async {
-      when(mockLoginRepository.isTokenValid(nurbanToken: "nurbanToken"))
+      when(mockLoginRepository.isTokenValid("nurbanToken"))
           .thenAnswer((_) async => const Right(tTokenStatus));
 
       final result =
           await isTokenValid(const Params(nurbanToken: "nurbanToken"));
 
       expect(result, const Right(tTokenStatus));
-      verify(mockLoginRepository.isTokenValid(nurbanToken: "nurbanToken"));
+      verify(mockLoginRepository.isTokenValid("nurbanToken"));
       verifyNoMoreInteractions(mockLoginRepository);
     },
   );

@@ -255,8 +255,6 @@ void main() {
     });
 
     group('putArticle', () {
-      //Model
-      //Entity
       test(
         "네트워크 연결 확인",
         () async {

@@ -11,8 +11,7 @@ class GetNurbanToken implements UseCase<NurbanToken, Params> {
   @override
   Future<Either<Failure, NurbanToken>> call(params) async {
     return await repository.getNurbanToken(
-        loginType: params.loginType,
-        thirdPartyLoginKey: params.thirdPartyLoginKey);
+        params.loginType, params.thirdPartyLoginKey);
   }
 }
 

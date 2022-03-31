@@ -19,7 +19,7 @@ void main() {
     "Login Repository에서 Third Party 키값으로 Nurban 토큰 값 가져오기",
     () async {
       when(mockLoginRepository.getNurbanToken(
-              loginType: "loginType", thirdPartyLoginKey: "thirdPartyLoginKey"))
+              "loginType", "thirdPartyLoginKey"))
           .thenAnswer((_) async => const Right(tNurbanToken));
 
       final result = await getNurbanToken(const Params(
@@ -27,7 +27,7 @@ void main() {
 
       expect(result, const Right(tNurbanToken));
       verify(mockLoginRepository.getNurbanToken(
-          loginType: "loginType", thirdPartyLoginKey: "thirdPartyLoginKey"));
+          "loginType", "thirdPartyLoginKey"));
       verifyNoMoreInteractions(mockLoginRepository);
     },
   );

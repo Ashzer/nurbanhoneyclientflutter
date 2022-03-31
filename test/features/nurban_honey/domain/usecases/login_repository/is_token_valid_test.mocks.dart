@@ -38,26 +38,23 @@ class MockLoginRepository extends _i1.Mock implements _i3.LoginRepository {
 
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.AppVersion>> isAppUpdatable(
-          {String? appName}) =>
-      (super.noSuchMethod(
-          Invocation.method(#isAppUpdatable, [], {#appName: appName}),
+          String? appName) =>
+      (super.noSuchMethod(Invocation.method(#isAppUpdatable, [appName]),
           returnValue: Future<_i2.Either<_i5.Failure, _i6.AppVersion>>.value(
               _FakeEither_0<_i5.Failure, _i6.AppVersion>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.AppVersion>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i7.NurbanToken>> getNurbanToken(
-          {String? loginType, String? thirdPartyLoginKey}) =>
+          String? loginType, String? thirdPartyLoginKey) =>
       (super.noSuchMethod(
-          Invocation.method(#getNurbanToken, [],
-              {#loginType: loginType, #thirdPartyLoginKey: thirdPartyLoginKey}),
+          Invocation.method(#getNurbanToken, [loginType, thirdPartyLoginKey]),
           returnValue: Future<_i2.Either<_i5.Failure, _i7.NurbanToken>>.value(
               _FakeEither_0<_i5.Failure, _i7.NurbanToken>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i7.NurbanToken>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i8.TokenStatus>> isTokenValid(
-          {String? nurbanToken}) =>
-      (super.noSuchMethod(
-          Invocation.method(#isTokenValid, [], {#nurbanToken: nurbanToken}),
+          String? nurbanToken) =>
+      (super.noSuchMethod(Invocation.method(#isTokenValid, [nurbanToken]),
           returnValue: Future<_i2.Either<_i5.Failure, _i8.TokenStatus>>.value(
               _FakeEither_0<_i5.Failure, _i8.TokenStatus>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.TokenStatus>>);

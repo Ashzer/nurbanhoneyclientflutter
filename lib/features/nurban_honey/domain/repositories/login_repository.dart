@@ -6,10 +6,10 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/nurban
 import '../../../../core/error/failures.dart';
 
 abstract class LoginRepository {
-  Future<Either<Failure, AppVersion>> isAppUpdatable({String appName});
+  Future<Either<Failure, AppVersion>> isAppUpdatable(String appName);
 
   Future<Either<Failure, NurbanToken>> getNurbanToken(
-      {String loginType, String thirdPartyLoginKey});
+      String loginType, String thirdPartyLoginKey);
 
-  Future<Either<Failure, TokenStatus>> isTokenValid({String nurbanToken});
+  Future<Either<Failure, TokenStatus>> isTokenValid(String nurbanToken);
 }

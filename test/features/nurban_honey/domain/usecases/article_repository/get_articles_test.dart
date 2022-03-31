@@ -37,8 +37,8 @@ void main() {
   test(
     "GetArticles Param Equatable",
     () async {
-      expect(const Params(address: "address", flag: 0, offset: 0, limit: 10),
-          const Params(address: "address", flag: 0, offset: 0, limit: 10));
+      expect(Params(address: "address", flag: 0, offset: 0, limit: 10),
+          Params(address: "address", flag: 0, offset: 0, limit: 10));
     },
   );
 }

@@ -34,8 +34,8 @@ void main() {
   test(
     "GetComment Params is Equatable",
     () async {
-      expect(const Params(address: "test", commentId: 1),
-          const Params(address: "test", commentId: 1));
+      expect(Params(address: "test", commentId: 1),
+          Params(address: "test", commentId: 1));
     },
   );
 }

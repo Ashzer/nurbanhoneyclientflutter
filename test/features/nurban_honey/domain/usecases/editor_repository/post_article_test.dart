@@ -40,14 +40,14 @@ void main() {
     "PostArticle Params is Equatable",
     () async {
       expect(
-          const Params(
+          Params(
               address: "address",
               token: "token",
               title: "title",
               uuid: "uuid",
               thumbnail: null,
               content: "content"),
-          const Params(
+          Params(
               address: "address",
               token: "token",
               title: "title",

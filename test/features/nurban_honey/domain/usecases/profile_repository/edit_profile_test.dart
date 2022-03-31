@@ -44,12 +44,12 @@ void main() {
     "EditProfile Params is Equatable",
     () async {
       expect(
-          const Params(
+          Params(
               token: "token",
               nickname: "nickname",
               description: "description",
               insignias: ["insignia1"]),
-          const Params(
+          Params(
               token: "token",
               nickname: "nickname",
               description: "description",

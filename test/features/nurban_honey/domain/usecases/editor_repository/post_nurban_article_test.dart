@@ -40,7 +40,7 @@ void main() {
     "PostNurbanArticle Params is Equatable",
     () async {
       expect(
-          const Params(
+          Params(
               address: "address",
               token: "token",
               title: "title",
@@ -48,7 +48,7 @@ void main() {
               lossCut: "lossCut",
               thumbnail: null,
               content: "content"),
-          const Params(
+          Params(
               address: "address",
               token: "token",
               title: "title",

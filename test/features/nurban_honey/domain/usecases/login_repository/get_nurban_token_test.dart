@@ -36,9 +36,9 @@ void main() {
     "GetNurbanToken Params is Equatable",
     () async {
       expect(
-          const Params(
+          Params(
               loginType: "loginType", thirdPartyLoginKey: "thirdPartyLoginKey"),
-          const Params(
+          Params(
               loginType: "loginType",
               thirdPartyLoginKey: "thirdPartyLoginKey"));
     },

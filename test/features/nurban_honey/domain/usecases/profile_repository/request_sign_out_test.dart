@@ -17,14 +17,14 @@ void main() {
   test(
     "Profile Repository에 로그아웃 요청",
     () async {
-      when(mockProfileRepository.requestSignOut(token: "token", userId: 0))
+      when(mockProfileRepository.requestSignOut("token", 0))
           .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result =
           await requestSignOut(const Params(token: "token", userId: 0));
 
       expect(result, const Right(tEmptyResponse));
-      verify(mockProfileRepository.requestSignOut(token: "token", userId: 0));
+      verify(mockProfileRepository.requestSignOut("token", 0));
       verifyNoMoreInteractions(mockProfileRepository);
     },
   );

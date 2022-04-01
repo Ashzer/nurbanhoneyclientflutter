@@ -22,16 +22,14 @@ void main() {
   test(
     "Profile Repository에서 본인 댓글 가져오기",
     () async {
-      when(mockProfileRepository.getProfileComments(
-              token: "token", offset: 0, limit: 10))
+      when(mockProfileRepository.getProfileComments("token", 0, 10))
           .thenAnswer((_) async => Right(tProfileComments));
 
       final result = await getProfileComments(
           const Params(token: "token", offset: 0, limit: 10));
 
       expect(result, Right(tProfileComments));
-      verify(mockProfileRepository.getProfileComments(
-          token: "token", offset: 0, limit: 10));
+      verify(mockProfileRepository.getProfileComments("token", 0, 10));
       verifyNoMoreInteractions(mockProfileRepository);
     },
   );

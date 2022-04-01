@@ -17,11 +17,8 @@ void main() {
   test(
     "Profile Repository로 profile 수정 요청",
     () async {
-      when(mockProfileRepository.editProfile(
-              token: "token",
-              nickname: "nickname",
-              description: "description",
-              insignias: ["insignia1"]))
+      when(mockProfileRepository
+              .editProfile("token", "nickname", "description", ["insignia1"]))
           .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await editProfile(const Params(
@@ -31,11 +28,8 @@ void main() {
           insignias: ["insignia1"]));
 
       expect(result, const Right(tEmptyResponse));
-      verify(mockProfileRepository.editProfile(
-          token: "token",
-          nickname: "nickname",
-          description: "description",
-          insignias: ["insignia1"]));
+      verify(mockProfileRepository
+          .editProfile("token", "nickname", "description", ["insignia1"]));
       verifyNoMoreInteractions(mockProfileRepository);
     },
   );

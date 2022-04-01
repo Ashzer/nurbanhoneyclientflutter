@@ -15,7 +15,7 @@ class GetProfileComments implements UseCase<List<ProfileComment>, Params> {
   @override
   Future<Either<Failure, List<ProfileComment>>> call(Params params) async {
     return await repository.getProfileComments(
-        token: params.token, offset: params.offset, limit: params.limit);
+        params.token, params.offset, params.limit);
   }
 }
 

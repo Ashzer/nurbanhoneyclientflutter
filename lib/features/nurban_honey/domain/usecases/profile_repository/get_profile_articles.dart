@@ -15,7 +15,7 @@ class GetProfileArticles implements UseCase<List<ProfileArticle>, Params> {
   @override
   Future<Either<Failure, List<ProfileArticle>>> call(Params params) async {
     return await repository.getProfileArticles(
-        token: params.token, offset: params.offset, limit: params.limit);
+        params.token, params.offset, params.limit);
   }
 }
 

@@ -31,3 +31,8 @@ extension GetEntity on ProfileArticleModel {
       commentCount.toString(),
       createdAt);
 }
+
+extension GetEntities on List<ProfileArticleModel> {
+  List<ProfileArticle> toProfileArticles() =>
+      map((e) => e.toProfileArticle()).toList();
+}

@@ -13,7 +13,7 @@ class GetProfile implements UseCase<Profile, Params> {
 
   @override
   Future<Either<Failure, Profile>> call(Params params) async {
-    return await repository.getProfile(token: params.token);
+    return await repository.getProfile(params.token);
   }
 }
 

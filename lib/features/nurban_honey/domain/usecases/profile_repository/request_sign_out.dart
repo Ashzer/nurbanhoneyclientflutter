@@ -13,8 +13,7 @@ class RequestSignOut implements UseCase<EmptyResponse, Params> {
 
   @override
   Future<Either<Failure, EmptyResponse>> call(Params params) async {
-    return await repository.requestSignOut(
-        token: params.token, userId: params.userId);
+    return await repository.requestSignOut(params.token, params.userId);
   }
 }
 

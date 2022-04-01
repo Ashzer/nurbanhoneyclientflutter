@@ -18,13 +18,13 @@ void main() {
   test(
     "Profile Repository에서 Profile 가져옴",
     () async {
-      when(mockProfileRepository.getProfile(token: "token"))
+      when(mockProfileRepository.getProfile("token"))
           .thenAnswer((_) async => Right(tProfile));
 
       final result = await getProfile(const Params(token: "token"));
 
       expect(result, Right(tProfile));
-      verify(mockProfileRepository.getProfile(token: "token"));
+      verify(mockProfileRepository.getProfile("token"));
       verifyNoMoreInteractions(mockProfileRepository);
     },
   );

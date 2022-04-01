@@ -39,54 +39,47 @@ class MockProfileRepository extends _i1.Mock implements _i3.ProfileRepository {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.Profile>> getProfile(
-          {String? token}) =>
-      (super.noSuchMethod(Invocation.method(#getProfile, [], {#token: token}),
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Profile>> getProfile(String? token) =>
+      (super.noSuchMethod(Invocation.method(#getProfile, [token]),
               returnValue: Future<_i2.Either<_i5.Failure, _i6.Profile>>.value(
                   _FakeEither_0<_i5.Failure, _i6.Profile>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i6.Profile>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i7.ProfileArticle>>> getProfileArticles(
-          {String? token, int? offset, int? limit}) =>
+  _i4.Future<
+      _i2.Either<_i5.Failure, List<_i7.ProfileArticle>>> getProfileArticles(
+          String? token, int? offset, int? limit) =>
       (super.noSuchMethod(
-          Invocation.method(#getProfileArticles, [],
-              {#token: token, #offset: offset, #limit: limit}),
+          Invocation.method(#getProfileArticles, [token, offset, limit]),
           returnValue:
               Future<_i2.Either<_i5.Failure, List<_i7.ProfileArticle>>>.value(
                   _FakeEither_0<_i5.Failure, List<_i7.ProfileArticle>>())) as _i4
           .Future<_i2.Either<_i5.Failure, List<_i7.ProfileArticle>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i8.ProfileComment>>> getProfileComments(
-          {String? token, int? offset, int? limit}) =>
+  _i4.Future<
+      _i2.Either<_i5.Failure, List<_i8.ProfileComment>>> getProfileComments(
+          String? token, int? offset, int? limit) =>
       (super.noSuchMethod(
-          Invocation.method(#getProfileComments, [],
-              {#token: token, #offset: offset, #limit: limit}),
+          Invocation.method(#getProfileComments, [token, offset, limit]),
           returnValue:
               Future<_i2.Either<_i5.Failure, List<_i8.ProfileComment>>>.value(
                   _FakeEither_0<_i5.Failure, List<_i8.ProfileComment>>())) as _i4
           .Future<_i2.Either<_i5.Failure, List<_i8.ProfileComment>>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i9.EmptyResponse>> requestSignOut(
-          {String? token, int? userId}) =>
-      (super.noSuchMethod(
-          Invocation.method(
-              #requestSignOut, [], {#token: token, #userId: userId}),
+          String? token, int? userId) =>
+      (super.noSuchMethod(Invocation.method(#requestSignOut, [token, userId]),
           returnValue: Future<_i2.Either<_i5.Failure, _i9.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i9.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i9.EmptyResponse>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i9.EmptyResponse>> editProfile(
-          {String? token,
+          String? token,
           String? nickname,
           String? description,
-          List<String>? insignias}) =>
+          List<String>? insignias) =>
       (super.noSuchMethod(
-          Invocation.method(#editProfile, [], {
-            #token: token,
-            #nickname: nickname,
-            #description: description,
-            #insignias: insignias
-          }),
+          Invocation.method(
+              #editProfile, [token, nickname, description, insignias]),
           returnValue: Future<_i2.Either<_i5.Failure, _i9.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i9.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i9.EmptyResponse>>);

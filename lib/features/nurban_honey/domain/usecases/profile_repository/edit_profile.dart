@@ -14,10 +14,7 @@ class EditProfile implements UseCase<EmptyResponse, Params> {
   @override
   Future<Either<Failure, EmptyResponse>> call(Params params) async {
     return await repository.editProfile(
-        token: params.token,
-        nickname: params.nickname,
-        description: params.description,
-        insignias: params.insignias);
+        params.token, params.nickname, params.description, params.insignias);
   }
 }
 

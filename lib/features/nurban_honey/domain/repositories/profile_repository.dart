@@ -6,20 +6,17 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/profil
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/profile_comment/profile_comment.dart';
 
 abstract class ProfileRepository {
-  Future<Either<Failure, Profile>> getProfile({String token});
+  Future<Either<Failure, Profile>> getProfile(String token);
 
   Future<Either<Failure, List<ProfileArticle>>> getProfileArticles(
-      {String token, int offset, int limit});
+      String token, int offset, int limit);
 
   Future<Either<Failure, List<ProfileComment>>> getProfileComments(
-      {String token, int offset, int limit});
+      String token, int offset, int limit);
 
   Future<Either<Failure, EmptyResponse>> requestSignOut(
-      {String token, int userId});
+      String token, int userId);
 
-  Future<Either<Failure, EmptyResponse>> editProfile(
-      {String token,
-      String nickname,
-      String description,
-      List<String> insignias});
+  Future<Either<Failure, EmptyResponse>> editProfile(String token,
+      String nickname, String description, List<String> insignias);
 }

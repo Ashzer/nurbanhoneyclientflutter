@@ -32,6 +32,8 @@ class EditorRepositoryImpl implements EditorRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -54,6 +56,8 @@ class EditorRepositoryImpl implements EditorRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -77,6 +81,8 @@ class EditorRepositoryImpl implements EditorRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -99,6 +105,8 @@ class EditorRepositoryImpl implements EditorRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -116,6 +124,8 @@ class EditorRepositoryImpl implements EditorRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -133,6 +143,8 @@ class EditorRepositoryImpl implements EditorRepository {
         return Right(imageResponse);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());

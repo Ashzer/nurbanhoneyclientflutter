@@ -12,7 +12,7 @@ abstract class ArticleRepository {
       String address, int flag, int offset, int limit);
 
   Future<Either<Failure, ArticleDetail>> getArticle(
-      String address, String token, int articleId);
+      String address, int articleId);
 
   Future<Either<Failure, EmptyResponse>> postLike(
       String address, String token, int articleId);

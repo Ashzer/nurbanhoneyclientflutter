@@ -83,6 +83,18 @@ void main() {
             expect(profile, Left(ServerFailure()));
           },
         );
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockProfileRemoteDataSource.getProfile(any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.getProfile("token");
+
+            verify(mockProfileRemoteDataSource.getProfile("token"));
+            expect(result, Left(AuthorizationFailure()));
+          },
+        );
       });
 
       group('=> 연결 안됨', () {
@@ -160,6 +172,20 @@ void main() {
             verify(
                 mockProfileRemoteDataSource.getProfileArticles("token", 0, 10));
             expect(profileArticles, Left(ServerFailure()));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockProfileRemoteDataSource.getProfileArticles(any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.getProfileArticles("token", 0, 10);
+
+            verify(
+                mockProfileRemoteDataSource.getProfileArticles("token", 0, 10));
+            expect(result, Left(AuthorizationFailure()));
           },
         );
       });
@@ -241,6 +267,20 @@ void main() {
             expect(profileComments, Left(ServerFailure()));
           },
         );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockProfileRemoteDataSource.getProfileComments(any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.getProfileComments("token", 0, 10);
+
+            verify(
+                mockProfileRemoteDataSource.getProfileComments("token", 0, 10));
+            expect(result, Left(AuthorizationFailure()));
+          },
+        );
       });
 
       group('=> 연결 안됨', () {
@@ -304,6 +344,19 @@ void main() {
 
             verify(mockProfileRemoteDataSource.requestSignOut("token", 1));
             expect(result, Left(ServerFailure()));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockProfileRemoteDataSource.requestSignOut(any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.requestSignOut("token", 1);
+
+            verify(mockProfileRemoteDataSource.requestSignOut("token", 1));
+            expect(result, Left(AuthorizationFailure()));
           },
         );
       });
@@ -372,6 +425,21 @@ void main() {
             verify(mockProfileRemoteDataSource.editProfile(
                 "token", "nickname", "description", ["insignias"]));
             expect(result, Left(ServerFailure()));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockProfileRemoteDataSource.editProfile(any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository
+                .editProfile("token", "nickname", "description", ["insignias"]);
+
+            verify(mockProfileRemoteDataSource.editProfile(
+                "token", "nickname", "description", ["insignias"]));
+            expect(result, Left(AuthorizationFailure()));
           },
         );
       });

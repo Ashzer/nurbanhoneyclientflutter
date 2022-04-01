@@ -129,11 +129,11 @@ void main() {
       test(
         "네트워크 연결 확인",
         () async {
-          when(mockArticleRemoteDataSource.getArticle(any, any, any))
+          when(mockArticleRemoteDataSource.getArticle(any, any))
               .thenAnswer((_) async => tArticleDetailModel);
           when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
 
-          repository.getArticle("address", "token", 1);
+          repository.getArticle("address", 1);
 
           verify(mockNetworkStatus.isConnected);
         },
@@ -146,13 +146,12 @@ void main() {
         test(
           "remote data source에서 Article 가져오기",
           () async {
-            when(mockArticleRemoteDataSource.getArticle("address", "token", 1))
+            when(mockArticleRemoteDataSource.getArticle("address", 1))
                 .thenAnswer((_) async => tArticleDetailModel);
 
-            final result = await repository.getArticle("address", "token", 1);
+            final result = await repository.getArticle("address", 1);
 
-            verify(
-                mockArticleRemoteDataSource.getArticle("address", "token", 1));
+            verify(mockArticleRemoteDataSource.getArticle("address", 1));
             expect(result, Right(tArticleDetail));
           },
         );
@@ -160,13 +159,12 @@ void main() {
         test(
           "서버에서 데이터를 잘 못 받았을 때 ServerFailure",
           () async {
-            when(mockArticleRemoteDataSource.getArticle("address", "token", 1))
+            when(mockArticleRemoteDataSource.getArticle("address", 1))
                 .thenThrow(ServerException());
 
-            final result = await repository.getArticle("address", "token", 1);
+            final result = await repository.getArticle("address", 1);
 
-            verify(
-                mockArticleRemoteDataSource.getArticle("address", "token", 1));
+            verify(mockArticleRemoteDataSource.getArticle("address", 1));
             expect(result, equals(Left(ServerFailure())));
           },
         );
@@ -179,9 +177,9 @@ void main() {
         test(
           "네트워크에 연결되지 않으면 NetworkFailure 리턴",
           () async {
-            final result = await repository.getArticle("address", "token", 1);
+            final result = await repository.getArticle("address", 1);
 
-            verifyNever(mockArticleRemoteDataSource.getArticle(any, any, any));
+            verifyNever(mockArticleRemoteDataSource.getArticle(any, any));
             expect(result, equals(Left(NetworkFailure())));
           },
         );
@@ -229,6 +227,18 @@ void main() {
 
             verify(mockArticleRemoteDataSource.postLike("address", "token", 1));
             expect(result, equals(Left(ServerFailure())));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockArticleRemoteDataSource.postLike(any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.postLike("address", "token", 1);
+            verify(mockArticleRemoteDataSource.postLike("address", "token", 1));
+            expect(result, equals(Left(AuthorizationFailure())));
           },
         );
       });
@@ -295,6 +305,19 @@ void main() {
             expect(result, equals(Left(ServerFailure())));
           },
         );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockArticleRemoteDataSource.deleteLike(any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.deleteLike("address", "token", 1);
+            verify(
+                mockArticleRemoteDataSource.deleteLike("address", "token", 1));
+            expect(result, equals(Left(AuthorizationFailure())));
+          },
+        );
       });
 
       group('=> 연결 안됨', () {
@@ -356,6 +379,18 @@ void main() {
             verify(
                 mockArticleRemoteDataSource.postDislike("address", "token", 1));
             expect(result, equals(Left(ServerFailure())));
+          },
+        );
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockArticleRemoteDataSource.postDislike(any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.postDislike("address", "token", 1);
+            verify(
+                mockArticleRemoteDataSource.postDislike("address", "token", 1));
+            expect(result, equals(Left(AuthorizationFailure())));
           },
         );
       });
@@ -421,6 +456,19 @@ void main() {
             verify(mockArticleRemoteDataSource.deleteDislike(
                 "address", "token", 1));
             expect(result, Left(ServerFailure()));
+          },
+        );
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockArticleRemoteDataSource.deleteDislike(any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result =
+                await repository.deleteDislike("address", "token", 1);
+            verify(mockArticleRemoteDataSource.deleteDislike(
+                "address", "token", 1));
+            expect(result, equals(Left(AuthorizationFailure())));
           },
         );
       });
@@ -489,6 +537,21 @@ void main() {
             verify(mockArticleRemoteDataSource.getArticleRatings(
                 "address", "token", 1));
             expect(result, Left(ServerFailure()));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockArticleRemoteDataSource.getArticleRatings(any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result =
+                await repository.getArticleRatings("address", "token", 1);
+
+            verify(mockArticleRemoteDataSource.getArticleRatings(
+                "address", "token", 1));
+            expect(result, Left(AuthorizationFailure()));
           },
         );
       });
@@ -694,6 +757,21 @@ void main() {
             expect(result, Left(ServerFailure()));
           },
         );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockArticleRemoteDataSource.postComment(any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result =
+                await repository.postComment("address", "token", "comment", 1);
+
+            verify(mockArticleRemoteDataSource.postComment(
+                "address", "token", "comment", 1));
+            expect(result, Left(AuthorizationFailure()));
+          },
+        );
       });
 
       group('=> 연결 안됨', () {
@@ -761,6 +839,21 @@ void main() {
             expect(result, Left(ServerFailure()));
           },
         );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockArticleRemoteDataSource.deleteComment(any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result =
+                await repository.deleteComment("address", "token", 1, 1);
+
+            verify(mockArticleRemoteDataSource.deleteComment(
+                "address", "token", 1, 1));
+            expect(result, Left(AuthorizationFailure()));
+          },
+        );
       });
 
       group('=> 연결 안됨', () {
@@ -826,6 +919,21 @@ void main() {
             verify(mockArticleRemoteDataSource.putComment(
                 "address", "token", 1, "comment"));
             expect(result, Left(ServerFailure()));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockArticleRemoteDataSource.putComment(any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result =
+                await repository.putComment("address", "token", 1, "comment");
+
+            verify(mockArticleRemoteDataSource.putComment(
+                "address", "token", 1, "comment"));
+            expect(result, Left(AuthorizationFailure()));
           },
         );
       });

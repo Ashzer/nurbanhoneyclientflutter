@@ -34,14 +34,14 @@ void main() {
   test(
     "Article Repository에서 Article을 하나 가져온다",
     () async {
-      when(mockArticleRepository.getArticle("address", "token", 1))
+      when(mockArticleRepository.getArticle("address", 1))
           .thenAnswer((_) async => Right(tArticle));
 
-      final result = await getArticle(
-          const Params(address: "address", token: "token", articleId: 1));
+      final result =
+          await getArticle(const Params(address: "address", articleId: 1));
 
       expect(result, Right(tArticle));
-      verify(mockArticleRepository.getArticle("address", "token", 1));
+      verify(mockArticleRepository.getArticle("address", 1));
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );
@@ -49,8 +49,8 @@ void main() {
   test(
     "GetArticle Params is Equatable",
     () async {
-      expect(Params(address: "address", token: "token", articleId: 1),
-          Params(address: "address", token: "token", articleId: 1));
+      expect(Params(address: "address", articleId: 1),
+          Params(address: "address", articleId: 1));
     },
   );
 }

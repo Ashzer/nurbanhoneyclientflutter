@@ -41,12 +41,12 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
   @override
   Future<Either<Failure, ArticleDetail>> getArticle(
-      String address, String token, int articleId) async {
+      String address, int articleId) async {
     if (await networkStatus.isConnected) {
       try {
-        final articleDetail = (await articleRemoteDataSource.getArticle(
-                address, token, articleId))
-            .toArticleDetail();
+        final articleDetail =
+            (await articleRemoteDataSource.getArticle(address, articleId))
+                .toArticleDetail();
         return Right(articleDetail);
       } on ServerException {
         return Left(ServerFailure());
@@ -67,6 +67,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -85,6 +87,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -102,6 +106,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -119,6 +125,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -136,6 +144,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
         return Right(articleRatings);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -186,6 +196,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -203,6 +215,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -221,6 +235,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());

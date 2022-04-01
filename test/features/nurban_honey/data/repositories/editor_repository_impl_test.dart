@@ -82,6 +82,22 @@ void main() {
             expect(result, Left(ServerFailure()));
           },
         );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockEditorRemoteDataSource.postNurbanArticle(
+                    any, any, any, any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.postNurbanArticle("address",
+                "token", "title", "uuid", "lossCut", "thumbnail", "content");
+
+            verify(mockEditorRemoteDataSource.postNurbanArticle("address",
+                "token", "title", "uuid", "lossCut", "thumbnail", "content"));
+            expect(result, Left(AuthorizationFailure()));
+          },
+        );
       });
 
       group('=> 연결 안됨', () {
@@ -155,6 +171,22 @@ void main() {
             verify(mockEditorRemoteDataSource.postArticle(
                 "address", "token", "title", "uuid", "thumbnail", "content"));
             expect(result, Left(ServerFailure()));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockEditorRemoteDataSource.postArticle(
+                    any, any, any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.postArticle(
+                "address", "token", "title", "uuid", "thumbnail", "content");
+
+            verify(mockEditorRemoteDataSource.postArticle(
+                "address", "token", "title", "uuid", "thumbnail", "content"));
+            expect(result, Left(AuthorizationFailure()));
           },
         );
       });
@@ -233,6 +265,22 @@ void main() {
             expect(result, Left(ServerFailure()));
           },
         );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockEditorRemoteDataSource.putNurbanArticle(
+                    any, any, any, any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.putNurbanArticle("address", "token",
+                1, "thumbnail", "title", "lossCut", "content");
+
+            verify(mockEditorRemoteDataSource.putNurbanArticle("address",
+                "token", 1, "thumbnail", "title", "lossCut", "content"));
+            expect(result, Left(AuthorizationFailure()));
+          },
+        );
       });
 
       group('=> 연결 안됨', () {
@@ -306,6 +354,22 @@ void main() {
             expect(result, Left(ServerFailure()));
           },
         );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockEditorRemoteDataSource.putArticle(
+                    any, any, any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.putArticle(
+                "address", "token", 1, "thumbnail", "title", "content");
+
+            verify(mockEditorRemoteDataSource.putArticle(
+                "address", "token", 1, "thumbnail", "title", "content"));
+            expect(result, Left(AuthorizationFailure()));
+          },
+        );
       });
 
       group('=> 연결 안됨', () {
@@ -373,6 +437,21 @@ void main() {
             verify(mockEditorRemoteDataSource.deleteArticle(
                 "address", "token", 1, "uuid"));
             expect(result, Left(ServerFailure()));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockEditorRemoteDataSource.deleteArticle(any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result =
+                await repository.deleteArticle("address", "token", 1, "uuid");
+
+            verify(mockEditorRemoteDataSource.deleteArticle(
+                "address", "token", 1, "uuid"));
+            expect(result, Left(AuthorizationFailure()));
           },
         );
       });
@@ -445,6 +524,21 @@ void main() {
             verify(mockEditorRemoteDataSource.postImage(
                 "address", "token", "uuid", "imagePath"));
             expect(imageResponse, Left(ServerFailure()));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockEditorRemoteDataSource.postImage(any, any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result = await repository.postImage(
+                "address", "token", "uuid", "imagePath");
+
+            verify(mockEditorRemoteDataSource.postImage(
+                "address", "token", "uuid", "imagePath"));
+            expect(result, Left(AuthorizationFailure()));
           },
         );
       });

@@ -26,6 +26,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
         return Right(profile);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -43,6 +45,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
         return Right(profileArticles);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -60,6 +64,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
         return Right(profileComments);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -76,6 +82,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());
@@ -93,6 +101,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
         return Right(result);
       } on ServerException {
         return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
       }
     } else {
       return Left(NetworkFailure());

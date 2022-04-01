@@ -10,19 +10,16 @@ class GetArticle implements UseCase<ArticleDetail, Params> {
   GetArticle(this.repository);
   @override
   Future<Either<Failure, ArticleDetail>> call(Params params) async {
-    return await repository.getArticle(
-        params.address, params.token, params.articleId);
+    return await repository.getArticle(params.address, params.articleId);
   }
 }
 
 class Params extends Equatable {
   final String address;
-  final String token;
   final int articleId;
 
-  const Params(
-      {required this.address, required this.token, required this.articleId});
+  const Params({required this.address, required this.articleId});
 
   @override
-  List<Object?> get props => [address, token, articleId];
+  List<Object?> get props => [address, articleId];
 }

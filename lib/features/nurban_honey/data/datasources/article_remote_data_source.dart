@@ -14,8 +14,7 @@ abstract class ArticleRemoteDataSource {
   Future<List<ArticleItemModel>> getArticles(
       String address, int flag, int offset, int limit);
 
-  Future<ArticleDetailModel> getArticle(
-      String address, String token, int articleId);
+  Future<ArticleDetailModel> getArticle(String address, int articleId);
 
   Future<EmptyResponseModel> postLike(
       String address, String token, int articleId);
@@ -72,8 +71,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   }
 
   @override
-  Future<ArticleDetailModel> getArticle(
-      String address, String token, int articleId) async {
+  Future<ArticleDetailModel> getArticle(String address, int articleId) async {
     return ArticleDetailModel(1, "uuid", "thumbnail", "title", 2, "content", 3,
         4, 5, 6, "updatedAt", 7, "badge", "nickname", ["insignia"], "myRating");
   }

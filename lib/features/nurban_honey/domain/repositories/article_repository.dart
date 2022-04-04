@@ -41,6 +41,6 @@ abstract class ArticleRepository {
   Future<Either<Failure, EmptyResponse>> deleteComment(
       String address, String token, int commentId, int articleId);
 
-  Future<Either<Failure, EmptyResponse>> putComment(
+  Future<Either<Failure, EmptyResponse>> patchComment(
       String address, String token, int commentId, String comment);
 }

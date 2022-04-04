@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "content": "content",
+        "articleId": 1,
+        "user": {
+            "userId": 1,
+            "badge": "badge",
+            "nickname": "nickname",
+            "insignia": [
+                "insignia"
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "content": "content",
+        "articleId": 2,
+        "user": {
+            "userId": 2,
+            "badge": "badge",
+            "nickname": "nickname",
+            "insignia": [
+                "insignia"
+            ]
+        }
+    }
+]

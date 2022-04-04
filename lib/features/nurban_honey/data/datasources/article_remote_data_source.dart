@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
+import 'package:nurbanhoney_flutter/core/error/exception.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/models/user_info.dart';
 
 import '../models/article_comment_model/article_comment_model.dart';
@@ -42,7 +43,7 @@ abstract class ArticleRemoteDataSource {
   Future<EmptyResponseModel> deleteComment(
       String address, String token, int commentId, int articleId);
 
-  Future<EmptyResponseModel> putComment(
+  Future<EmptyResponseModel> patchComment(
       String address, String token, int commentId, String comment);
 }
 
@@ -66,82 +67,171 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
       headers: {'Content-Type': 'application/json'},
     );
 
-    final List<dynamic> jsonList = jsonDecode(response.body);
-    return jsonList.map((e) => ArticleItemModel.fromJson(e)).toList();
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonList = jsonDecode(response.body);
+      return jsonList.map((e) => ArticleItemModel.fromJson(e)).toList();
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
   }
 
   @override
   Future<ArticleDetailModel> getArticle(String address, int articleId) async {
-    return ArticleDetailModel(1, "uuid", "thumbnail", "title", 2, "content", 3,
-        4, 5, 6, "updatedAt", 7, "badge", "nickname", ["insignia"], "myRating");
+    final queryParams = {
+      'id': '$articleId',
+    };
+    final uri = Uri.parse("$baseUrl/$address/article")
+        .replace(queryParameters: queryParams);
+    final response = await client.get(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      return ArticleDetailModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
   }
 
   @override
   Future<EmptyResponseModel> postLike(
       String address, String token, int articleId) async {
-    // TODO: implement postLike
-    throw UnimplementedError();
+    final queryParams = {'articleId': '$articleId'};
+    final uri = Uri.parse("$baseUrl/$address/article/like")
+        .replace(queryParameters: queryParams);
+    return _likeHandler(uri, client.post, token);
   }
 
   @override
   Future<EmptyResponseModel> deleteLike(
       String address, String token, int articleId) async {
-    // TODO: implement deleteLike
-    throw UnimplementedError();
+    final queryParams = {'articleId': '$articleId'};
+    final uri = Uri.parse("$baseUrl/$address/article/like")
+        .replace(queryParameters: queryParams);
+    return _likeHandler(uri, client.delete, token);
   }
 
   @override
   Future<EmptyResponseModel> postDislike(
       String address, String token, int articleId) async {
-    // TODO: implement postDislike
-    throw UnimplementedError();
+    final queryParams = {'articleId': '$articleId'};
+    final uri = Uri.parse("$baseUrl/$address/article/dislike")
+        .replace(queryParameters: queryParams);
+    return _likeHandler(uri, client.post, token);
   }
 
   @override
   Future<EmptyResponseModel> deleteDislike(
       String address, String token, int articleId) async {
-    // TODO: implement deleteDislike
-    throw UnimplementedError();
+    final queryParams = {'articleId': '$articleId'};
+    final uri = Uri.parse("$baseUrl/$address/article/dislike")
+        .replace(queryParameters: queryParams);
+    return _likeHandler(uri, client.delete, token);
+  }
+
+  Future<EmptyResponseModel> _likeHandler(
+      Uri uri, Function request, String token) async {
+    final response = await request(
+      uri,
+      headers: {'Content-Type': 'application/json', 'token': token},
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return EmptyResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
   }
 
   @override
   Future<ArticleRatingsModel> getArticleRatings(
       String address, String token, int articleId) async {
-    // TODO: implement getArticleRatings
-    throw UnimplementedError();
+    final queryParams = {'articleId': '$articleId'};
+    final uri = Uri.parse("$baseUrl/$address/article/myrating")
+        .replace(queryParameters: queryParams);
+    final response = await client.get(
+      uri,
+      headers: {'Content-Type': 'application/json', 'token': token},
+    );
+
+    if (response.statusCode == 200) {
+      return ArticleRatingsModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
   }
 
   @override
   Future<ArticleCommentModel> getComment(String address, int commentId) async {
-    // TODO: implement getComment
-    throw UnimplementedError();
+    final queryParams = {'commentId': '$commentId'};
+    final uri = Uri.parse("$baseUrl/$address/article/comment/detail")
+        .replace(queryParameters: queryParams);
+    final response = await client.get(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return ArticleCommentModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
   }
 
   @override
   Future<List<ArticleCommentModel>> getComments(
       String address, int articleId, int offset, int limit) async {
-    // TODO: implement getComments
-    throw UnimplementedError();
+    final queryParams = {
+      'articleId': '$articleId',
+      'offset': '$offset',
+      'limit': '$limit'
+    };
+    final uri = Uri.parse("$baseUrl/$address/article/comment")
+        .replace(queryParameters: queryParams);
+    final response = await client.get(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final List<dynamic> jsonList = jsonDecode(response.body);
+      return jsonList.map((e) => ArticleCommentModel.fromJson(e)).toList();
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
   }
 
   @override
   Future<EmptyResponseModel> postComment(
       String address, String token, String comment, int articleId) async {
-    // TODO: implement postComment
-    throw UnimplementedError();
+    final queryParams = {'content': '$comment', 'articleId': '$articleId'};
+    final uri = Uri.parse("$baseUrl/$address/article/comment")
+        .replace(queryParameters: queryParams);
+    return _likeHandler(uri, client.post, token);
   }
 
   @override
   Future<EmptyResponseModel> deleteComment(
       String address, String token, int commentId, int articleId) async {
-    // TODO: implement deleteComment
-    throw UnimplementedError();
+    final queryParams = {'id': '$commentId', 'articleId': '$articleId'};
+    final uri = Uri.parse("$baseUrl/$address/article/comment")
+        .replace(queryParameters: queryParams);
+    return _likeHandler(uri, client.delete, token);
   }
 
   @override
-  Future<EmptyResponseModel> putComment(
+  Future<EmptyResponseModel> patchComment(
       String address, String token, int commentId, String comment) async {
-    // TODO: implement putComment
-    throw UnimplementedError();
+    final queryParams = {'id': '$commentId', 'content': '$comment'};
+    final uri = Uri.parse("$baseUrl/$address/article/comment")
+        .replace(queryParameters: queryParams);
+    return _likeHandler(uri, client.patch, token);
+  }
+
+  _generateExceptions(int responseStatusCode) {
+    if (responseStatusCode == 401) {
+      throw AuthorizationException();
+    } else {
+      throw ServerException();
+    }
   }
 }

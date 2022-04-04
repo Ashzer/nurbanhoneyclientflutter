@@ -882,7 +882,7 @@ void main() {
               .thenAnswer((_) async => tEmptyResponseModel);
           when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
 
-          repository.putComment("address", "token", 1, "comment");
+          repository.patchComment("address", "token", 1, "comment");
 
           verify(mockNetworkStatus.isConnected);
         },
@@ -899,7 +899,7 @@ void main() {
                 .thenAnswer((_) async => tEmptyResponseModel);
 
             final result =
-                await repository.putComment("address", "token", 1, "comment");
+                await repository.patchComment("address", "token", 1, "comment");
 
             verify(mockArticleRemoteDataSource.putComment(
                 "address", "token", 1, "comment"));
@@ -914,7 +914,7 @@ void main() {
                 .thenThrow(ServerException());
 
             final result =
-                await repository.putComment("address", "token", 1, "comment");
+                await repository.patchComment("address", "token", 1, "comment");
 
             verify(mockArticleRemoteDataSource.putComment(
                 "address", "token", 1, "comment"));
@@ -929,7 +929,7 @@ void main() {
                 .thenThrow(AuthorizationException());
 
             final result =
-                await repository.putComment("address", "token", 1, "comment");
+                await repository.patchComment("address", "token", 1, "comment");
 
             verify(mockArticleRemoteDataSource.putComment(
                 "address", "token", 1, "comment"));
@@ -946,7 +946,7 @@ void main() {
           "네트워크에 연결되지 않으면 NetworkFailure 리턴",
           () async {
             final result =
-                await repository.putComment("address", "token", 1, "comment");
+                await repository.patchComment("address", "token", 1, "comment");
 
             verifyNever(
                 mockArticleRemoteDataSource.putComment(any, any, any, any));

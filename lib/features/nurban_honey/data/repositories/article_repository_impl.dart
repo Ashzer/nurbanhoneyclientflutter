@@ -224,11 +224,11 @@ class ArticleRepositoryImpl implements ArticleRepository {
   }
 
   @override
-  Future<Either<Failure, EmptyResponse>> putComment(
+  Future<Either<Failure, EmptyResponse>> patchComment(
       String address, String token, int commentId, String comment) async {
     if (await networkStatus.isConnected) {
       try {
-        final result = (await articleRemoteDataSource.putComment(
+        final result = (await articleRemoteDataSource.patchComment(
                 address, token, commentId, comment))
             .toEmptyResponse();
 

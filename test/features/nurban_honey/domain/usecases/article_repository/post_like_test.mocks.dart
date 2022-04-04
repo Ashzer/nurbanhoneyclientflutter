@@ -132,10 +132,11 @@ class MockArticleRepository extends _i1.Mock implements _i3.ArticleRepository {
               _FakeEither_0<_i5.Failure, _i8.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>> putComment(
+  _i4.Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>> patchComment(
           String? address, String? token, int? commentId, String? comment) =>
       (super.noSuchMethod(
-          Invocation.method(#putComment, [address, token, commentId, comment]),
+          Invocation.method(
+              #patchComment, [address, token, commentId, comment]),
           returnValue: Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i8.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i8.EmptyResponse>>);

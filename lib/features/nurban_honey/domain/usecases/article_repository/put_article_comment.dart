@@ -11,7 +11,7 @@ class PutArticleComment implements UseCase<EmptyResponse, Params> {
   PutArticleComment(this.repository);
   @override
   Future<Either<Failure, EmptyResponse>> call(params) async {
-    return await repository.putComment(
+    return await repository.patchComment(
         params.address, params.token, params.commentId, params.comment);
   }
 }

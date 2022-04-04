@@ -35,6 +35,8 @@ void main() {
     const articleId = 1;
     const commentId = 2;
     const comment = "comment";
+    final tEmptyResponseModel =
+        EmptyResponseModel.fromJson(jsonDecode(fixture("empty_response.json")));
 
     void setUpMockHttpClientSuccess(
         Function method, int responseCode, String fileName) {
@@ -157,8 +159,6 @@ void main() {
     });
 
     group('postLike', () {
-      final tEmptyResponseModel = EmptyResponseModel.fromJson(
-          jsonDecode(fixture("empty_response.json")));
       test(
         "적절한 URL생성해서 POST 요청// application/json, token 헤더 포함",
         () async {
@@ -210,8 +210,6 @@ void main() {
     });
 
     group('deleteLike', () {
-      final tEmptyResponseModel = EmptyResponseModel.fromJson(
-          jsonDecode(fixture("empty_response.json")));
       test(
         "적절한 URL생성해서 DELETE 요청// application/json, token 헤더 포함",
         () async {
@@ -263,8 +261,6 @@ void main() {
     });
 
     group('postDislike', () {
-      final tEmptyResponseModel = EmptyResponseModel.fromJson(
-          jsonDecode(fixture("empty_response.json")));
       test(
         "적절한 URL생성해서 POST 요청// application/json, token 헤더 포함",
         () async {
@@ -318,8 +314,6 @@ void main() {
     });
 
     group('deleteDislike', () {
-      final tEmptyResponseModel = EmptyResponseModel.fromJson(
-          jsonDecode(fixture("empty_response.json")));
       test(
         "적절한 URL생성해서 DELETE 요청// application/json, token 헤더 포함",
         () async {
@@ -537,8 +531,6 @@ void main() {
     });
 
     group('postComment', () {
-      final tEmptyResponseModel = EmptyResponseModel.fromJson(
-          jsonDecode(fixture("empty_response.json")));
       test(
         "적절한 URL생성해서 POST 요청// application/json, token 헤더 포함",
         () async {
@@ -593,8 +585,6 @@ void main() {
     });
 
     group('deleteComment', () {
-      final tEmptyResponseModel = EmptyResponseModel.fromJson(
-          jsonDecode(fixture("empty_response.json")));
       test(
         "적절한 URL생성해서 DELETE 요청// application/json, token 헤더 포함",
         () async {
@@ -649,8 +639,6 @@ void main() {
     });
 
     group('patchComment', () {
-      final tEmptyResponseModel = EmptyResponseModel.fromJson(
-          jsonDecode(fixture("empty_response.json")));
       test(
         "적절한 URL생성해서 DELETE 요청// application/json, token 헤더 포함",
         () async {

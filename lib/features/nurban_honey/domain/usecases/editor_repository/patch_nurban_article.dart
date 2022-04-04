@@ -7,13 +7,13 @@ import 'package:nurbanhoney_flutter/core/usecase/usecase.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/editor_repository.dart';
 
-class PutNurbanArticle implements UseCase<EmptyResponse, Params> {
+class PatchNurbanArticle implements UseCase<EmptyResponse, Params> {
   final EditorRepository repository;
-  PutNurbanArticle(this.repository);
+  PatchNurbanArticle(this.repository);
 
   @override
   Future<Either<Failure, EmptyResponse>> call(Params params) async {
-    return await repository.putNurbanArticle(
+    return await repository.patchNurbanArticle(
         params.address,
         params.token,
         params.articleId,

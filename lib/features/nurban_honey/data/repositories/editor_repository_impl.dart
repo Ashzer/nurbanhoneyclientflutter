@@ -65,7 +65,7 @@ class EditorRepositoryImpl implements EditorRepository {
   }
 
   @override
-  Future<Either<Failure, EmptyResponse>> putNurbanArticle(
+  Future<Either<Failure, EmptyResponse>> patchNurbanArticle(
       String address,
       String token,
       int articleId,
@@ -75,7 +75,7 @@ class EditorRepositoryImpl implements EditorRepository {
       String content) async {
     if (await networkStatus.isConnected) {
       try {
-        final result = (await remoteDataSource.putNurbanArticle(
+        final result = (await remoteDataSource.patchNurbanArticle(
                 address, token, articleId, thumbnail, title, lossCut, content))
             .toEmptyResponse();
         return Right(result);
@@ -90,7 +90,7 @@ class EditorRepositoryImpl implements EditorRepository {
   }
 
   @override
-  Future<Either<Failure, EmptyResponse>> putArticle(
+  Future<Either<Failure, EmptyResponse>> patchArticle(
       String address,
       String token,
       int articleId,
@@ -99,7 +99,7 @@ class EditorRepositoryImpl implements EditorRepository {
       String content) async {
     if (await networkStatus.isConnected) {
       try {
-        final result = (await remoteDataSource.putArticle(
+        final result = (await remoteDataSource.patchArticle(
                 address, token, articleId, thumbnail, title, content))
             .toEmptyResponse();
         return Right(result);

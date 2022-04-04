@@ -64,7 +64,7 @@ class MockEditorRepository extends _i1.Mock implements _i3.EditorRepository {
               _FakeEither_0<_i5.Failure, _i6.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> putNurbanArticle(
+  _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> patchNurbanArticle(
           String? address,
           String? token,
           int? articleId,
@@ -73,13 +73,13 @@ class MockEditorRepository extends _i1.Mock implements _i3.EditorRepository {
           String? lossCut,
           String? content) =>
       (super.noSuchMethod(
-          Invocation.method(#putNurbanArticle,
+          Invocation.method(#patchNurbanArticle,
               [address, token, articleId, thumbnail, title, lossCut, content]),
           returnValue: Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i6.EmptyResponse>())) as _i4
           .Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> putArticle(
+  _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> patchArticle(
           String? address,
           String? token,
           int? articleId,
@@ -87,7 +87,7 @@ class MockEditorRepository extends _i1.Mock implements _i3.EditorRepository {
           String? title,
           String? content) =>
       (super.noSuchMethod(
-          Invocation.method(#putArticle,
+          Invocation.method(#patchArticle,
               [address, token, articleId, thumbnail, title, content]),
           returnValue: Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>.value(
               _FakeEither_0<_i5.Failure, _i6.EmptyResponse>())) as _i4

@@ -214,12 +214,12 @@ void main() {
       test(
         "네트워크 연결 확인",
         () async {
-          when(mockEditorRemoteDataSource.putNurbanArticle(
+          when(mockEditorRemoteDataSource.patchNurbanArticle(
                   any, any, any, any, any, any, any))
               .thenAnswer((_) async => tEmptyResponseModel);
           when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
 
-          repository.putNurbanArticle("address", "token", 1, "thumbnail",
+          repository.patchNurbanArticle("address", "token", 1, "thumbnail",
               "title", "lossCut", "content");
 
           verify(mockNetworkStatus.isConnected);
@@ -228,7 +228,7 @@ void main() {
 
       group('=> 연결 됨', () {
         setUp(() {
-          when(mockEditorRemoteDataSource.putNurbanArticle(
+          when(mockEditorRemoteDataSource.patchNurbanArticle(
                   any, any, any, any, any, any, any))
               .thenAnswer(((_) async => tEmptyResponseModel));
           when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
@@ -237,14 +237,14 @@ void main() {
         test(
           "정상 동작",
           () async {
-            when(mockEditorRemoteDataSource.putNurbanArticle(
+            when(mockEditorRemoteDataSource.patchNurbanArticle(
                     any, any, any, any, any, any, any))
                 .thenAnswer((_) async => tEmptyResponseModel);
 
-            final result = await repository.putNurbanArticle("address", "token",
-                1, "thumbnail", "title", "lossCut", "content");
+            final result = await repository.patchNurbanArticle("address",
+                "token", 1, "thumbnail", "title", "lossCut", "content");
 
-            verify(mockEditorRemoteDataSource.putNurbanArticle("address",
+            verify(mockEditorRemoteDataSource.patchNurbanArticle("address",
                 "token", 1, "thumbnail", "title", "lossCut", "content"));
             expect(result, Right(tEmptyResponse));
           },
@@ -253,14 +253,14 @@ void main() {
         test(
           "서버에서 데이터를 잘 못 받았을 때 ServerFailure",
           () async {
-            when(mockEditorRemoteDataSource.putNurbanArticle(
+            when(mockEditorRemoteDataSource.patchNurbanArticle(
                     any, any, any, any, any, any, any))
                 .thenThrow(ServerException());
 
-            final result = await repository.putNurbanArticle("address", "token",
-                1, "thumbnail", "title", "lossCut", "content");
+            final result = await repository.patchNurbanArticle("address",
+                "token", 1, "thumbnail", "title", "lossCut", "content");
 
-            verify(mockEditorRemoteDataSource.putNurbanArticle("address",
+            verify(mockEditorRemoteDataSource.patchNurbanArticle("address",
                 "token", 1, "thumbnail", "title", "lossCut", "content"));
             expect(result, Left(ServerFailure()));
           },
@@ -269,14 +269,14 @@ void main() {
         test(
           "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
           () async {
-            when(mockEditorRemoteDataSource.putNurbanArticle(
+            when(mockEditorRemoteDataSource.patchNurbanArticle(
                     any, any, any, any, any, any, any))
                 .thenThrow(AuthorizationException());
 
-            final result = await repository.putNurbanArticle("address", "token",
-                1, "thumbnail", "title", "lossCut", "content");
+            final result = await repository.patchNurbanArticle("address",
+                "token", 1, "thumbnail", "title", "lossCut", "content");
 
-            verify(mockEditorRemoteDataSource.putNurbanArticle("address",
+            verify(mockEditorRemoteDataSource.patchNurbanArticle("address",
                 "token", 1, "thumbnail", "title", "lossCut", "content"));
             expect(result, Left(AuthorizationFailure()));
           },
@@ -291,10 +291,10 @@ void main() {
         test(
           "네트워크에 연결되지 않으면 NetworkFailure 리턴",
           () async {
-            final result = await repository.putNurbanArticle("address", "token",
-                1, "thumbnail", "title", "lossCut", "content");
+            final result = await repository.patchNurbanArticle("address",
+                "token", 1, "thumbnail", "title", "lossCut", "content");
 
-            verifyNever(mockEditorRemoteDataSource.putNurbanArticle(
+            verifyNever(mockEditorRemoteDataSource.patchNurbanArticle(
                 any, any, any, any, any, any, any));
             expect(result, Left(NetworkFailure()));
           },
@@ -307,11 +307,11 @@ void main() {
         "네트워크 연결 확인",
         () async {
           when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
-          when(mockEditorRemoteDataSource.putArticle(
+          when(mockEditorRemoteDataSource.patchArticle(
                   any, any, any, any, any, any))
               .thenAnswer((_) async => tEmptyResponseModel);
 
-          repository.putArticle(
+          repository.patchArticle(
               "address", "token", 1, "thumbnail", "title", "content");
 
           verify(mockNetworkStatus.isConnected);
@@ -326,14 +326,14 @@ void main() {
         test(
           "정상 동작",
           () async {
-            when(mockEditorRemoteDataSource.putArticle(
+            when(mockEditorRemoteDataSource.patchArticle(
                     any, any, any, any, any, any))
                 .thenAnswer((_) async => tEmptyResponseModel);
 
-            final result = await repository.putArticle(
+            final result = await repository.patchArticle(
                 "address", "token", 1, "thumbnail", "title", "content");
 
-            verify(mockEditorRemoteDataSource.putArticle(
+            verify(mockEditorRemoteDataSource.patchArticle(
                 "address", "token", 1, "thumbnail", "title", "content"));
             expect(result, Right(tEmptyResponse));
           },
@@ -342,14 +342,14 @@ void main() {
         test(
           "서버에서 데이터를 잘 못 받았을 때 ServerFailure",
           () async {
-            when(mockEditorRemoteDataSource.putArticle(
+            when(mockEditorRemoteDataSource.patchArticle(
                     any, any, any, any, any, any))
                 .thenThrow(ServerException());
 
-            final result = await repository.putArticle(
+            final result = await repository.patchArticle(
                 "address", "token", 1, "thumbnail", "title", "content");
 
-            verify(mockEditorRemoteDataSource.putArticle(
+            verify(mockEditorRemoteDataSource.patchArticle(
                 "address", "token", 1, "thumbnail", "title", "content"));
             expect(result, Left(ServerFailure()));
           },
@@ -358,14 +358,14 @@ void main() {
         test(
           "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
           () async {
-            when(mockEditorRemoteDataSource.putArticle(
+            when(mockEditorRemoteDataSource.patchArticle(
                     any, any, any, any, any, any))
                 .thenThrow(AuthorizationException());
 
-            final result = await repository.putArticle(
+            final result = await repository.patchArticle(
                 "address", "token", 1, "thumbnail", "title", "content");
 
-            verify(mockEditorRemoteDataSource.putArticle(
+            verify(mockEditorRemoteDataSource.patchArticle(
                 "address", "token", 1, "thumbnail", "title", "content"));
             expect(result, Left(AuthorizationFailure()));
           },
@@ -380,10 +380,10 @@ void main() {
         test(
           "네트워크에 연결되지 않으면 NetworkFailure 리턴",
           () async {
-            final result = await repository.putArticle(
+            final result = await repository.patchArticle(
                 "address", "token", 1, "thumbnail", "title", "content");
 
-            verifyNever(mockEditorRemoteDataSource.putArticle(
+            verifyNever(mockEditorRemoteDataSource.patchArticle(
                 any, any, any, any, any, any));
             expect(result, Left(NetworkFailure()));
           },

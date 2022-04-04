@@ -4,14 +4,14 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/article_repository.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
-import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/article_repository/put_article_comment.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/article_repository/patch_article_comment.dart';
 
 import 'put_article_comment_test.mocks.dart';
 
 @GenerateMocks([ArticleRepository])
 void main() {
   final mockArticleRepository = MockArticleRepository();
-  final putArticleComment = PutArticleComment(mockArticleRepository);
+  final patchArticleComment = PatchArticleComment(mockArticleRepository);
 
   const tEmptyResponse = EmptyResponse("OK");
 
@@ -21,7 +21,7 @@ void main() {
       when(mockArticleRepository.patchComment("address", "token", 1, "comment"))
           .thenAnswer((_) async => const Right(tEmptyResponse));
 
-      final result = await putArticleComment(const Params(
+      final result = await patchArticleComment(const Params(
           address: "address",
           token: "token",
           commentId: 1,

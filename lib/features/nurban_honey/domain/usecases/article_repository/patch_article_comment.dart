@@ -6,9 +6,9 @@ import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_
 
 import '../../repositories/article_repository.dart';
 
-class PutArticleComment implements UseCase<EmptyResponse, Params> {
+class PatchArticleComment implements UseCase<EmptyResponse, Params> {
   final ArticleRepository repository;
-  PutArticleComment(this.repository);
+  PatchArticleComment(this.repository);
   @override
   Future<Either<Failure, EmptyResponse>> call(params) async {
     return await repository.patchComment(

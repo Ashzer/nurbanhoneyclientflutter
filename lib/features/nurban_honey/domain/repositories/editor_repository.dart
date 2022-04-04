@@ -21,7 +21,7 @@ abstract class EditorRepository {
       String? thumbnail,
       String content);
 
-  Future<Either<Failure, EmptyResponse>> putNurbanArticle(
+  Future<Either<Failure, EmptyResponse>> patchNurbanArticle(
       String address,
       String token,
       int articleId,
@@ -30,7 +30,7 @@ abstract class EditorRepository {
       String lossCut,
       String content);
 
-  Future<Either<Failure, EmptyResponse>> putArticle(
+  Future<Either<Failure, EmptyResponse>> patchArticle(
       String address,
       String token,
       int articleId,

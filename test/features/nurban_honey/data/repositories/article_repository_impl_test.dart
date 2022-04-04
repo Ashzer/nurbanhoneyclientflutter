@@ -878,7 +878,7 @@ void main() {
       test(
         "네트워크 연결 확인",
         () async {
-          when(mockArticleRemoteDataSource.putComment(any, any, any, any))
+          when(mockArticleRemoteDataSource.patchComment(any, any, any, any))
               .thenAnswer((_) async => tEmptyResponseModel);
           when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
 
@@ -895,13 +895,13 @@ void main() {
         test(
           "remote data source로 comment 수정 보내기",
           () async {
-            when(mockArticleRemoteDataSource.putComment(any, any, any, any))
+            when(mockArticleRemoteDataSource.patchComment(any, any, any, any))
                 .thenAnswer((_) async => tEmptyResponseModel);
 
             final result =
                 await repository.patchComment("address", "token", 1, "comment");
 
-            verify(mockArticleRemoteDataSource.putComment(
+            verify(mockArticleRemoteDataSource.patchComment(
                 "address", "token", 1, "comment"));
             expect(result, Right(tEmptyResponse));
           },
@@ -910,13 +910,13 @@ void main() {
         test(
           "서버에서 데이터를 잘 못 받았을 때 ServerFailure",
           () async {
-            when(mockArticleRemoteDataSource.putComment(any, any, any, any))
+            when(mockArticleRemoteDataSource.patchComment(any, any, any, any))
                 .thenThrow(ServerException());
 
             final result =
                 await repository.patchComment("address", "token", 1, "comment");
 
-            verify(mockArticleRemoteDataSource.putComment(
+            verify(mockArticleRemoteDataSource.patchComment(
                 "address", "token", 1, "comment"));
             expect(result, Left(ServerFailure()));
           },
@@ -925,13 +925,13 @@ void main() {
         test(
           "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
           () async {
-            when(mockArticleRemoteDataSource.putComment(any, any, any, any))
+            when(mockArticleRemoteDataSource.patchComment(any, any, any, any))
                 .thenThrow(AuthorizationException());
 
             final result =
                 await repository.patchComment("address", "token", 1, "comment");
 
-            verify(mockArticleRemoteDataSource.putComment(
+            verify(mockArticleRemoteDataSource.patchComment(
                 "address", "token", 1, "comment"));
             expect(result, Left(AuthorizationFailure()));
           },
@@ -949,7 +949,7 @@ void main() {
                 await repository.patchComment("address", "token", 1, "comment");
 
             verifyNever(
-                mockArticleRemoteDataSource.putComment(any, any, any, any));
+                mockArticleRemoteDataSource.patchComment(any, any, any, any));
             expect(result, Left(NetworkFailure()));
           },
         );

@@ -19,14 +19,14 @@ import 'article_remote_data_source_test.mocks.dart';
 
 @GenerateMocks([http.Client])
 void main() {
-  late ArticleRemoteDataSourceImpl dataSource;
+  late ArticleRemoteDataSource dataSource;
   late MockClient mockHttpClient;
   setUp(() {
     mockHttpClient = MockClient();
     dataSource = ArticleRemoteDataSourceImpl(client: mockHttpClient);
   });
   const String baseUrl = "http://3.37.155.214:8128/board";
-  group('Article remote data source tests:', () {
+  group('Article remote data source tests :', () {
     const String address = "address";
     const String token = "token";
     const flag = 0;

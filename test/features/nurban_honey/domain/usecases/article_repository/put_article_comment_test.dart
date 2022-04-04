@@ -18,7 +18,7 @@ void main() {
   test(
     "Article Repository로 댓글 수정 요청",
     () async {
-      when(mockArticleRepository.putComment("address", "token", 1, "comment"))
+      when(mockArticleRepository.patchComment("address", "token", 1, "comment"))
           .thenAnswer((_) async => const Right(tEmptyResponse));
 
       final result = await putArticleComment(const Params(
@@ -29,7 +29,7 @@ void main() {
 
       expect(result, const Right(tEmptyResponse));
       verify(
-          mockArticleRepository.putComment("address", "token", 1, "comment"));
+          mockArticleRepository.patchComment("address", "token", 1, "comment"));
       verifyNoMoreInteractions(mockArticleRepository);
     },
   );

@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import '../../../../core/error/exception.dart';
 import '../../domain/entities/empty_response/empty_response.dart';
 import '../../domain/entities/image_post_response/image_post_response.dart';
 import '../models/empty_response_model/empty_response_model.dart';
@@ -42,17 +45,40 @@ class EditorRemoteDataSourceImpl implements EditorRemoteDataSource {
   static String baseUrl = "http://3.37.155.214:8128/board";
 
   @override
-  Future<EmptyResponseModel> deleteArticle(
-      String address, String token, int articleId, String uuid) {
-    // TODO: implement deleteArticle
-    throw UnimplementedError();
+  Future<EmptyResponseModel> postNurbanArticle(
+      String address,
+      String token,
+      String title,
+      String uuid,
+      String lossCut,
+      String? thumbnail,
+      String content) async {
+    final queryParams = {
+      'title': title,
+      'uuid': uuid,
+      'lossCut': BigInt.parse(lossCut),
+      'thumbnail': thumbnail,
+      'content': content
+    };
+
+    final uri = Uri.parse("$baseUrl/$address/article")
+        .replace(queryParameters: queryParams);
+    return _requestHandler(uri, client.post, token);
   }
 
   @override
-  Future<EmptyResponseModel> patchArticle(String address, String token,
-      int articleId, String? thumbnail, String title, String content) {
-    // TODO: implement patchArticle
-    throw UnimplementedError();
+  Future<EmptyResponseModel> postArticle(String address, String token,
+      String title, String uuid, String? thumbnail, String content) async {
+    final queryParams = {
+      'title': title,
+      'uuid': uuid,
+      'thumbnail': thumbnail,
+      'content': content
+    };
+
+    final uri = Uri.parse("$baseUrl/$address/article")
+        .replace(queryParameters: queryParams);
+    return _requestHandler(uri, client.post, token);
   }
 
   @override
@@ -63,35 +89,70 @@ class EditorRemoteDataSourceImpl implements EditorRemoteDataSource {
       String? thumbnail,
       String title,
       String lossCut,
-      String content) {
-    // TODO: implement patchNurbanArticle
-    throw UnimplementedError();
+      String content) async {
+    final queryParams = {
+      'id': '$articleId',
+      'thumbnail': thumbnail,
+      'title': title,
+      'lossCut': lossCut,
+      'content': content
+    };
+
+    final uri = Uri.parse("$baseUrl/$address/article")
+        .replace(queryParameters: queryParams);
+    return _requestHandler(uri, client.patch, token);
   }
 
   @override
-  Future<EmptyResponseModel> postArticle(String address, String token,
-      String title, String uuid, String? thumbnail, String content) {
-    // TODO: implement postArticle
-    throw UnimplementedError();
+  Future<EmptyResponseModel> patchArticle(String address, String token,
+      int articleId, String? thumbnail, String title, String content) async {
+    final queryParams = {
+      'id': '$articleId',
+      'thumbnail': thumbnail,
+      'title': title,
+      'content': content
+    };
+
+    final uri = Uri.parse("$baseUrl/$address/article")
+        .replace(queryParameters: queryParams);
+    return _requestHandler(uri, client.patch, token);
+  }
+
+  @override
+  Future<EmptyResponseModel> deleteArticle(
+      String address, String token, int articleId, String uuid) async {
+    final queryParams = {'id': '$articleId', 'uuid': uuid};
+
+    final uri = Uri.parse("$baseUrl/$address/article")
+        .replace(queryParameters: queryParams);
+    return _requestHandler(uri, client.delete, token);
   }
 
   @override
   Future<ImagePostResponseModel> postImage(
-      String address, String token, String uuid, String imagePath) {
-    // TODO: implement postImage
-    throw UnimplementedError();
+      String address, String token, String uuid, String imagePath) async {
+    return ImagePostResponseModel("");
   }
 
-  @override
-  Future<EmptyResponseModel> postNurbanArticle(
-      String address,
-      String token,
-      String title,
-      String uuid,
-      String lossCut,
-      String? thumbnail,
-      String content) {
-    // TODO: implement postNurbanArticle
-    throw UnimplementedError();
+  Future<EmptyResponseModel> _requestHandler(
+      Uri uri, Function request, String token) async {
+    final response = await request(
+      uri,
+      headers: {'Content-Type': 'application/json', 'token': token},
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return EmptyResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
+  }
+
+  _generateExceptions(int responseStatusCode) {
+    if (responseStatusCode == 401) {
+      throw AuthorizationException();
+    } else {
+      throw ServerException();
+    }
   }
 }

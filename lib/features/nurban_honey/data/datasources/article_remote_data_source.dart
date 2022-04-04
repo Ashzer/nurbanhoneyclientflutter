@@ -100,7 +100,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     final queryParams = {'articleId': '$articleId'};
     final uri = Uri.parse("$baseUrl/$address/article/like")
         .replace(queryParameters: queryParams);
-    return _likeHandler(uri, client.post, token);
+    return _requestHandler(uri, client.post, token);
   }
 
   @override
@@ -109,7 +109,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     final queryParams = {'articleId': '$articleId'};
     final uri = Uri.parse("$baseUrl/$address/article/like")
         .replace(queryParameters: queryParams);
-    return _likeHandler(uri, client.delete, token);
+    return _requestHandler(uri, client.delete, token);
   }
 
   @override
@@ -118,7 +118,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     final queryParams = {'articleId': '$articleId'};
     final uri = Uri.parse("$baseUrl/$address/article/dislike")
         .replace(queryParameters: queryParams);
-    return _likeHandler(uri, client.post, token);
+    return _requestHandler(uri, client.post, token);
   }
 
   @override
@@ -127,10 +127,10 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     final queryParams = {'articleId': '$articleId'};
     final uri = Uri.parse("$baseUrl/$address/article/dislike")
         .replace(queryParameters: queryParams);
-    return _likeHandler(uri, client.delete, token);
+    return _requestHandler(uri, client.delete, token);
   }
 
-  Future<EmptyResponseModel> _likeHandler(
+  Future<EmptyResponseModel> _requestHandler(
       Uri uri, Function request, String token) async {
     final response = await request(
       uri,
@@ -206,7 +206,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     final queryParams = {'content': '$comment', 'articleId': '$articleId'};
     final uri = Uri.parse("$baseUrl/$address/article/comment")
         .replace(queryParameters: queryParams);
-    return _likeHandler(uri, client.post, token);
+    return _requestHandler(uri, client.post, token);
   }
 
   @override
@@ -215,7 +215,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     final queryParams = {'id': '$commentId', 'articleId': '$articleId'};
     final uri = Uri.parse("$baseUrl/$address/article/comment")
         .replace(queryParameters: queryParams);
-    return _likeHandler(uri, client.delete, token);
+    return _requestHandler(uri, client.delete, token);
   }
 
   @override
@@ -224,7 +224,7 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     final queryParams = {'id': '$commentId', 'content': '$comment'};
     final uri = Uri.parse("$baseUrl/$address/article/comment")
         .replace(queryParameters: queryParams);
-    return _likeHandler(uri, client.patch, token);
+    return _requestHandler(uri, client.patch, token);
   }
 
   _generateExceptions(int responseStatusCode) {

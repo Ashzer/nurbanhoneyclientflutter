@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "content": "content",
+        "createdAt": "createdAt",
+        "Location": {
+            "articleId": 1,
+            "title": "title"
+        },
+        "board": {
+            "id": 1,
+            "name": "name",
+            "address": "address"
+        }
+    },
+    {
+        "id": 2,
+        "content": "content2",
+        "createdAt": "createdAt2",
+        "Location": {
+            "articleId": 2,
+            "title": "title2"
+        },
+        "board": {
+            "id": 2,
+            "name": "name2",
+            "address": "address2"
+        }
+    }
+]

@@ -109,4 +109,12 @@ class MockEditorRepository extends _i1.Mock implements _i3.EditorRepository {
                   Future<_i2.Either<_i5.Failure, _i7.ImagePostResponse>>.value(
                       _FakeEither_0<_i5.Failure, _i7.ImagePostResponse>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i7.ImagePostResponse>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>> deleteImages(
+          String? address, String? token, String? uuid) =>
+      (super.noSuchMethod(
+          Invocation.method(#deleteImages, [address, token, uuid]),
+          returnValue: Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>.value(
+              _FakeEither_0<_i5.Failure, _i6.EmptyResponse>())) as _i4
+          .Future<_i2.Either<_i5.Failure, _i6.EmptyResponse>>);
 }

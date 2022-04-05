@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:nurbanhoney_flutter/core/error/exception.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/datasources/editor_remote_data_source.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/data/models/empty_response_model/empty_response_model.dart';
+import 'package:nurbanhoney_flutter/features/nurban_honey/data/models/image_post_response_model/image_post_response_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 import 'editor_remote_data_source_test.mocks.dart';
@@ -35,16 +36,31 @@ void main() {
     const thumbnail = "thumbnail";
     const content = "content";
     const articleId = 1;
-    const imagePath = "imagePath";
+    const imagePath =
+        "C:/Users/intyp/Desktop/workspace/nurbanhoney_flutter/web/icons/Icon-192.png";
     void setUpMockHttpClientSuccess(
         Function method, int responseCode, String fileName) {
       when(method(any, headers: anyNamed('headers'))).thenAnswer(
           (_) async => http.Response(fixture(fileName), responseCode));
     }
 
+    void setUpMockHttpClientWithRequestBodySuccess(
+        Function method, int responseCode, String fileName) {
+      when(method(any, headers: anyNamed('headers'), body: anyNamed('body')))
+          .thenAnswer(
+              (_) async => http.Response(fixture(fileName), responseCode));
+    }
+
     void setUpMockHttpClientFailure(Function method, int responseCode) {
       when(method(any, headers: anyNamed("headers"))).thenAnswer(
           (_) async => http.Response("Server Error occurred", responseCode));
+    }
+
+    void setUpMockHttpClientWithRequestBodyFailure(
+        Function method, int responseCode) {
+      when(method(any, headers: anyNamed("headers"), body: anyNamed('body')))
+          .thenAnswer((_) async =>
+              http.Response("Server Error occurred", responseCode));
     }
 
     final tEmptyResponseModel =
@@ -54,23 +70,30 @@ void main() {
       test(
         "적절한 URL생성해서 POST 요청// application/json, token 헤더 포함",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           dataSource.postNurbanArticle(
               address, token, title, uuid, lossCut, thumbnail, content);
 
-          verify(mockHttpClient.post(
-              Uri.parse(
-                  "$baseUrl/$address/article?title=$title&uuid=$uuid&lossCut=$lossCut&thumbnail=$thumbnail&content=$content"),
-              headers: {'Content-Type': 'application/json', 'token': token}));
+          verify(mockHttpClient
+              .post(Uri.parse("$baseUrl/$address/article"), headers: {
+            'Content-Type': 'application/json',
+            'token': token
+          }, body: {
+            'title': title,
+            'uuid': uuid,
+            'lossCut': lossCut,
+            'thumbnail': thumbnail,
+            'content': 'content'
+          }));
         },
       );
 
       test(
         "response code가 201이면 새로운 글 생성하고 응답이 반환됨",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           final result = await dataSource.postNurbanArticle(
@@ -83,7 +106,7 @@ void main() {
       test(
         "response code가 404 혹은 다른 code일 때 Server Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 404);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 404);
 
           final call = dataSource.postNurbanArticle;
 
@@ -96,7 +119,7 @@ void main() {
       test(
         "response code가 401 일 때, Authorization Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 401);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 401);
 
           final call = dataSource.postNurbanArticle;
 
@@ -112,23 +135,30 @@ void main() {
       test(
         "적절한 URL생성해서 POST 요청// application/json, token 헤더 포함",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           dataSource.postArticle(
               address, token, title, uuid, thumbnail, content);
 
-          verify(mockHttpClient.post(
-              Uri.parse(
-                  "$baseUrl/$address/article?title=$title&uuid=$uuid&thumbnail=$thumbnail&content=$content"),
-              headers: {'Content-Type': 'application/json', 'token': token}));
+          verify(mockHttpClient.post(Uri.parse("$baseUrl/$address/article"),
+              headers: {
+                'Content-Type': 'application/json',
+                'token': token
+              },
+              body: {
+                'title': title,
+                'uuid': uuid,
+                'thumbnail': thumbnail,
+                'content': content
+              }));
         },
       );
 
       test(
         "response code가 201이면 새로운 글 생성하고 응답이 반환됨",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           final result = await dataSource.postArticle(
@@ -141,7 +171,7 @@ void main() {
       test(
         "response code가 404 혹은 다른 code일 때 Server Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 404);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 404);
 
           final call = dataSource.postArticle;
 
@@ -152,7 +182,7 @@ void main() {
       test(
         "response code가 401 일 때, Authorization Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 401);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 401);
 
           final call = dataSource.postArticle;
 
@@ -166,23 +196,30 @@ void main() {
       test(
         "적절한 URL생성해서 PATCH 요청// application/json, token 헤더 포함",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.patch, 200, "empty_response.json");
 
           dataSource.patchNurbanArticle(
               address, token, articleId, thumbnail, title, lossCut, content);
 
-          verify(mockHttpClient.patch(
-              Uri.parse(
-                  "$baseUrl/$address/article?id=$articleId&thumbnail=$thumbnail&title=$title&lossCut=$lossCut&content=$content"),
-              headers: {'Content-Type': 'application/json', 'token': token}));
+          verify(mockHttpClient
+              .patch(Uri.parse("$baseUrl/$address/article"), headers: {
+            'Content-Type': 'application/json',
+            'token': token
+          }, body: {
+            'id': '$articleId',
+            'thumbnail': thumbnail,
+            'title': title,
+            'lossCut': lossCut,
+            'content': content
+          }));
         },
       );
 
       test(
         "response code가 201이면 새로운 글 생성하고 응답이 반환됨",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.patch, 200, "empty_response.json");
 
           final result = await dataSource.patchNurbanArticle(
@@ -195,7 +232,7 @@ void main() {
       test(
         "response code가 404 혹은 다른 code일 때 Server Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.patch, 404);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.patch, 404);
 
           final call = dataSource.patchNurbanArticle;
 
@@ -208,7 +245,7 @@ void main() {
       test(
         "response code가 401 일 때, Authorization Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.patch, 401);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.patch, 401);
 
           final call = dataSource.patchNurbanArticle;
 
@@ -224,23 +261,30 @@ void main() {
       test(
         "적절한 URL생성해서 PATCH 요청// application/json, token 헤더 포함",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.patch, 200, "empty_response.json");
 
           dataSource.patchArticle(
               address, token, articleId, thumbnail, title, content);
 
-          verify(mockHttpClient.patch(
-              Uri.parse(
-                  "$baseUrl/$address/article?id=$articleId&thumbnail=$thumbnail&title=$title&content=$content"),
-              headers: {'Content-Type': 'application/json', 'token': token}));
+          verify(mockHttpClient.patch(Uri.parse("$baseUrl/$address/article"),
+              headers: {
+                'Content-Type': 'application/json',
+                'token': token
+              },
+              body: {
+                'id': '$articleId',
+                'thumbnail': thumbnail,
+                'title': title,
+                'content': content
+              }));
         },
       );
 
       test(
         "response code가 200이면 새로운 글 생성하고 응답이 반환됨",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.patch, 200, "empty_response.json");
 
           final result = await dataSource.patchArticle(
@@ -253,7 +297,7 @@ void main() {
       test(
         "response code가 404 혹은 다른 code일 때 Server Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.patch, 404);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.patch, 404);
 
           final call = dataSource.patchArticle;
 
@@ -265,7 +309,7 @@ void main() {
       test(
         "response code가 401 일 때, Authorization Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.patch, 401);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.patch, 401);
 
           final call = dataSource.patchArticle;
 
@@ -327,6 +371,117 @@ void main() {
         },
       );
     });
-    //TODO : Image upload test Unimplemente
+
+    //TODO : Image upload test Unimplementation
+    group('postImage', () {
+      final tImagePostResponseModel = ImagePostResponseModel.fromJson(
+          jsonDecode(fixture("image_post_response.json")));
+      test(
+        "적절한 URL생성해서 POST 요청// application/json, token 헤더 포함",
+        () async {
+          setUpMockHttpClientWithRequestBodySuccess(
+              mockHttpClient.post, 201, "image_post_response.json");
+          File imageFile = File(imagePath);
+          List<int> imageBytes = imageFile.readAsBytesSync();
+          String base64Image = base64Encode(imageBytes);
+
+          dataSource.postImage(address, token, uuid, imagePath);
+
+          verify(mockHttpClient.post(
+              Uri.parse("$baseUrl/$address/article/upload/image"),
+              headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'token': token
+              },
+              body: jsonEncode({'uuid': uuid, 'image': '$base64Image'})));
+        },
+      );
+
+      test(
+        "response code가 200이면 새로운 글 생성하고 응답이 반환됨",
+        () async {
+          setUpMockHttpClientWithRequestBodySuccess(
+              mockHttpClient.post, 201, "image_post_response.json");
+
+          final result =
+              await dataSource.postImage(address, token, uuid, imagePath);
+          expect(result, equals(tImagePostResponseModel));
+        },
+      );
+
+      test(
+        "response code가 404 혹은 다른 code일 때 Server Exception 반환",
+        () async {
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 404);
+
+          final call = dataSource.postImage;
+
+          expect(() => call(address, token, uuid, imagePath),
+              throwsA(isA<ServerException>()));
+        },
+      );
+      test(
+        "response code가 401 일 때, Authorization Exception 반환",
+        () async {
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 401);
+
+          final call = dataSource.postImage;
+
+          expect(() => call(address, token, uuid, imagePath),
+              throwsA(isA<AuthorizationException>()));
+        },
+      );
+    });
+
+    group('deleteImages', () {
+      test(
+        "적절한 URL생성해서 DELETE 요청// application/json, token 헤더 포함",
+        () async {
+          setUpMockHttpClientSuccess(
+              mockHttpClient.delete, 200, "empty_response.json");
+
+          dataSource.deleteImages(address, token, uuid);
+
+          verify(mockHttpClient.delete(
+              Uri.parse("$baseUrl/$address/article/upload/image?uuid=$uuid"),
+              headers: {'Content-Type': 'application/json', 'token': token}));
+        },
+      );
+
+      test(
+        "response code가 200이면 새로운 글 생성하고 응답이 반환됨",
+        () async {
+          setUpMockHttpClientSuccess(
+              mockHttpClient.delete, 200, "empty_response.json");
+
+          final result = await dataSource.deleteImages(address, token, uuid);
+
+          expect(result, equals(tEmptyResponseModel));
+        },
+      );
+
+      test(
+        "response code가 404 혹은 다른 code일 때 Server Exception 반환",
+        () async {
+          setUpMockHttpClientFailure(mockHttpClient.delete, 404);
+
+          final call = dataSource.deleteImages;
+
+          expect(() => call(address, token, uuid),
+              throwsA(isA<ServerException>()));
+        },
+      );
+      test(
+        "response code가 401 일 때, Authorization Exception 반환",
+        () async {
+          setUpMockHttpClientFailure(mockHttpClient.delete, 401);
+
+          final call = dataSource.deleteImages;
+
+          expect(() => call(address, token, uuid),
+              throwsA(isA<AuthorizationException>()));
+        },
+      );
+    });
   });
 }

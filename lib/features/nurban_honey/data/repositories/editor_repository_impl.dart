@@ -150,4 +150,23 @@ class EditorRepositoryImpl implements EditorRepository {
       return Left(NetworkFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, EmptyResponse>> deleteImages(
+      String address, String token, String uuid) async {
+    if (await networkStatus.isConnected) {
+      try {
+        final result =
+            (await remoteDataSource.deleteImages(address, token, uuid))
+                .toEmptyResponse();
+        return Right(result);
+      } on ServerException {
+        return Left(ServerFailure());
+      } on AuthorizationException {
+        return Left(AuthorizationFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
+  }
 }

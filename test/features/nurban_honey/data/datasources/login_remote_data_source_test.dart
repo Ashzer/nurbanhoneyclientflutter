@@ -32,9 +32,23 @@ void main() {
           (_) async => http.Response(fixture(fileName), responseCode));
     }
 
+    void setUpMockHttpClientWithRequestBodySuccess(
+        Function method, int responseCode, String fileName) {
+      when(method(any, headers: anyNamed('headers'), body: anyNamed('body')))
+          .thenAnswer(
+              (_) async => http.Response(fixture(fileName), responseCode));
+    }
+
     void setUpMockHttpClientFailure(Function method, int responseCode) {
       when(method(any, headers: anyNamed("headers"))).thenAnswer(
           (_) async => http.Response("Server Error occurred", responseCode));
+    }
+
+    void setUpMockHttpClientWithRequestBodyFailure(
+        Function method, int responseCode) {
+      when(method(any, headers: anyNamed("headers"), body: anyNamed('body')))
+          .thenAnswer((_) async =>
+              http.Response("Server Error occurred", responseCode));
     }
 
     group('getNurbanToken', () {

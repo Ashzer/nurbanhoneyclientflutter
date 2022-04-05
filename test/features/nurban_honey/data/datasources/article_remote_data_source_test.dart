@@ -44,9 +44,23 @@ void main() {
           (_) async => http.Response(fixture(fileName), responseCode));
     }
 
+    void setUpMockHttpClientWithRequestBodySuccess(
+        Function method, int responseCode, String fileName) {
+      when(method(any, headers: anyNamed('headers'), body: anyNamed('body')))
+          .thenAnswer(
+              (_) async => http.Response(fixture(fileName), responseCode));
+    }
+
     void setUpMockHttpClientFailure(Function method, int responseCode) {
       when(method(any, headers: anyNamed("headers"))).thenAnswer(
           (_) async => http.Response("Server Error occurred", responseCode));
+    }
+
+    void setUpMockHttpClientWithRequestBodyFailure(
+        Function method, int responseCode) {
+      when(method(any, headers: anyNamed("headers"), body: anyNamed('body')))
+          .thenAnswer((_) async =>
+              http.Response("Server Error occurred", responseCode));
     }
 
     group('getArticles', () {
@@ -160,23 +174,24 @@ void main() {
 
     group('postLike', () {
       test(
-        "적절한 URL생성해서 POST 요청// application/json, token 헤더 포함",
+        "적절한 URL생성해서 POST 요청// application/json, token 헤더 request body 포함",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           dataSource.postLike(address, token, articleId);
 
           verify(mockHttpClient.post(
-              Uri.parse("$baseUrl/$address/article/like?articleId=$articleId"),
-              headers: {'Content-Type': 'application/json', 'token': token}));
+              Uri.parse("$baseUrl/$address/article/like"),
+              headers: {'Content-Type': 'application/json', 'token': token},
+              body: {'articleId': '$articleId'}));
         },
       );
 
       test(
         "response code가 200이면 articleId에 좋아요 요청의 응답이 반환됨",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           final result = await dataSource.postLike(address, token, articleId);
@@ -188,7 +203,7 @@ void main() {
       test(
         "response code가 404 혹은 다른 code일 때 Server Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 404);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 404);
 
           final call = dataSource.postLike;
 
@@ -199,7 +214,7 @@ void main() {
       test(
         "response code가 401 일 때, Authorization Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 401);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 401);
 
           final call = dataSource.postLike;
 
@@ -264,22 +279,22 @@ void main() {
       test(
         "적절한 URL생성해서 POST 요청// application/json, token 헤더 포함",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           dataSource.postDislike(address, token, articleId);
 
           verify(mockHttpClient.post(
-              Uri.parse(
-                  "$baseUrl/$address/article/dislike?articleId=$articleId"),
-              headers: {'Content-Type': 'application/json', 'token': token}));
+              Uri.parse("$baseUrl/$address/article/dislike"),
+              headers: {'Content-Type': 'application/json', 'token': token},
+              body: {'articleId': '$articleId'}));
         },
       );
 
       test(
         "response code가 200이면 articleId에 싫어요 요청의 응답이 반환됨",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           final result =
@@ -292,7 +307,7 @@ void main() {
       test(
         "response code가 404 혹은 다른 code일 때 Server Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 404);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 404);
 
           final call = dataSource.postDislike;
 
@@ -303,7 +318,7 @@ void main() {
       test(
         "response code가 401 일 때, Authorization Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 401);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 401);
 
           final call = dataSource.postDislike;
 
@@ -534,22 +549,22 @@ void main() {
       test(
         "적절한 URL생성해서 POST 요청// application/json, token 헤더 포함",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           dataSource.postComment(address, token, comment, articleId);
 
           verify(mockHttpClient.post(
-              Uri.parse(
-                  "$baseUrl/$address/article/comment?content=$comment&articleId=$articleId"),
-              headers: {'Content-Type': 'application/json', 'token': token}));
+              Uri.parse("$baseUrl/$address/article/comment"),
+              headers: {'Content-Type': 'application/json', 'token': token},
+              body: {'content': comment, 'articleId': '$articleId'}));
         },
       );
 
       test(
         "response code가 200이면 댓글 작성 요청의 응답이 반환됨",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.post, 201, "empty_response.json");
 
           final result =
@@ -562,7 +577,7 @@ void main() {
       test(
         "response code가 404 혹은 다른 code일 때 Server Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 404);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 404);
 
           final call = dataSource.postComment;
 
@@ -574,7 +589,7 @@ void main() {
       test(
         "response code가 401 일 때, Authorization Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.post, 401);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.post, 401);
 
           final call = dataSource.postComment;
 
@@ -640,24 +655,24 @@ void main() {
 
     group('patchComment', () {
       test(
-        "적절한 URL생성해서 DELETE 요청// application/json, token 헤더 포함",
+        "적절한 URL생성해서 PATCH 요청// application/json, token 헤더 포함",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.patch, 200, "empty_response.json");
 
           dataSource.patchComment(address, token, commentId, comment);
 
           verify(mockHttpClient.patch(
-              Uri.parse(
-                  "$baseUrl/$address/article/comment?id=$commentId&content=$comment"),
-              headers: {'Content-Type': 'application/json', 'token': token}));
+              Uri.parse("$baseUrl/$address/article/comment"),
+              headers: {'Content-Type': 'application/json', 'token': token},
+              body: {'id': '$commentId', 'content': '$comment'}));
         },
       );
 
       test(
         "response code가 200이면 댓글 작성 요청의 응답이 반환됨",
         () async {
-          setUpMockHttpClientSuccess(
+          setUpMockHttpClientWithRequestBodySuccess(
               mockHttpClient.patch, 200, "empty_response.json");
 
           final result =
@@ -670,7 +685,7 @@ void main() {
       test(
         "response code가 404 혹은 다른 code일 때 Server Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.patch, 404);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.patch, 404);
 
           final call = dataSource.patchComment;
 
@@ -682,7 +697,7 @@ void main() {
       test(
         "response code가 401 일 때, Authorization Exception 반환",
         () async {
-          setUpMockHttpClientFailure(mockHttpClient.patch, 401);
+          setUpMockHttpClientWithRequestBodyFailure(mockHttpClient.patch, 401);
 
           final call = dataSource.patchComment;
 

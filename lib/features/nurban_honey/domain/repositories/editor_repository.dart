@@ -43,4 +43,7 @@ abstract class EditorRepository {
 
   Future<Either<Failure, ImagePostResponse>> postImage(
       String address, String token, String uuid, String imagePath);
+
+  Future<Either<Failure, EmptyResponse>> deleteImages(
+      String address, String token, String uuid);
 }

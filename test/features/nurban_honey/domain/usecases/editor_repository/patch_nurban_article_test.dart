@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/entities/empty_response/empty_response.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/repositories/editor_repository.dart';
 import 'package:nurbanhoney_flutter/features/nurban_honey/domain/usecases/editor_repository/patch_nurban_article.dart';
-import 'put_nurban_article_test.mocks.dart';
+import 'patch_nurban_article_test.mocks.dart';
 
 @GenerateMocks([EditorRepository])
 void main() {
@@ -38,7 +38,7 @@ void main() {
   );
 
   test(
-    "PutNurbanArticle Params is Equatable",
+    "PatchNurbanArticle Params is Equatable",
     () async {
       expect(
           Params(

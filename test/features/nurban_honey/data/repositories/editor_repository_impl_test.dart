@@ -561,5 +561,90 @@ void main() {
         );
       });
     });
+
+    group('deleteImages', () {
+      //Model
+      //Entity
+      test(
+        "네트워크 연결 확인",
+        () async {
+          when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
+          when(mockEditorRemoteDataSource.deleteImages(any, any, any))
+              .thenAnswer((_) async => tEmptyResponseModel);
+
+          repository.deleteImages("address", "token", "uuid");
+
+          verify(mockNetworkStatus.isConnected);
+        },
+      );
+
+      group('=> 연결 됨', () {
+        setUp(() {
+          when(mockNetworkStatus.isConnected).thenAnswer((_) async => true);
+        });
+
+        test(
+          "정상 동작",
+          () async {
+            when(mockEditorRemoteDataSource.deleteImages(any, any, any))
+                .thenAnswer((_) async => tEmptyResponseModel);
+
+            final result =
+                await repository.deleteImages("address", "token", "uuid");
+
+            verify(mockEditorRemoteDataSource.deleteImages(
+                "address", "token", "uuid"));
+            expect(result, Right(tEmptyResponse));
+          },
+        );
+
+        test(
+          "서버에서 데이터를 잘 못 받았을 때 ServerFailure",
+          () async {
+            when(mockEditorRemoteDataSource.deleteImages(any, any, any))
+                .thenThrow(ServerException());
+
+            final result =
+                await repository.deleteImages("address", "token", "uuid");
+
+            verify(mockEditorRemoteDataSource.deleteImages(
+                "address", "token", "uuid"));
+            expect(result, Left(ServerFailure()));
+          },
+        );
+
+        test(
+          "서버에서 토큰 만료 에러가 반환 되었을 때 AuthorizationException",
+          () async {
+            when(mockEditorRemoteDataSource.deleteImages(any, any, any))
+                .thenThrow(AuthorizationException());
+
+            final result =
+                await repository.deleteImages("address", "token", "uuid");
+
+            verify(mockEditorRemoteDataSource.deleteImages(
+                "address", "token", "uuid"));
+            expect(result, Left(AuthorizationFailure()));
+          },
+        );
+      });
+
+      group('=> 연결 안됨', () {
+        setUp(() {
+          when(mockNetworkStatus.isConnected).thenAnswer((_) async => false);
+        });
+
+        test(
+          "네트워크에 연결되지 않으면 NetworkFailure 리턴",
+          () async {
+            final result =
+                await repository.deleteImages("address", "token", "uuid");
+
+            verifyNever(mockEditorRemoteDataSource.deleteImages(any, any, any));
+            expect(result, Left(NetworkFailure()));
+          },
+        );
+      });
+    });
   });
 }

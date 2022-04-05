@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import '../../../../core/error/exception.dart';
 import '../../domain/entities/empty_response/empty_response.dart';
@@ -37,6 +38,9 @@ abstract class EditorRemoteDataSource {
 
   Future<ImagePostResponseModel> postImage(
       String address, String token, String uuid, String imagePath);
+
+  Future<EmptyResponseModel> deleteImages(
+      String address, String token, String uuid);
 }
 
 class EditorRemoteDataSourceImpl implements EditorRemoteDataSource {
@@ -53,32 +57,30 @@ class EditorRemoteDataSourceImpl implements EditorRemoteDataSource {
       String lossCut,
       String? thumbnail,
       String content) async {
-    final queryParams = {
+    final body = {
       'title': title,
       'uuid': uuid,
-      'lossCut': BigInt.parse(lossCut),
+      'lossCut': lossCut,
       'thumbnail': thumbnail,
       'content': content
     };
 
-    final uri = Uri.parse("$baseUrl/$address/article")
-        .replace(queryParameters: queryParams);
-    return _requestHandler(uri, client.post, token);
+    final uri = Uri.parse("$baseUrl/$address/article");
+    return _requestHandlerWithBody(uri, client.post, token, body);
   }
 
   @override
   Future<EmptyResponseModel> postArticle(String address, String token,
       String title, String uuid, String? thumbnail, String content) async {
-    final queryParams = {
+    final body = {
       'title': title,
       'uuid': uuid,
       'thumbnail': thumbnail,
       'content': content
     };
 
-    final uri = Uri.parse("$baseUrl/$address/article")
-        .replace(queryParameters: queryParams);
-    return _requestHandler(uri, client.post, token);
+    final uri = Uri.parse("$baseUrl/$address/article");
+    return _requestHandlerWithBody(uri, client.post, token, body);
   }
 
   @override
@@ -90,7 +92,7 @@ class EditorRemoteDataSourceImpl implements EditorRemoteDataSource {
       String title,
       String lossCut,
       String content) async {
-    final queryParams = {
+    final body = {
       'id': '$articleId',
       'thumbnail': thumbnail,
       'title': title,
@@ -98,24 +100,22 @@ class EditorRemoteDataSourceImpl implements EditorRemoteDataSource {
       'content': content
     };
 
-    final uri = Uri.parse("$baseUrl/$address/article")
-        .replace(queryParameters: queryParams);
-    return _requestHandler(uri, client.patch, token);
+    final uri = Uri.parse("$baseUrl/$address/article");
+    return _requestHandlerWithBody(uri, client.patch, token, body);
   }
 
   @override
   Future<EmptyResponseModel> patchArticle(String address, String token,
       int articleId, String? thumbnail, String title, String content) async {
-    final queryParams = {
+    final body = {
       'id': '$articleId',
       'thumbnail': thumbnail,
       'title': title,
       'content': content
     };
 
-    final uri = Uri.parse("$baseUrl/$address/article")
-        .replace(queryParameters: queryParams);
-    return _requestHandler(uri, client.patch, token);
+    final uri = Uri.parse("$baseUrl/$address/article");
+    return _requestHandlerWithBody(uri, client.patch, token, body);
   }
 
   @override
@@ -131,7 +131,39 @@ class EditorRemoteDataSourceImpl implements EditorRemoteDataSource {
   @override
   Future<ImagePostResponseModel> postImage(
       String address, String token, String uuid, String imagePath) async {
-    return ImagePostResponseModel("");
+    final uri = Uri.parse("$baseUrl/$address/article/upload/image");
+    File imageFile = File(imagePath);
+    List<int> imageBytes = imageFile.readAsBytesSync();
+    String base64Image = base64Encode(imageBytes);
+
+    final response = await client.post(uri,
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'token': token
+        },
+        body: jsonEncode({'uuid': uuid, 'image': '$base64Image'}));
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return ImagePostResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
+  }
+
+  @override
+  Future<EmptyResponseModel> deleteImages(
+      String address, String token, String uuid) async {
+    final queryParamas = {'uuid': uuid};
+    final uri = Uri.parse("$baseUrl/$address/article/upload/image")
+        .replace(queryParameters: queryParamas);
+
+    final response = await client.delete(uri,
+        headers: {'Content-Type': 'application/json', 'token': token});
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return EmptyResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
   }
 
   Future<EmptyResponseModel> _requestHandler(
@@ -140,6 +172,19 @@ class EditorRemoteDataSourceImpl implements EditorRemoteDataSource {
       uri,
       headers: {'Content-Type': 'application/json', 'token': token},
     );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return EmptyResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
+  }
+
+  Future<EmptyResponseModel> _requestHandlerWithBody(Uri uri, Function request,
+      String token, Map<String, dynamic> body) async {
+    final response = await request(uri,
+        headers: {'Content-Type': 'application/json', 'token': token},
+        body: body);
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return EmptyResponseModel.fromJson(jsonDecode(response.body));

@@ -97,10 +97,8 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   @override
   Future<EmptyResponseModel> postLike(
       String address, String token, int articleId) async {
-    final queryParams = {'articleId': '$articleId'};
-    final uri = Uri.parse("$baseUrl/$address/article/like")
-        .replace(queryParameters: queryParams);
-    return _requestHandler(uri, client.post, token);
+    final uri = Uri.parse("$baseUrl/$address/article/like");
+    return _requestPostHandler(uri, token, articleId);
   }
 
   @override
@@ -115,10 +113,8 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   @override
   Future<EmptyResponseModel> postDislike(
       String address, String token, int articleId) async {
-    final queryParams = {'articleId': '$articleId'};
-    final uri = Uri.parse("$baseUrl/$address/article/dislike")
-        .replace(queryParameters: queryParams);
-    return _requestHandler(uri, client.post, token);
+    final uri = Uri.parse("$baseUrl/$address/article/dislike");
+    return _requestPostHandler(uri, token, articleId);
   }
 
   @override
@@ -130,12 +126,11 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     return _requestHandler(uri, client.delete, token);
   }
 
-  Future<EmptyResponseModel> _requestHandler(
-      Uri uri, Function request, String token) async {
-    final response = await request(
-      uri,
-      headers: {'Content-Type': 'application/json', 'token': token},
-    );
+  Future<EmptyResponseModel> _requestPostHandler(
+      Uri uri, String token, int articleId) async {
+    final response = await client.post(uri,
+        headers: {'Content-Type': 'application/json', 'token': token},
+        body: {'articleId': '$articleId'});
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return EmptyResponseModel.fromJson(jsonDecode(response.body));
@@ -203,10 +198,15 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   @override
   Future<EmptyResponseModel> postComment(
       String address, String token, String comment, int articleId) async {
-    final queryParams = {'content': '$comment', 'articleId': '$articleId'};
-    final uri = Uri.parse("$baseUrl/$address/article/comment")
-        .replace(queryParameters: queryParams);
-    return _requestHandler(uri, client.post, token);
+    final uri = Uri.parse("$baseUrl/$address/article/comment");
+    final response = await client.post(uri,
+        headers: {'Content-Type': 'application/json', 'token': token},
+        body: {'content': '$comment', 'articleId': '$articleId'});
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return EmptyResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
   }
 
   @override
@@ -221,10 +221,29 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   @override
   Future<EmptyResponseModel> patchComment(
       String address, String token, int commentId, String comment) async {
-    final queryParams = {'id': '$commentId', 'content': '$comment'};
-    final uri = Uri.parse("$baseUrl/$address/article/comment")
-        .replace(queryParameters: queryParams);
-    return _requestHandler(uri, client.patch, token);
+    final uri = Uri.parse("$baseUrl/$address/article/comment");
+    final response = await client.patch(uri,
+        headers: {'Content-Type': 'application/json', 'token': token},
+        body: {'id': '$commentId', 'content': '$comment'});
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return EmptyResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
+  }
+
+  Future<EmptyResponseModel> _requestHandler(
+      Uri uri, Function request, String token) async {
+    final response = await request(
+      uri,
+      headers: {'Content-Type': 'application/json', 'token': token},
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return EmptyResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      return _generateExceptions(response.statusCode);
+    }
   }
 
   _generateExceptions(int responseStatusCode) {
